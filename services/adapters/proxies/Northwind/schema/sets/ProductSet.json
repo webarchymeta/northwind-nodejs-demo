@@ -1,0 +1,24 @@
+/// <summary>
+/// A structure representing a specification of the entity set of type "Products". 
+/// </summary>
+{
+    "type": "object",
+    "name": "ProductSet",
+    "properties": {
+        "PageSize_": {
+            "type": "integer",
+            "required": true,
+            "description": "The size of a page in the set."
+        },
+        "PageBlockSize": {
+            "type": "integer",
+            "required": true,
+            "description": "The size of a page block in the set. A block of page frames are retrieved from the service at a time."
+        },
+        "SetFilter": {
+            "type": "string",
+            "required": false,
+            "description": "The filter expression for the set. If it is not empty or null, the set is a sub-set of corresponding data set inside the data source."
+        },
+    }
+}

@@ -1,0 +1,92 @@
+<div id="relationship"></div>
+
+<script type="text/javascript">
+
+    var relationship;
+
+    function visLoaded(vis) {
+
+        var nodes = [
+                { id: 'Category', label: 'Categories' },
+                { id: 'CustomerCustomerDemo', label: 'CustomerCustomerDemo' },
+                { id: 'CustomerDemographic', label: 'CustomerDemographics' },
+                { id: 'Customer', label: 'Customers' },
+                { id: 'Employee', label: 'Employees' },
+                { id: 'EmployeeTerritory', label: 'EmployeeTerritories' },
+                { id: 'Order_Detail', label: 'Order Details' },
+                { id: 'Order', label: 'Orders' },
+                { id: 'Product', label: 'Products' },
+                { id: 'Region', label: 'Region' },
+                { id: 'Shipper', label: 'Shippers' },
+                { id: 'Supplier', label: 'Suppliers' },
+                { id: 'Territory', label: 'Territories' }
+            ];
+
+        var edges = [
+                { from: 'CustomerDemographic', to: 'CustomerCustomerDemo' },
+                { from: 'Customer', to: 'CustomerCustomerDemo' },
+                { from: 'Employee', to: 'Employee' },
+                { from: 'Employee', to: 'EmployeeTerritory' },
+                { from: 'Territory', to: 'EmployeeTerritory' },
+                { from: 'Order', to: 'Order_Detail' },
+                { from: 'Product', to: 'Order_Detail' },
+                { from: 'Customer', to: 'Order' },
+                { from: 'Employee', to: 'Order' },
+                { from: 'Shipper', to: 'Order' },
+                { from: 'Category', to: 'Product' },
+                { from: 'Supplier', to: 'Product' },
+                { from: 'Region', to: 'Territory' }
+            ];
+
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+
+        var options = {
+            width: '100%',
+            height: '850px',
+            nodes: {
+                fontSize: 10
+            },
+            edges: {
+                width: 1.5,
+                style: 'arrow-center',
+                arrowScaleFactor: 0.5,
+                inheritColor: 'from'
+            },
+            smoothCurves: { dynamic: true, type: 'continuous' },
+            stabilize: false,
+            configurePhysics: false,
+            physics: {
+                barnesHut: {
+                    gravitationalConstant: -2000,
+                    centralGravity: 1.25,
+                    springLength: 45,
+                    springConstant: 0.005,
+                    damping: 0.09
+                },
+                repulsion: {
+                    enabled: true,
+                    centralGravity: 0.2,
+                    springLength: 25,
+                    springConstant: 0.038,
+                    nodeDistance: 100,
+                    damping: 0.09
+                }
+            },
+            hideEdgesOnDrag: true
+        };
+
+        var container = document.getElementById('relationship');
+
+        relationship = new vis.Network(container, data, options);
+
+        relationship.on('doubleClick', function (prop) {
+            if (prop.nodes.length === 1) {
+                window.location = properties.nodes[0] + 'Set';
+            }
+        })
+    };
+
+</script>

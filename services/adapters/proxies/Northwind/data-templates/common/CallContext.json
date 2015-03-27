@@ -1,0 +1,9 @@
+/// <summary>
+/// A class representing a client and carrying client specific data.
+/// An instance of this class must be initiated from the service side by clients calling
+/// <see cref="INorthwindService.SignInService" /> or <see cref="INorthwindService2.SignInService" />, 
+/// saved by the clients, and be used on all subsequent calls to the service.
+/// </summary>
+{
+    "$schema": "http://localhost:11333/common/CallContext?db=Northwind"
+}

@@ -1,0 +1,6 @@
+/// <summary>
+/// A class used to specify a filtered change notification subscription.
+/// </summary>
+{
+    "$schema": "http://localhost:11333/common/SetSubscription?db=Northwind"
+}

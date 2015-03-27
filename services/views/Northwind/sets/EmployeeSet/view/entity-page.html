@@ -1,0 +1,456 @@
+<!-- auto generated, manual changes could be overwritten when regenerated. -->
+<!-- ko with: currentPage().mainDataModel -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('290612199861c31d1036b185b4e69b75'/*Summary*/) %></span>
+        </div>
+        <h4>
+            <p><i class="glyphicon glyphicon-hand-right"></i>&nbsp;&nbsp;<span data-bind="text: DistinctString "></span></p>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+            <span><%= __('fbc97786af4bf30dc5b07809a950792c'/*Relationship*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><%= __('e067de5f0ff56baf80cac91498ac4548'/*Depend Upons*/) %></h4>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>UpperRef:</strong>
+                        <!-- ko if: IsUpperRefMaterialized -->
+                        <!-- ko if: ReportsTo != null -->
+                        [<span>ReportsTo:</span>&nbsp;<span data-bind="text: ReportsTo "></span>]
+                        ( <span data-bind="text: UpperRef() == null ? '' : UpperRef().DistinctString "></span> )
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo( { kind: 'EmployeeSet', id: 'entity-page' + data.UpperRef().LookupQuery, scripts: [ { handler: 'initEntityView' } ], unloadHandler: 'leaveEntityView', data: data.UpperRef() }); return false; }">
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko if: ReportsTo == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsUpperRefMaterialized -->
+                        <!-- ko if: ReportsTo != null -->
+                        [<span>ReportsTo:</span>&nbsp;<span data-bind="text: ReportsTo "></span>]
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeUpperRef(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                        <!-- ko if: ReportsTo == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><%= __('cbb16ba23fcdfe56938bf90943684aa4'/*Dependents*/) %></h4>
+            </div>
+            <div id="dependents" class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Employees:</strong>
+                        <!-- ko if: IsEmployeesMaterialized -->
+                        [<span><%= __('b01d61add7c12b44ce41476325cdb701'/*No. of Entities:*/) %></span>&nbsp;
+                         <span data-bind="text: Employees().TotalEntities "></span>]
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo({ kind: 'EmployeeSet', id: 'list-paged-page' + data.LookupQuery, scripts: [ ], unloadHandler: { }, data: data.Employees() }); return false; }" >
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsEmployeesMaterialized -->
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeEmployees(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                    </li>
+                    <li class="list-group-item"><strong>EmployeeTerritorys:</strong>
+                        <!-- ko if: IsEmployeeTerritorysMaterialized -->
+                        [<span><%= __('b01d61add7c12b44ce41476325cdb701'/*No. of Entities:*/) %></span>&nbsp;
+                         <span data-bind="text: EmployeeTerritorys().TotalEntities "></span>]
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo({ kind: 'EmployeeTerritorySet', id: 'list-paged-page' + data.LookupQuery, scripts: [ ], unloadHandler: { }, data: data.EmployeeTerritorys() }); return false; }" >
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsEmployeeTerritorysMaterialized -->
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeEmployeeTerritorys(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                    </li>
+                    <li class="list-group-item"><strong>Orders:</strong>
+                        <!-- ko if: IsOrdersMaterialized -->
+                        [<span><%= __('b01d61add7c12b44ce41476325cdb701'/*No. of Entities:*/) %></span>&nbsp;
+                         <span data-bind="text: Orders().TotalEntities "></span>]
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo({ kind: 'OrderSet', id: 'list-paged-page' + data.LookupQuery, scripts: [ ], unloadHandler: { }, data: data.Orders() }); return false; }" >
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsOrdersMaterialized -->
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeOrders(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('d9f0e2e042a99fa5eeab9228841c6cd9'/*Delay Loaded Properties*/) %></span>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#delayed_Notes" role="tab" data-toggle="tab">
+            <span>Notes</span>
+        </a>
+    </li>
+    <li>
+        <a href="#delayed_Photo" role="tab" data-toggle="tab">
+            <span>Photo</span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="delayed_Notes">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="content">
+                    <div class="textblock">
+                        <text-widget params="path: 'EmployeeSet', qstr:  NotesQuery " ></text-widget>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="delayed_Photo">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="content">
+                    <div class="resizeblock">
+                        <img data-bind="attr: { src: 'EmployeeSet/' + PhotoQuery }" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('df80fe0796922bc4dbee1cbedfe58a1c'/*Property Groups*/) %></span>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#AddressType_PersonObj" role="tab" data-toggle="tab">
+            <span>Person</span>
+        </a>
+    </li>
+    <li>
+        <a href="#AddressTypeObj" role="tab" data-toggle="tab">
+            <span>Address</span>
+        </a>
+    </li>
+    <li>
+        <a href="#CommunicationObj" role="tab" data-toggle="tab">
+            <span>Communication</span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="AddressType_PersonObj">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered property-list">
+                    <tr>
+                        <td><span>TitleOfCourtesy</span></td>
+                        <td>
+                            <span data-bind="text: TitleOfCourtesy" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>FirstName</span></td>
+                        <td>
+                            <span data-bind="text: FirstName" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>LastName</span></td>
+                        <td>
+                            <span data-bind="text: LastName" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Title</span></td>
+                        <td>
+                            <span data-bind="text: Title" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>BirthDate</span></td>
+                        <td>
+                            <span data-bind="localdatetime: BirthDate" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>PhotoPath</span></td>
+                        <td>
+                            <span data-bind="text: PhotoPath" ></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="AddressTypeObj">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered property-list">
+                    <tr>
+                        <td><span>Country</span></td>
+                        <td>
+                            <span data-bind="text: Country" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Region</span></td>
+                        <td>
+                            <span data-bind="text: Region" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>City</span></td>
+                        <td>
+                            <span data-bind="text: City" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Address</span></td>
+                        <td>
+                            <span data-bind="text: Address" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>PostalCode</span></td>
+                        <td>
+                            <span data-bind="text: PostalCode" ></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="CommunicationObj">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered property-list">
+                    <tr>
+                        <td><span>HomePhone</span></td>
+                        <td>
+                            <span data-bind="text: HomePhone" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Extension</span></td>
+                        <td>
+                            <span data-bind="text: Extension" ></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('990b2e22fe8cf095b97351fdee57a810'/*Entity Hierarchy*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="hierarchyinfo">
+            <div class="cmdbar clear-fix">
+                <button class="btn btn-default" data-bind="click: function(data, event) { $root.currentPage().op.LoadEntityHierarchy(data, event); } ">
+                    <%= __('7575f971e2cefd4bacb9164560876ad1'/*Load Current Hierarchy*/) %>
+                </button>
+                <button class="btn btn-default" data-bind="click: function(data, event) { $root.currentPage().op.LoadEntityRoots(data, event); } ">
+                    <%= __('b10a3aa8ca4343ba13568ad8d79e741e'/*Load All Roots*/) %>
+                </button>
+            </div>
+            <script id="hierarchytempl" type="text/html">
+                <li class="list-group-item">
+                    <div class="treenode">
+                        <!-- ko if: ChildExists -->
+                        <!-- ko if: IsNodeExpanded -->
+                        <a href="#" class="opened" data-bind="click: function(data, event) { data.IsNodeExpanded(false); } ">
+                            <i class="fa fa-angle-double-down fa-fw"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsNodeExpanded -->
+                        <a href="#" class="closed" data-bind="click: function(data, event) { $root.currentPage().op.LoadChildNodes(data, event); } ">
+                            <i class="fa fa-angle-double-right fa-fw"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko ifnot: ChildExists -->
+                        <div class="empty"><i class="fa fa-circle-thin fa-fw"></i></div>
+                        <!-- /ko -->
+                        <span data-bind="text: NodeLabel, css: { seednode: IsSeedNode }"></span>
+                        <!-- ko if: IsSeedNode -->
+                        &nbsp;&nbsp;<i class="glyphicon glyphicon-ok"></i>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsSeedNode -->
+                        <a class="badge" data-bind="click: function(data, event) { $root.navigateTo( { kind: 'EmployeeSet', id: 'entity-page' + DataBehind.LookupQuery, scripts: [ { handler: 'initEntityView' } ], unloadHandler: 'leaveEntityView', data: DataBehind }); return false; }" href="#">
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                    </div>
+                    <ul class="list-group" data-bind="template: { name: 'hierarchytempl', foreach: ChildEntities }, visible: IsNodeExpanded() && ChildExists() "></ul>
+                </li>
+            </script>
+            <div class="treeview">
+                <ul class="list-group" data-bind="template: { name: 'hierarchytempl', foreach: $root.currentPage().op.set.HierarchyRoots }"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('e1ffcd8ead3216e85b0560d1d50e59ca'/*Property List*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered property-list">
+            <tr>
+                <td><span>EmployeeID</span></td>
+                <td>
+                    <span data-bind="text: EmployeeID" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>BirthDate</span></td>
+                <td>
+                    <span data-bind="localdatetime: BirthDate" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>FirstName</span></td>
+                <td>
+                    <span data-bind="text: FirstName" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>LastName</span></td>
+                <td>
+                    <span data-bind="text: LastName" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Address</span></td>
+                <td>
+                    <span data-bind="text: Address" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>City</span></td>
+                <td>
+                    <span data-bind="text: City" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Country</span></td>
+                <td>
+                    <span data-bind="text: Country" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Extension</span></td>
+                <td>
+                    <span data-bind="text: Extension" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>HireDate</span></td>
+                <td>
+                    <span data-bind="localdatetime: HireDate" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>HomePhone</span></td>
+                <td>
+                    <span data-bind="text: HomePhone" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>PhotoPath</span></td>
+                <td>
+                    <span data-bind="text: PhotoPath" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>PostalCode</span></td>
+                <td>
+                    <span data-bind="text: PostalCode" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Region</span></td>
+                <td>
+                    <span data-bind="text: Region" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Title</span></td>
+                <td>
+                    <span data-bind="text: Title" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>TitleOfCourtesy</span></td>
+                <td>
+                    <span data-bind="text: TitleOfCourtesy" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ReportsTo</span></td>
+                <td>
+                    <span data-bind="text: ReportsTo" ></span>
+                    <!-- ko if: ReportsTo != null -->
+                    <!-- ko if: IsUpperRefMaterialized -->
+                    ( <span data-bind="text: UpperRef().DistinctString "></span> )
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: ReportsTo == null -->
+                    ( null )
+                    <!-- /ko -->
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- /ko -->
+<script type="text/javascript">
+
+     function initEntityView() {
+     }
+
+     function leaveEntityView() {
+     }
+
+</script>

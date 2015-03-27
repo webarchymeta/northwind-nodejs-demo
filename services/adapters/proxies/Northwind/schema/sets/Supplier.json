@@ -1,0 +1,170 @@
+/// <summary>
+/// A entity in "Suppliers" data set.
+/// </summary>
+{
+    "id": "#Schema_Supplier",
+    "type": "object",
+    "name": "Suppliers",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CompanyName": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; not null; max-length = 40 characters."
+        },
+        "HomePage": {
+            "type": "object",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; load delayed."
+        },
+        "IsHomePageModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'HomePage' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'HomePage' only if this is set to true no matter what the actual value of 'HomePage' is."
+        },
+        "IsHomePageLoaded": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of the delay loaded 'HomePage' is Loaded. Clients are responsible for keeping track of loading status of delay loading properties."
+        },
+        "Address": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 60 characters."
+        },
+        "IsAddressModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Address' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Address' only if this is set to true no matter what the actual value of 'Address' is."
+        },
+        "City": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsCityModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'City' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'City' only if this is set to true no matter what the actual value of 'City' is."
+        },
+        "ContactName": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 30 characters."
+        },
+        "IsContactNameModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ContactName' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ContactName' only if this is set to true no matter what the actual value of 'ContactName' is."
+        },
+        "ContactTitle": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 30 characters."
+        },
+        "IsContactTitleModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ContactTitle' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ContactTitle' only if this is set to true no matter what the actual value of 'ContactTitle' is."
+        },
+        "Country": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "enum": [ "Australia", "Brazil", "Canada", "China", "Denmark", "Finland", "France", "Germany", "Italy", "Japan", "Netherlands", "Norway", "Singapore", "Spain", "Sweden", "UK", "USA" ],
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsCountryModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Country' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Country' only if this is set to true no matter what the actual value of 'Country' is."
+        },
+        "Fax": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 24 characters."
+        },
+        "IsFaxModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Fax' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Fax' only if this is set to true no matter what the actual value of 'Fax' is."
+        },
+        "Phone": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 24 characters."
+        },
+        "IsPhoneModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Phone' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Phone' only if this is set to true no matter what the actual value of 'Phone' is."
+        },
+        "PostalCode": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 10 characters."
+        },
+        "IsPostalCodeModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'PostalCode' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'PostalCode' only if this is set to true no matter what the actual value of 'PostalCode' is."
+        },
+        "Region": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsRegionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Region' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Region' only if this is set to true no matter what the actual value of 'Region' is."
+        },
+        "ChangedProducts": {
+            "type": "array",
+            "description": "A list of 'Product' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'ProductSet' set is { 'Product.SupplierID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Product?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

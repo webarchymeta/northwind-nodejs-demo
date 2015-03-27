@@ -1,0 +1,52 @@
+/// <summary>
+/// A entity in "CustomerDemographics" data set.
+/// </summary>
+{
+    "id": "#Schema_CustomerDemographic",
+    "type": "object",
+    "name": "CustomerDemographics",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CustomerTypeID": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null; max-length = 10 characters."
+        },
+        "CustomerDesc": {
+            "type": "object",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; load delayed."
+        },
+        "IsCustomerDescModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'CustomerDesc' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'CustomerDesc' only if this is set to true no matter what the actual value of 'CustomerDesc' is."
+        },
+        "IsCustomerDescLoaded": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of the delay loaded 'CustomerDesc' is Loaded. Clients are responsible for keeping track of loading status of delay loading properties."
+        },
+        "ChangedCustomerCustomerDemos": {
+            "type": "array",
+            "description": "A list of 'CustomerCustomerDemo' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'CustomerCustomerDemoSet' set is { 'CustomerCustomerDemo.CustomerTypeID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/CustomerCustomerDemo?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

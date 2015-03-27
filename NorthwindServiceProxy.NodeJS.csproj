@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{7B2DFED6-D763-467A-AB27-746FB54079CD}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>CryptoGateway.RDB.Data.Northwind</RootNamespace>
+        <AssemblyName>NorthwindServiceProxy.NodeJS</AssemblyName>
+        <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="service-clients\scripts\Northwind\config.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\QueryComposer.js" />
+        <Content Include="services\views\Northwind\widget_templates\QueryComposer.html" />
+        <Content Include="service-clients\scripts\pageManager.js" />
+        <Content Include="service-clients\scripts\Northwind\models\DatabaseContext.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\DbContext\view\index.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\DbContext\view\index.js" />
+        <Content Include="services\views\Northwind\DbContext\view\shell.html" />
+        <Content Include="services\views\Northwind\DbContext\view\main-page.html" />
+        <Content Include="services\views\Northwind\DbContext\view\relation-page.html" />
+        <Content Include="services\views\Northwind\DbContext\view\monitor-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\common\CallContext.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\common\CallerCredentials.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\common\QToken.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\common\QueryExpression.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\common\SetSubscription.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\common\CallContext.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\common\CallerCredentials.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\common\QToken.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\common\QueryExpression.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\common\SetSubscription.json" />
+        <Content Include="service-clients\scripts\Northwind\models\common\QueryModels.js" />
+        <Content Include="service-clients\scripts\Northwind\models\common\DataStructs.js" />
+        <Content Include="services\adapters\proxies\Northwind\schema\NorthwindServiceInputParams.json" />
+        <Content Include="service-clients\scripts\Northwind\models\sets\Category.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CategorySet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CategorySet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CategorySet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\CategorySet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CategorySet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\CategorySet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\CategorySet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CategorySet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\CategorySet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\CategorySet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CategorySet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CategorySet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CategorySet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\CategorySet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CategorySet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CategorySet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CategoryPageBlock.json">
+            <DependentUpon>CategorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CategoryPage.json">
+            <DependentUpon>CategoryPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Category.json">
+            <DependentUpon>CategoryPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CategorySet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CategoryPageBlock.json">
+            <DependentUpon>CategorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CategoryPage.json">
+            <DependentUpon>CategoryPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Category.json">
+            <DependentUpon>CategoryPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CategoryServiceInputParams.json">
+            <DependentUpon>CategorySet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\CustomerCustomerDemo.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerCustomerDemoSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerCustomerDemoSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerCustomerDemoSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerCustomerDemoSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerCustomerDemoSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerCustomerDemoSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerCustomerDemoSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerCustomerDemoSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerCustomerDemoSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerCustomerDemoPageBlock.json">
+            <DependentUpon>CustomerCustomerDemoSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerCustomerDemoPage.json">
+            <DependentUpon>CustomerCustomerDemoPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerCustomerDemo.json">
+            <DependentUpon>CustomerCustomerDemoPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerCustomerDemoSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerCustomerDemoPageBlock.json">
+            <DependentUpon>CustomerCustomerDemoSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerCustomerDemoPage.json">
+            <DependentUpon>CustomerCustomerDemoPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerCustomerDemo.json">
+            <DependentUpon>CustomerCustomerDemoPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerCustomerDemoServiceInputParams.json">
+            <DependentUpon>CustomerCustomerDemoSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\CustomerDemographic.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerDemographicSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerDemographicSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerDemographicSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerDemographicSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerDemographicSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerDemographicSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerDemographicSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerDemographicSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerDemographicSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerDemographicPageBlock.json">
+            <DependentUpon>CustomerDemographicSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerDemographicPage.json">
+            <DependentUpon>CustomerDemographicPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerDemographic.json">
+            <DependentUpon>CustomerDemographicPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerDemographicSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerDemographicPageBlock.json">
+            <DependentUpon>CustomerDemographicSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerDemographicPage.json">
+            <DependentUpon>CustomerDemographicPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerDemographic.json">
+            <DependentUpon>CustomerDemographicPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerDemographicServiceInputParams.json">
+            <DependentUpon>CustomerDemographicSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Customer.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\CustomerSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\CustomerSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\CustomerSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerPageBlock.json">
+            <DependentUpon>CustomerSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerPage.json">
+            <DependentUpon>CustomerPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Customer.json">
+            <DependentUpon>CustomerPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerPageBlock.json">
+            <DependentUpon>CustomerSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\CustomerPage.json">
+            <DependentUpon>CustomerPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Customer.json">
+            <DependentUpon>CustomerPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\CustomerServiceInputParams.json">
+            <DependentUpon>CustomerSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Employee.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\EmployeeSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\EmployeeSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\EmployeeSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeePageBlock.json">
+            <DependentUpon>EmployeeSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeePage.json">
+            <DependentUpon>EmployeePageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Employee.json">
+            <DependentUpon>EmployeePage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeeSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeePageBlock.json">
+            <DependentUpon>EmployeeSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeePage.json">
+            <DependentUpon>EmployeePageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Employee.json">
+            <DependentUpon>EmployeePage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeServiceInputParams.json">
+            <DependentUpon>EmployeeSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\EmployeeTerritory.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeTerritorySet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeTerritorySet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\EmployeeTerritorySet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\EmployeeTerritorySet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeTerritorySet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\EmployeeTerritorySet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\EmployeeTerritorySet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\EmployeeTerritorySet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeTerritorySet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeTerritoryPageBlock.json">
+            <DependentUpon>EmployeeTerritorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeTerritoryPage.json">
+            <DependentUpon>EmployeeTerritoryPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeTerritory.json">
+            <DependentUpon>EmployeeTerritoryPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeeTerritorySet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeeTerritoryPageBlock.json">
+            <DependentUpon>EmployeeTerritorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeeTerritoryPage.json">
+            <DependentUpon>EmployeeTerritoryPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\EmployeeTerritory.json">
+            <DependentUpon>EmployeeTerritoryPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\EmployeeTerritoryServiceInputParams.json">
+            <DependentUpon>EmployeeTerritorySet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Order_Detail.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\Order_DetailSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\Order_DetailSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\Order_DetailSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\Order_DetailSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\Order_DetailSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\Order_DetailSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\Order_DetailSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\Order_DetailSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Order_DetailSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Order_DetailPageBlock.json">
+            <DependentUpon>Order_DetailSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Order_DetailPage.json">
+            <DependentUpon>Order_DetailPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Order_Detail.json">
+            <DependentUpon>Order_DetailPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Order_DetailSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Order_DetailPageBlock.json">
+            <DependentUpon>Order_DetailSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Order_DetailPage.json">
+            <DependentUpon>Order_DetailPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Order_Detail.json">
+            <DependentUpon>Order_DetailPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Order_DetailServiceInputParams.json">
+            <DependentUpon>Order_DetailSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Order.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\OrderSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\OrderSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\OrderSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\OrderSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\OrderSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\OrderSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\OrderSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\OrderSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\OrderSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\OrderSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\OrderSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\OrderSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\OrderSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\OrderSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\OrderSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\OrderSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\OrderPageBlock.json">
+            <DependentUpon>OrderSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\OrderPage.json">
+            <DependentUpon>OrderPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Order.json">
+            <DependentUpon>OrderPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\OrderSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\OrderPageBlock.json">
+            <DependentUpon>OrderSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\OrderPage.json">
+            <DependentUpon>OrderPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Order.json">
+            <DependentUpon>OrderPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\OrderServiceInputParams.json">
+            <DependentUpon>OrderSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Product.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ProductSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ProductSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\ProductSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\ProductSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\ProductSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\ProductSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\ProductSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\ProductSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\ProductSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\ProductSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ProductSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ProductSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\ProductSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\ProductSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\ProductSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ProductSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ProductPageBlock.json">
+            <DependentUpon>ProductSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ProductPage.json">
+            <DependentUpon>ProductPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Product.json">
+            <DependentUpon>ProductPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\ProductSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\ProductPageBlock.json">
+            <DependentUpon>ProductSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\ProductPage.json">
+            <DependentUpon>ProductPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Product.json">
+            <DependentUpon>ProductPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ProductServiceInputParams.json">
+            <DependentUpon>ProductSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Region.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\RegionSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\RegionSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\RegionSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\RegionSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\RegionSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\RegionSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\RegionSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\RegionSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\RegionSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\RegionSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\RegionSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\RegionSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\RegionSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\RegionSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\RegionSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\RegionSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\RegionPageBlock.json">
+            <DependentUpon>RegionSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\RegionPage.json">
+            <DependentUpon>RegionPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Region.json">
+            <DependentUpon>RegionPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\RegionSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\RegionPageBlock.json">
+            <DependentUpon>RegionSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\RegionPage.json">
+            <DependentUpon>RegionPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Region.json">
+            <DependentUpon>RegionPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\RegionServiceInputParams.json">
+            <DependentUpon>RegionSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Shipper.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ShipperSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ShipperSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\ShipperSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\ShipperSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ShipperSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\ShipperSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\ShipperSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\ShipperSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ShipperSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ShipperPageBlock.json">
+            <DependentUpon>ShipperSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ShipperPage.json">
+            <DependentUpon>ShipperPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Shipper.json">
+            <DependentUpon>ShipperPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\ShipperSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\ShipperPageBlock.json">
+            <DependentUpon>ShipperSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\ShipperPage.json">
+            <DependentUpon>ShipperPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Shipper.json">
+            <DependentUpon>ShipperPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\ShipperServiceInputParams.json">
+            <DependentUpon>ShipperSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Supplier.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\SupplierSet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\SupplierSet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\SupplierSet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\SupplierSet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\SupplierSet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\SupplierSet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\SupplierSet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\SupplierSet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\SupplierSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\SupplierPageBlock.json">
+            <DependentUpon>SupplierSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\SupplierPage.json">
+            <DependentUpon>SupplierPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Supplier.json">
+            <DependentUpon>SupplierPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\SupplierSet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\SupplierPageBlock.json">
+            <DependentUpon>SupplierSet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\SupplierPage.json">
+            <DependentUpon>SupplierPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Supplier.json">
+            <DependentUpon>SupplierPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\SupplierServiceInputParams.json">
+            <DependentUpon>SupplierSet.json</DependentUpon>
+        </Content>
+        <Content Include="service-clients\scripts\Northwind\models\sets\Territory.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\TerritorySet\view\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\TerritorySet\view\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\TerritorySet\view\list.js" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\view\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\view\list-paged-page.html" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\view\list-endless-page.html" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\view\list-settings-page.html" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\TerritorySet\view\entity.js" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\view\entity-shell.html" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\view\entity-page.html" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\TerritorySet\edit\list.js" />
+        <Content Include="service-clients\scripts\Northwind\controllers\sets\TerritorySet\edit\entity.js" />
+        <Content Include="service-clients\scripts\Northwind\bootstraps\sets\TerritorySet\edit\list.js" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\edit\list-shell.html" />
+        <Content Include="services\views\Northwind\sets\TerritorySet\edit\list-paged-page.html" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\TerritorySet.json" />
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\TerritoryPageBlock.json">
+            <DependentUpon>TerritorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\TerritoryPage.json">
+            <DependentUpon>TerritoryPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\Territory.json">
+            <DependentUpon>TerritoryPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\TerritorySet.json" />
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\TerritoryPageBlock.json">
+            <DependentUpon>TerritorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\TerritoryPage.json">
+            <DependentUpon>TerritoryPageBlock.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\data-templates\sets\Territory.json">
+            <DependentUpon>TerritoryPage.json</DependentUpon>
+        </Content>
+        <Content Include="services\adapters\proxies\Northwind\schema\sets\TerritoryServiceInputParams.json">
+            <DependentUpon>TerritorySet.json</DependentUpon>
+        </Content>
+        <Content Include="services\controllers\access-control.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="services\routes\index.js" />
+        <Compile Include="services\routes\Northwind\index.js" />
+        <Compile Include="services\adapters\proxies\Northwind\event-stream\index.js" />
+        <Compile Include="services\adapters\proxies\Northwind\event-stream\source-api.js" />
+        <Compile Include="services\controllers\Northwind\setup-monitors.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\property-filters.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\NorthwindService.js" />
+        <Compile Include="services\controllers\Northwind\default\DbContext\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\NorthwindService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\CategoryService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\CategorySet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\CategoryService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\CustomerCustomerDemoService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\CustomerCustomerDemoSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\CustomerCustomerDemoService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\CustomerDemographicService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\CustomerDemographicSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\CustomerDemographicService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\CustomerService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\CustomerSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\CustomerService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\EmployeeService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\EmployeeSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\EmployeeService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\EmployeeTerritoryService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\EmployeeTerritorySet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\EmployeeTerritoryService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\Order_DetailService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\Order_DetailSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\Order_DetailService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\OrderService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\OrderSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\OrderService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\ProductService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\ProductSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\ProductService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\RegionService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\RegionSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\RegionService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\ShipperService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\ShipperSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\ShipperService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\SupplierService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\SupplierSet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\SupplierService.js" />
+        <Compile Include="services\adapters\proxies\Northwind\api\sets\TerritoryService.js" />
+        <Compile Include="services\controllers\Northwind\default\sets\TerritorySet\index.js" />
+        <Compile Include="services\adapters\servers\Northwind\api\sets\TerritoryService.js" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

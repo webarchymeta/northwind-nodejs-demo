@@ -1,0 +1,145 @@
+<!-- auto generated, manual changes could be overwritten when regenerated. -->
+<ul class="nav nav-pills set-list-nav">
+    <li><a href="#" data-bind="click: function() { urlNavigate('list-paged-page'); }"><%= __('7369e748062c5243db02e3ec41f017ca'/*Paged View*/) %></a></li>
+    <li>
+        <a href="#" data-bind="click: function() { urlNavigate('list-endless-page', [ { handler: 'initAutoScrollLoad' } ], 'leaveAutoScrollLoad'); }">
+            <%= __('f39fcc0c8d08d8621c7f901cd9145474'/*Auto Load View*/) %>
+        </a>
+    </li>
+    <li class="active"><a href="#"><%= __('1c16e3b78821c95ba7c3caf1d21e7b04'/*View Settings*/) %></a></li>
+</ul>
+<div class="row entityset-settings">
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= __('4970aae1d09fc0456c73f0feb3e2235e'/*Displaying Properties*/) %></div>
+            <div class="panel-body" data-bind="with: $root.currentPage().mainDataModel().settings">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col class="header" />
+                        <col class="content" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th><%= __('9fc2d28c05ed9eb1d75ba4465abf15a9'/*Properties*/) %></th>
+                            <th><%= __('ec24d78ce33048dc73a2b6b1a0690192'/*Visible*/) %></th>
+                            <th><%= __('2b31634e3cfef1bfdd7d0d2cdfdc3f9d'/*Collapse*/) %></th>
+                            <th><%= __('32954654ac8fe66a1d09be19001de2d4'/*Width*/) %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EmployeeID</td>
+                            <td><input type="checkbox" data-bind="checked: show_EmployeeID" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_EmployeeID" /></td>
+                            <td><input type="text" data-bind="value: width_EmployeeID" /></td>
+                        </tr>
+                        <tr>
+                            <td>ReportsTo</td>
+                            <td><input type="checkbox" data-bind="checked: show_ReportsTo" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_ReportsTo" /></td>
+                            <td><input type="text" data-bind="value: width_ReportsTo" /></td>
+                        </tr>
+                        <tr>
+                            <td>HireDate</td>
+                            <td><input type="checkbox" data-bind="checked: show_HireDate" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_HireDate" /></td>
+                            <td><input type="text" data-bind="value: width_HireDate" /></td>
+                        </tr>
+                        <tr>
+                            <td>Notes</td>
+                            <td><input type="checkbox" data-bind="checked: show_Notes" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Notes" /></td>
+                            <td><input type="text" data-bind="value: width_Notes" /></td>
+                        </tr>
+                        <tr>
+                            <td>Photo</td>
+                            <td><input type="checkbox" data-bind="checked: show_Photo" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Photo" /></td>
+                            <td><input type="text" data-bind="value: width_Photo" /></td>
+                        </tr>
+                        <tr>
+                            <td>FirstName</td>
+                            <td><input type="checkbox" data-bind="checked: show_FirstName" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_FirstName" /></td>
+                            <td><input type="text" data-bind="value: width_FirstName" /></td>
+                        </tr>
+                        <tr>
+                            <td>LastName</td>
+                            <td><input type="checkbox" data-bind="checked: show_LastName" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_LastName" /></td>
+                            <td><input type="text" data-bind="value: width_LastName" /></td>
+                        </tr>
+                        <tr>
+                            <td>BirthDate</td>
+                            <td><input type="checkbox" data-bind="checked: show_BirthDate" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_BirthDate" /></td>
+                            <td><input type="text" data-bind="value: width_BirthDate" /></td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td><input type="checkbox" data-bind="checked: show_Address" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Address" /></td>
+                            <td><input type="text" data-bind="value: width_Address" /></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td><input type="checkbox" data-bind="checked: show_City" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_City" /></td>
+                            <td><input type="text" data-bind="value: width_City" /></td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td><input type="checkbox" data-bind="checked: show_Country" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Country" /></td>
+                            <td><input type="text" data-bind="value: width_Country" /></td>
+                        </tr>
+                        <tr>
+                            <td>Extension</td>
+                            <td><input type="checkbox" data-bind="checked: show_Extension" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Extension" /></td>
+                            <td><input type="text" data-bind="value: width_Extension" /></td>
+                        </tr>
+                        <tr>
+                            <td>HomePhone</td>
+                            <td><input type="checkbox" data-bind="checked: show_HomePhone" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_HomePhone" /></td>
+                            <td><input type="text" data-bind="value: width_HomePhone" /></td>
+                        </tr>
+                        <tr>
+                            <td>PhotoPath</td>
+                            <td><input type="checkbox" data-bind="checked: show_PhotoPath" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_PhotoPath" /></td>
+                            <td><input type="text" data-bind="value: width_PhotoPath" /></td>
+                        </tr>
+                        <tr>
+                            <td>PostalCode</td>
+                            <td><input type="checkbox" data-bind="checked: show_PostalCode" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_PostalCode" /></td>
+                            <td><input type="text" data-bind="value: width_PostalCode" /></td>
+                        </tr>
+                        <tr>
+                            <td>Region</td>
+                            <td><input type="checkbox" data-bind="checked: show_Region" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Region" /></td>
+                            <td><input type="text" data-bind="value: width_Region" /></td>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td><input type="checkbox" data-bind="checked: show_Title" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_Title" /></td>
+                            <td><input type="text" data-bind="value: width_Title" /></td>
+                        </tr>
+                        <tr>
+                            <td>TitleOfCourtesy</td>
+                            <td><input type="checkbox" data-bind="checked: show_TitleOfCourtesy" /></td>
+                            <td><input type="checkbox" data-bind="checked: collapse_TitleOfCourtesy" /></td>
+                            <td><input type="text" data-bind="value: width_TitleOfCourtesy" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+    </div>
+</div>

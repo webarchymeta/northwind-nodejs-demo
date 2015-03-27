@@ -1,0 +1,6 @@
+/// <summary>
+/// A entity in "Employees" data set. The set is a self-referencing hierarchic one.
+/// </summary>
+{
+    "$schema": "http://localhost:11333/sets/Employee?db=Northwind"
+}

@@ -1,0 +1,265 @@
+<!-- auto generated, manual changes could be overwritten when regenerated. -->
+<!-- ko with: currentPage -->
+<ul class="nav nav-pills set-list-nav">
+    <li><a href="DbContext"><%= __('5c26a6293ab9c31676950be71f991dbf'/*Current Database*/) %></a></li>
+    <!-- ko if: mainDataModel().IsFilteredView -->
+    <li><a href="EmployeeSet"><%= __('810b9dab3ebf3492f0909cc5c2c87596'/*All Data*/) %></a></li>
+    <!-- /ko -->
+    <li><a href="#" data-bind="click: function() { $root.urlNavigate('list-paged-page'); }"><%= __('7369e748062c5243db02e3ec41f017ca'/*Paged View*/) %></a></li>
+    <li class="active"><a href="#"><%= __('f39fcc0c8d08d8621c7f901cd9145474'/*Auto Load View*/) %></a></li>
+    <!-- ko if: mainDataModel().HasFilteredView -->
+    <li><a data-bind="attr: {href: mainDataModel().FilteredViewUrl }" ><%= __('cfcc40d53eb0c21967286166edc6826b'/*As Subset*/) %></a></li>
+    <!-- /ko -->
+    <li><a href="#" data-bind="click: function() { $root.urlNavigate('list-settings-page'); }"><%= __('1c16e3b78821c95ba7c3caf1d21e7b04'/*View Settings*/) %></a></li>
+</ul>
+<section class="set-info-area">
+    <div class="header">
+        <div class="row">
+            <div class="col-xs-4"><%= __('c4fd9a39b7163667d0aca2a5d20840b3'/*Current Set:*/)%>  <span class="set-name">Employees</span> </div>
+            <div class="col-xs-4"><%= __('240ff36218408983d4186e6d74b566e2'/*Matches:*/) %> <span data-bind="text: mainDataModel().EntityCount"></span></div>
+            <div class="col-xs-4" style="text-align:right"><%= __("4c4bcc16a7300db40a55781c45ef12d9"/*Total Entities:*/)%> <span data-bind="text: mainDataModel().TotalEntities"></span> </div>
+        </div>
+    </div>
+</section>
+<iquery-widget params="s: mainDataModel"></iquery-widget>
+<script type="text/html" id="listTemplate">
+    <tr data-bind="css: {selected: IsEntitySelected() }, click: function (data, event) { return $root.currentPage().op.selectEntity(data, event); }">
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_HireDate -->
+        <td><span data-bind="localdatetime: HireDate, attr: {title: HireDate}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_FirstName -->
+        <td><span data-bind="text: FirstName, attr: {title: FirstName}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_LastName -->
+        <td><span data-bind="text: LastName, attr: {title: LastName}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_BirthDate -->
+        <td><span data-bind="localdatetime: BirthDate, attr: {title: BirthDate}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_Address -->
+        <td><span data-bind="text: Address, attr: {title: Address}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_City -->
+        <td><span data-bind="text: City, attr: {title: City}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_Country -->
+        <td><span data-bind="text: Country, attr: {title: Country}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_Extension -->
+        <td><span data-bind="text: Extension, attr: {title: Extension}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_HomePhone -->
+        <td><span data-bind="text: HomePhone, attr: {title: HomePhone}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_PhotoPath -->
+        <td><span data-bind="text: PhotoPath, attr: {title: PhotoPath}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_PostalCode -->
+        <td><span data-bind="text: PostalCode, attr: {title: PostalCode}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_Region -->
+        <td><span data-bind="text: Region, attr: {title: Region}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_Title -->
+        <td><span data-bind="text: Title, attr: {title: Title}" /></td>
+        <!-- /ko -->
+        <!-- ko if: $root.currentPage().mainDataModel().settings.show_TitleOfCourtesy -->
+        <td><span data-bind="text: TitleOfCourtesy, attr: {title: TitleOfCourtesy}" /></td>
+        <!-- /ko -->
+        <td class="item-navigator">
+            <div>
+                <a href="#" data-bind="click: function (data, evt) { $root.navigateTo( { kind: 'EmployeeSet', id: 'entity-page' + LookupQuery , scripts: [ { handler: 'initEntityView' } ], unloadHandler: 'leaveEntityView', data: data }); evt.stopPropagation(); return false; }">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            </div>
+        </td>
+    </tr>
+</script>
+<div class="table-responsive" data-bind="with: mainDataModel">
+    <table class="table table-condensed table-hover table-bordered table-striped gridview">
+        <colgroup>
+            <!--<col style="width: 50px;" />-->
+            <!-- ko if: settings.show_HireDate -->
+            <col data-bind="css: { collapsecol: settings.collapse_HireDate }, style: { width: settings.width_HireDate }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_FirstName -->
+            <col data-bind="css: { collapsecol: settings.collapse_FirstName }, style: { width: settings.width_FirstName }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_LastName -->
+            <col data-bind="css: { collapsecol: settings.collapse_LastName }, style: { width: settings.width_LastName }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_BirthDate -->
+            <col data-bind="css: { collapsecol: settings.collapse_BirthDate }, style: { width: settings.width_BirthDate }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_Address -->
+            <col data-bind="css: { collapsecol: settings.collapse_Address }, style: { width: settings.width_Address }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_City -->
+            <col data-bind="css: { collapsecol: settings.collapse_City }, style: { width: settings.width_City }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_Country -->
+            <col data-bind="css: { collapsecol: settings.collapse_Country }, style: { width: settings.width_Country }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_Extension -->
+            <col data-bind="css: { collapsecol: settings.collapse_Extension }, style: { width: settings.width_Extension }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_HomePhone -->
+            <col data-bind="css: { collapsecol: settings.collapse_HomePhone }, style: { width: settings.width_HomePhone }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_PhotoPath -->
+            <col data-bind="css: { collapsecol: settings.collapse_PhotoPath }, style: { width: settings.width_PhotoPath }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_PostalCode -->
+            <col data-bind="css: { collapsecol: settings.collapse_PostalCode }, style: { width: settings.width_PostalCode }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_Region -->
+            <col data-bind="css: { collapsecol: settings.collapse_Region }, style: { width: settings.width_Region }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_Title -->
+            <col data-bind="css: { collapsecol: settings.collapse_Title }, style: { width: settings.width_Title }" />
+            <!-- /ko -->
+            <!-- ko if: settings.show_TitleOfCourtesy -->
+            <col data-bind="css: { collapsecol: settings.collapse_TitleOfCourtesy }, style: { width: settings.width_TitleOfCourtesy }" />
+            <!-- /ko -->
+            <col />
+        </colgroup>
+        <thead>
+            <tr>
+                <!--<th class="columnOps"></th>-->
+                <!-- ko if: settings.show_HireDate -->
+                <th>
+                    <span class="columnLable" title="HireDate">HireDate</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_FirstName -->
+                <th>
+                    <span class="columnLable" title="FirstName">FirstName</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_LastName -->
+                <th>
+                    <span class="columnLable" title="LastName">LastName</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_BirthDate -->
+                <th>
+                    <span class="columnLable" title="BirthDate">BirthDate</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_Address -->
+                <th>
+                    <span class="columnLable" title="Address">Address</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_City -->
+                <th>
+                    <span class="columnLable" title="City">City</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_Country -->
+                <th>
+                    <span class="columnLable" title="Country">Country</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_Extension -->
+                <th>
+                    <span class="columnLable" title="Extension">Extension</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_HomePhone -->
+                <th>
+                    <span class="columnLable" title="HomePhone">HomePhone</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_PhotoPath -->
+                <th>
+                    <span class="columnLable" title="PhotoPath">PhotoPath</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_PostalCode -->
+                <th>
+                    <span class="columnLable" title="PostalCode">PostalCode</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_Region -->
+                <th>
+                    <span class="columnLable" title="Region">Region</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_Title -->
+                <th>
+                    <span class="columnLable" title="Title">Title</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko if: settings.show_TitleOfCourtesy -->
+                <th>
+                    <span class="columnLable" title="TitleOfCourtesy">TitleOfCourtesy</span>
+                </th>
+                <!-- /ko -->
+                <th class="item-navigator"></th>
+            </tr>
+        </thead>
+        <tbody  data-bind="template: { name: 'listTemplate', foreach: CurrentPage().Items}"></tbody>
+    </table>
+    <div id="page-end-mark"></div>
+    <!-- ko if: $root.showBlockList -->
+    <div class="page-list">
+        <div class="list">
+            <ul class="pagination-sm">
+                <!-- ko if: PrevBlock() != null -->
+                <li>
+                    <a href="#" data-bind="click: $root.currentPage().op.prevPageBlock" title="<%= __('a1e906e40a6b90e76e960f4d236bbcce'/*Load previous page block ...*/) %>">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </li>
+                <!-- /ko -->
+                <!-- ko foreach: PageBlocks -->
+                <li data-bind="css: { active: IsBlockSelected }">
+                    <a href="#" data-bind="click: function (d, e) { if (!d.IsBlockSelected()) $root.currentPage().op.setCurrentPageBlock(d); }">
+                        <span class="selected" data-bind="text: BlockNumber"></span>
+                    </a>
+                </li>
+                <!-- /ko -->
+                <!-- ko if: MoreNextBlock() -->
+                <li>
+                    <a href="#" data-bind="click: function () { $root.currentPage().op.nextPageBlock(); window.scrollTo(0, 0); }" title="<%= __('4eeaea99bac9d050ef5cdd42fe603d7d'/*Load next page block ...*/) %>">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </li>
+                <!-- /ko -->
+            </ul>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+<script type="text/javascript">
+
+    function leaveAutoScrollLoad() {
+        pageMgr.currentPage().mainDataModel().PageSize_(currentClientConfig.defaultPageSize);
+        pageMgr.currentPage().mainDataModel().PageBlockSize(currentClientConfig.defaultPageBlockSize);
+        window.removeEventListener('scroll', handlePageAutoLoad);
+    };
+
+    function initAutoScrollLoad() {
+        pageMgr.currentPage().mainDataModel().PageSize_(2 * currentClientConfig.defaultPageSize);
+        pageMgr.currentPage().mainDataModel().PageBlockSize( 2 * currentClientConfig.defaultPageBlockSize);
+        window.addEventListener('scroll', handlePageAutoLoad);
+    };
+
+
+    var prev_page_visible_end_pos = -1;
+
+    var handlePageAutoLoad = function() {
+        var visibleEnd = $(window).scrollTop() + $(window).height();
+        var loadPos = $('#page-end-mark').offset().top;
+        if (prev_page_visible_end_pos < loadPos && visibleEnd >= loadPos) {
+            pageMgr.showBlockList(false);
+            pageMgr.currentPage().op.mergeNextPage(function () {
+                pageMgr.showBlockList(true);
+            });
+        };
+        prev_page_visible_end_pos = visibleEnd;
+    }
+
+</script>

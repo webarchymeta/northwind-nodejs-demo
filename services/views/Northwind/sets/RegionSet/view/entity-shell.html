@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title><%- title %></title>
+    <link href="/styles/css/common.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/extern-lib/modernizr/modernizr.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top page-navigator" role="navigation">
+        <div class="container" style="position: relative;">
+            <!-- ko if: hasPrevPage -->
+            <a class="prev" href="#" data-bind="click: goPrevPage" ><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+            <!-- /ko -->
+            <!-- ko if: showHomePage -->
+            <a class="home" href="#" data-bind="click: goFirstPage" ><span class="glyphicon glyphicon-home"></span></a>
+            <!-- /ko -->
+            <!-- ko if: hasNextPage -->
+            <a class="next" href="#" data-bind="click: goNextPage" ><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+            <!-- /ko -->
+        </div>
+    </nav>
+    <!-- ko if: currentPage() != null -->
+    <div class="content-container" >
+    </div> 
+    <!-- /ko -->
+    <script type="text/javascript">
+        RegionID = <%- RegionID %>;
+    </script>
+    <script type="text/javascript" src="/extern-lib/moment/min/moment-with-locales.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/extern-lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/extern-lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" data-main="/service-clients/scripts/Northwind/bootstraps/sets/RegionSet/view/entity.js" src="/extern-lib/requirejs/require.js"></script>
+</body>
+</html>

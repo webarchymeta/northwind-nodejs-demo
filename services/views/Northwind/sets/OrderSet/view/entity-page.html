@@ -1,0 +1,410 @@
+<!-- auto generated, manual changes could be overwritten when regenerated. -->
+<!-- ko with: currentPage().mainDataModel -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('290612199861c31d1036b185b4e69b75'/*Summary*/) %></span>
+        </div>
+        <h4>
+            <p><i class="glyphicon glyphicon-hand-right"></i>&nbsp;&nbsp;<span data-bind="text: DistinctString "></span></p>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+            <span><%= __('fbc97786af4bf30dc5b07809a950792c'/*Relationship*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><%= __('e067de5f0ff56baf80cac91498ac4548'/*Depend Upons*/) %></h4>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>CustomerRef:</strong>
+                        <!-- ko if: IsCustomerRefMaterialized -->
+                        <!-- ko if: CustomerID != null -->
+                        [<span>CustomerID:</span>&nbsp;<span data-bind="text: CustomerID "></span>]
+                        ( <span data-bind="text: CustomerRef() == null ? '' : CustomerRef().DistinctString "></span> )
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo( { kind: 'CustomerSet', id: 'entity-page' + data.CustomerRef().LookupQuery, scripts: [ { handler: 'initEntityView' } ], unloadHandler: 'leaveEntityView', data: data.CustomerRef() }); return false; }">
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko if: CustomerID == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsCustomerRefMaterialized -->
+                        <!-- ko if: CustomerID != null -->
+                        [<span>CustomerID:</span>&nbsp;<span data-bind="text: CustomerID "></span>]
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeCustomerRef(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                        <!-- ko if: CustomerID == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </li>
+                    <li class="list-group-item">
+                        <strong>EmployeeRef:</strong>
+                        <!-- ko if: IsEmployeeRefMaterialized -->
+                        <!-- ko if: EmployeeID != null -->
+                        [<span>EmployeeID:</span>&nbsp;<span data-bind="text: EmployeeID "></span>]
+                        ( <span data-bind="text: EmployeeRef() == null ? '' : EmployeeRef().DistinctString "></span> )
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo( { kind: 'EmployeeSet', id: 'entity-page' + data.EmployeeRef().LookupQuery, scripts: [ { handler: 'initEntityView' } ], unloadHandler: 'leaveEntityView', data: data.EmployeeRef() }); return false; }">
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko if: EmployeeID == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsEmployeeRefMaterialized -->
+                        <!-- ko if: EmployeeID != null -->
+                        [<span>EmployeeID:</span>&nbsp;<span data-bind="text: EmployeeID "></span>]
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeEmployeeRef(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                        <!-- ko if: EmployeeID == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </li>
+                    <li class="list-group-item">
+                        <strong>ShipperRef:</strong>
+                        <!-- ko if: IsShipperRefMaterialized -->
+                        <!-- ko if: ShipVia != null -->
+                        [<span>ShipVia:</span>&nbsp;<span data-bind="text: ShipVia "></span>]
+                        ( <span data-bind="text: ShipperRef() == null ? '' : ShipperRef().DistinctString "></span> )
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo( { kind: 'ShipperSet', id: 'entity-page' + data.ShipperRef().LookupQuery, scripts: [ { handler: 'initEntityView' } ], unloadHandler: 'leaveEntityView', data: data.ShipperRef() }); return false; }">
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko if: ShipVia == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsShipperRefMaterialized -->
+                        <!-- ko if: ShipVia != null -->
+                        [<span>ShipVia:</span>&nbsp;<span data-bind="text: ShipVia "></span>]
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeShipperRef(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                        <!-- ko if: ShipVia == null -->
+                        null
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><%= __('cbb16ba23fcdfe56938bf90943684aa4'/*Dependents*/) %></h4>
+            </div>
+            <div id="dependents" class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Order_Details:</strong>
+                        <!-- ko if: IsOrder_DetailsMaterialized -->
+                        [<span><%= __('b01d61add7c12b44ce41476325cdb701'/*No. of Entities:*/) %></span>&nbsp;
+                         <span data-bind="text: Order_Details().TotalEntities "></span>]
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo({ kind: 'Order_DetailSet', id: 'list-paged-page' + data.LookupQuery, scripts: [ ], unloadHandler: { }, data: data.Order_Details() }); return false; }" >
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsOrder_DetailsMaterialized -->
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeOrder_Details(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('df80fe0796922bc4dbee1cbedfe58a1c'/*Property Groups*/) %></span>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#RefsObj" role="tab" data-toggle="tab">
+            <span>References</span>
+        </a>
+    </li>
+    <li>
+        <a href="#ShipInfoObj" role="tab" data-toggle="tab">
+            <span>Shipping Info</span>
+        </a>
+    </li>
+    <li>
+        <a href="#DatesObj" role="tab" data-toggle="tab">
+            <span>Dates</span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="RefsObj">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered property-list">
+                    <tr>
+                        <td><span>CustomerID</span></td>
+                        <td>
+                            <span data-bind="text: CustomerID" ></span>
+                            <!-- ko if: CustomerID != null -->
+                            <!-- ko if: IsCustomerRefMaterialized -->
+                            ( <span data-bind="text: CustomerRef().DistinctString "></span> )
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            <!-- ko if: CustomerID == null -->
+                            ( null )
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>EmployeeID</span></td>
+                        <td>
+                            <span data-bind="text: EmployeeID" ></span>
+                            <!-- ko if: EmployeeID != null -->
+                            <!-- ko if: IsEmployeeRefMaterialized -->
+                            ( <span data-bind="text: EmployeeRef().DistinctString "></span> )
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            <!-- ko if: EmployeeID == null -->
+                            ( null )
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShipVia</span></td>
+                        <td>
+                            <span data-bind="text: ShipVia" ></span>
+                            <!-- ko if: ShipVia != null -->
+                            <!-- ko if: IsShipperRefMaterialized -->
+                            ( <span data-bind="text: ShipperRef().DistinctString "></span> )
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            <!-- ko if: ShipVia == null -->
+                            ( null )
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="ShipInfoObj">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered property-list">
+                    <tr>
+                        <td><span>ShipCountry</span></td>
+                        <td>
+                            <span data-bind="text: ShipCountry" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShipRegion</span></td>
+                        <td>
+                            <span data-bind="text: ShipRegion" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShipCity</span></td>
+                        <td>
+                            <span data-bind="text: ShipCity" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShipAddress</span></td>
+                        <td>
+                            <span data-bind="text: ShipAddress" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShipPostalCode</span></td>
+                        <td>
+                            <span data-bind="text: ShipPostalCode" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShipName</span></td>
+                        <td>
+                            <span data-bind="text: ShipName" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Freight</span></td>
+                        <td>
+                            <span data-bind="text: Freight" ></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="DatesObj">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered property-list">
+                    <tr>
+                        <td><span>OrderDate</span></td>
+                        <td>
+                            <span data-bind="localdatetime: OrderDate" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>RequiredDate</span></td>
+                        <td>
+                            <span data-bind="localdatetime: RequiredDate" ></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>ShippedDate</span></td>
+                        <td>
+                            <span data-bind="localdatetime: ShippedDate" ></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('e1ffcd8ead3216e85b0560d1d50e59ca'/*Property List*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered property-list">
+            <tr>
+                <td><span>OrderID</span></td>
+                <td>
+                    <span data-bind="text: OrderID" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Freight</span></td>
+                <td>
+                    <span data-bind="text: Freight" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>OrderDate</span></td>
+                <td>
+                    <span data-bind="localdatetime: OrderDate" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipName</span></td>
+                <td>
+                    <span data-bind="text: ShipName" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>RequiredDate</span></td>
+                <td>
+                    <span data-bind="localdatetime: RequiredDate" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipAddress</span></td>
+                <td>
+                    <span data-bind="text: ShipAddress" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipCity</span></td>
+                <td>
+                    <span data-bind="text: ShipCity" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipCountry</span></td>
+                <td>
+                    <span data-bind="text: ShipCountry" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShippedDate</span></td>
+                <td>
+                    <span data-bind="localdatetime: ShippedDate" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipPostalCode</span></td>
+                <td>
+                    <span data-bind="text: ShipPostalCode" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipRegion</span></td>
+                <td>
+                    <span data-bind="text: ShipRegion" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>CustomerID</span></td>
+                <td>
+                    <span data-bind="text: CustomerID" ></span>
+                    <!-- ko if: CustomerID != null -->
+                    <!-- ko if: IsCustomerRefMaterialized -->
+                    ( <span data-bind="text: CustomerRef().DistinctString "></span> )
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: CustomerID == null -->
+                    ( null )
+                    <!-- /ko -->
+                </td>
+            </tr>
+            <tr>
+                <td><span>ShipVia</span></td>
+                <td>
+                    <span data-bind="text: ShipVia" ></span>
+                    <!-- ko if: ShipVia != null -->
+                    <!-- ko if: IsShipperRefMaterialized -->
+                    ( <span data-bind="text: ShipperRef().DistinctString "></span> )
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: ShipVia == null -->
+                    ( null )
+                    <!-- /ko -->
+                </td>
+            </tr>
+            <tr>
+                <td><span>EmployeeID</span></td>
+                <td>
+                    <span data-bind="text: EmployeeID" ></span>
+                    <!-- ko if: EmployeeID != null -->
+                    <!-- ko if: IsEmployeeRefMaterialized -->
+                    ( <span data-bind="text: EmployeeRef().DistinctString "></span> )
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: EmployeeID == null -->
+                    ( null )
+                    <!-- /ko -->
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- /ko -->
+<script type="text/javascript">
+
+     function initEntityView() {
+     }
+
+     function leaveEntityView() {
+     }
+
+</script>

@@ -1,0 +1,64 @@
+<!-- auto generated, modifications could be overwritten if regenerated -->
+<table class="query-composer">
+    <colgroup>
+        <col class="header" />
+        <col class="content" />
+    </colgroup>
+    <tr>
+        <td class="sortlabel">
+            <span data-bind="attr: {title: sorter.expr}">
+                <%= __('6549f41e489efc896d2ce1e7a3e7df97'/*Sorted by:*/) %>
+            </span>
+        </td>
+        <td>
+            <div class="sorterexpr">
+                <div class="current" data-bind="foreach: set.SorterPath">
+                    <!-- ko ifnot: IsExternal -->
+                    <div class="sortnode" data-bind="text: DisplayAs"></div>
+                    <!-- ko if: IsEntityAccess -->
+                    <div class="dotnode">
+                        <i class="fa fa-arrow-right"></i>
+                    </div>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: IsExternal -->
+                    <div class="dirnode">
+                        <i data-bind="css: TkClass, attr: {title: DisplayAs}"></i>
+                    </div>
+                    <!-- /ko -->
+                </div>
+                <div class="input">
+                    <input type="text" class="form-control keyword" data-bind="value: sorter.word, event: { keyup: sorter.onkeyup, keydown: sorter.onkeydown, focusout: sorter.oninputfocusout }" />
+                    <ul id="sorter-options" class="dropdown-menu options" data-bind="foreach: sorter.options, visible: sorter.showOpts">
+                        <li data-bind="attr: {id: label}, css: { selecting: selecting}"><a href="#" data-bind="event: { mouseover: parent.onmouseover }"><span data-bind="text: label"></span></a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-default query-exec" data-bind="enable: enableQuery" onclick="pageMgr.currentPage().op.showlist()"><i class="fa fa-search"></i></button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+    <tr>
+        <td class="filterlabel">
+            <span data-bind="attr: {title: filter.expr}">
+                <%= __('9bc9d2baa9a21cb5c8336f12260a218f'/*Filtered by:*/) %>
+            </span>
+        </td>
+        <td>
+            <div class="filterexpr">
+                <div class="current" data-bind="foreach: set.FilterPath">
+                    <div data-bind="text: DisplayAs, css: TkClass"></div>
+                </div>
+                <!-- ko if: filter.showInput -->
+                <div class="input">
+                    <input type="text" class="form-control keyword" data-bind="value: filter.word, event: { keyup: filter.onkeyup, keydown: filter.onkeydown, focus: filter.oninputfocus, focusout: filter.oninputfocusout }" />
+                    <ul id="filter-options" class="dropdown-menu options" data-bind="foreach: filter.options, visible: filter.showOpts">
+                        <li data-bind="attr: {id: label}, css: { selecting: selecting}"><a href="#" data-bind="event: { mouseover: parent.onmouseover }"><span data-bind="text: label"></span></a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-default query-exec" data-bind="enable: enableQuery" onclick="pageMgr.currentPage().op.showlist()"><i class="fa fa-search"></i></button>
+                <!-- /ko -->
+            </div>
+        </td>
+    </tr>
+</table>

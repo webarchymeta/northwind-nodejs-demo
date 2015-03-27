@@ -1,0 +1,418 @@
+[
+    {
+        "id": "GetSetInfo",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "filter": {
+                "type": "string", 
+                "required": false
+            }
+        }
+    },
+    {
+        "id": "AddOrUpdateEntities",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "entities": {
+                "type": "array",
+                "items": {
+                    "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+                },
+                "default": [ ]
+            }
+        }
+    },
+    {
+        "id": "EnqueueNewOrUpdateEntities",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "entities": {
+                "type": "array",
+                "items": {
+                    "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+                },
+                "default": [ ]
+            }
+        }
+    },
+    {
+        "id": "DeleteEntities",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "entities": {
+                "type": "array",
+                "items": {
+                    "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+                },
+                "default": [ ]
+            }
+        }
+    },
+    {
+        "id": "NextPageBlock",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            },
+            "prevlast": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "GetPageItems",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            },
+            "prevlast": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "QueryEntityCount",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "QueryDatabase",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "QueryDatabaseLimited",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            },
+            "maxRecords": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "id": "EmployeeTerritorySetConstraints",
+        "type": "object",
+        "properties": {
+            "EmployeeIDWrap": {
+                "type": "object",
+                "properties": {
+                    "KeyValue": {
+                        "type": "integer",
+                        "required": true
+                    }
+                }
+            },
+            "TerritoryIDWrap": {
+                "type": "object",
+                "properties": {
+                    "KeyValue": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+        }  
+    },
+    {
+        "id": "ConstraintQueryEntityCount",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "constraints": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritoryService?db=Northwind&subdoc=EmployeeTerritorySetConstraints"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "ConstraintsFindMatches",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "cnstSets": {
+                "type": "array",
+                "items": {
+                    "$ref": "http://localhost:11333/sets/EmployeeTerritoryService?db=Northwind&subdoc=EmployeeTerritorySetConstraints"
+                },
+                "default": [ ]
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "ConstraintQuery",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "constraints": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritoryService?db=Northwind&subdoc=EmployeeTerritorySetConstraints"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "ConstraintQueryLimited",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "constraints": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritoryService?db=Northwind&subdoc=EmployeeTerritorySetConstraints"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            },
+            "maxRecords": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "id": "MaterializeEmployeeRef",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "entity": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "MaterializeTerritoryRef",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "entity": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "QuerySetConstraints",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "set": {
+                "$ref": "http://localhost:11333/sets/EmployeeTerritorySet?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            },
+            "max": {
+                "type": "integer"
+            },
+            "nextId": {
+                "type": "string"
+            }
+        }
+    },
+    {
+        "id": "LoadEntityByKey",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "EmployeeID": {
+                "type": "integer",
+                "required": true
+            },
+            "TerritoryID": {
+                "type": "string",
+                "required": true
+            }
+        }
+    },
+    {
+        "id": "LoadEntityGraphRecursJson",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "EmployeeID": {
+                "type": "integer",
+                "required": true
+            },
+            "TerritoryID": {
+                "type": "string",
+                "required": true
+            },
+            "excludedSets": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [ "Category", "CustomerCustomerDemo", "CustomerDemographic", "Customer", "Employee", "EmployeeTerritory", "Order_Detail", "Order", "Product", "Region", "Shipper", "Supplier", "Territory" ]
+                },
+                "default": [ ]
+            },
+            "futherDrillSets": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "SetType": {
+                            "type": "string",
+                            "enum": [ "Category", "CustomerCustomerDemo", "CustomerDemographic", "Customer", "Employee", "EmployeeTerritory", "Order_Detail", "Order", "Product", "Region", "Shipper", "Supplier", "Territory" ]
+                        },
+                        "RelatedSets": {
+                            "type": "array",
+                            "iems": {
+                                "type": "string",
+                                "enum": [ "Category", "CustomerCustomerDemo", "CustomerDemographic", "Customer", "Employee", "EmployeeTerritory", "Order_Detail", "Order", "Product", "Region", "Shipper", "Supplier", "Territory" ]
+                            }
+                        },
+                        "TakePrecedence": {
+                            "type": "boolean",
+                            "required": false
+                        }
+                    }
+                },
+                "default": [ ]
+            }
+        }
+    },
+    {
+        "id": "LoadEntityByNature",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },,
+            "EmployeeID": {
+                "type": "integer",
+                "required": true
+            },
+            "TerritoryID": {
+                "type": "string",
+                "required": true
+            }
+        }
+    },
+    {
+        "id": "GetNextSorterOps",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "sorters": {
+                "type": "array",
+                "items": {
+                    "$ref": "http://localhost:11333/common/QToken?db=Northwind"
+                },
+                "default": [ ]
+            }
+        }
+    },
+    {
+        "id": "GetNextFilterOps",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "qexpr": {
+                "$ref": "http://localhost:11333/common/QueryExpression?db=Northwind"
+            },
+            "tkstr": {
+                "type": "string"
+            }
+        }
+    }
+]

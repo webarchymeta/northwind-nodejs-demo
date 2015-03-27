@@ -1,0 +1,45 @@
+/// <summary>
+/// A entity in "Shippers" data set.
+/// </summary>
+{
+    "id": "#Schema_Shipper",
+    "type": "object",
+    "name": "Shippers",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CompanyName": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; not null; max-length = 40 characters."
+        },
+        "Phone": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 24 characters."
+        },
+        "IsPhoneModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Phone' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Phone' only if this is set to true no matter what the actual value of 'Phone' is."
+        },
+        "ChangedOrders": {
+            "type": "array",
+            "description": "A list of 'Order' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'OrderSet' set is { 'Order.ShipVia' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Order?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

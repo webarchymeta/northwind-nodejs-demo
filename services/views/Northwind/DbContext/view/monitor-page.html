@@ -1,0 +1,520 @@
+<% if (filter.monitoring) {%>
+<div class="logcontainer" data-bind="with: currentPage().mainDataModel().monitor">
+    <div class="logparams">
+        <span>Max number of rows:</span>   <input data-bind="value: maxItems" style="display:inline;" />
+        <span>Show details:</span>  <input type="checkbox" data-bind="checked: showDetails" />
+    </div>
+    <table>
+        <tbody data-bind="foreach: msgs">
+            <tr>
+                <td><span data-bind="text: seqNo"></span></td>
+                <td><span data-bind="text: status"></span></td>
+                <td><span data-bind="text: type"></span></td>
+                <td><pre data-bind="html: title"></pre></td>
+                <td>
+                    <!-- ko if: $parent.showDetails() -->
+                    <pre data-bind="html: details"></pre>
+                    <!-- /ko -->
+                    <!-- ko ifnot: $parent.showDetails() -->
+                    &nbsp;
+                    <!-- /ko -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+
+    var socket;
+    var seqNo = 1;
+
+    function unsubscribe_monitoring() {
+        socket.off('entity-changed');
+        pageMgr.currentPage().mainDataModel().monitor.msgs.removeAll();
+    }
+
+    function connectToServer(io) {
+        var m = pageMgr.currentPage().mainDataModel().monitor;
+        socket = io('/Northwind-change-monitor');
+        socket.on('entity-changed', function(data) {
+            switch (data.type) {
+                case 'Category': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CategoryName = ' + data.entity.CategoryName + '\r\n';
+                            if (data.entity.IsDescriptionModified)
+                                sig += 'Modified: [Description] = ' + data.entity.Description + '\r\n';
+                            if (data.entity.IsPictureModified)
+                                sig += 'Modified: [Picture] = ' + data.entity.Picture + '\r\n';
+                            var details = '';
+                            details += 'CategoryID = ' + data.entity.CategoryID;
+                            details += '\r\n';
+                            details += 'CategoryName = ' + data.entity.CategoryName;
+                            details += ' (natural id)\r\n';
+                            details += 'Description = [... load delayed ...]';
+                            details += data.entity.IsDescriptionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Picture = [... load delayed ...]';
+                            details += data.entity.IsPictureModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'CustomerCustomerDemo': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CustomerID = ' + data.entity.CustomerID + '\r\n';
+                            sig += 'CustomerTypeID = ' + data.entity.CustomerTypeID + '\r\n';
+                            var details = '';
+                            details += 'CustomerID = ' + data.entity.CustomerID;
+                            details += ' (natural id)\r\n';
+                            details += 'CustomerTypeID = ' + data.entity.CustomerTypeID;
+                            details += ' (natural id)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'CustomerDemographic': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CustomerTypeID = ' + data.entity.CustomerTypeID + '\r\n';
+                            if (data.entity.IsCustomerDescModified)
+                                sig += 'Modified: [CustomerDesc] = ' + data.entity.CustomerDesc + '\r\n';
+                            var details = '';
+                            details += 'CustomerTypeID = ' + data.entity.CustomerTypeID;
+                            details += ' (natural id)\r\n';
+                            details += 'CustomerDesc = [... load delayed ...]';
+                            details += data.entity.IsCustomerDescModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Customer': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CompanyName = ' + data.entity.CompanyName + '\r\n';
+                            sig += 'CustomerID = ' + data.entity.CustomerID + '\r\n';
+                            if (data.entity.IsAddressModified)
+                                sig += 'Modified: [Address] = ' + data.entity.Address + '\r\n';
+                            if (data.entity.IsCityModified)
+                                sig += 'Modified: [City] = ' + data.entity.City + '\r\n';
+                            if (data.entity.IsContactNameModified)
+                                sig += 'Modified: [ContactName] = ' + data.entity.ContactName + '\r\n';
+                            if (data.entity.IsContactTitleModified)
+                                sig += 'Modified: [ContactTitle] = ' + data.entity.ContactTitle + '\r\n';
+                            if (data.entity.IsCountryModified)
+                                sig += 'Modified: [Country] = ' + data.entity.Country + '\r\n';
+                            if (data.entity.IsFaxModified)
+                                sig += 'Modified: [Fax] = ' + data.entity.Fax + '\r\n';
+                            if (data.entity.IsPhoneModified)
+                                sig += 'Modified: [Phone] = ' + data.entity.Phone + '\r\n';
+                            if (data.entity.IsPostalCodeModified)
+                                sig += 'Modified: [PostalCode] = ' + data.entity.PostalCode + '\r\n';
+                            if (data.entity.IsRegionModified)
+                                sig += 'Modified: [Region] = ' + data.entity.Region + '\r\n';
+                            var details = '';
+                            details += 'CustomerID = ' + data.entity.CustomerID;
+                            details += ' (natural id)\r\n';
+                            details += 'Address = ' + ( data.entity.Address !== null ? data.entity.Address : 'null' );
+                            details += data.entity.IsAddressModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'City = ' + ( data.entity.City !== null ? data.entity.City : 'null' );
+                            details += data.entity.IsCityModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'CompanyName = ' + data.entity.CompanyName;
+                            details += ' (natural id)\r\n';
+                            details += 'ContactName = ' + ( data.entity.ContactName !== null ? data.entity.ContactName : 'null' );
+                            details += data.entity.IsContactNameModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ContactTitle = ' + ( data.entity.ContactTitle !== null ? data.entity.ContactTitle : 'null' );
+                            details += data.entity.IsContactTitleModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Country = ' + ( data.entity.Country !== null ? data.entity.Country : 'null' );
+                            details += data.entity.IsCountryModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Fax = ' + ( data.entity.Fax !== null ? data.entity.Fax : 'null' );
+                            details += data.entity.IsFaxModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Phone = ' + ( data.entity.Phone !== null ? data.entity.Phone : 'null' );
+                            details += data.entity.IsPhoneModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'PostalCode = ' + ( data.entity.PostalCode !== null ? data.entity.PostalCode : 'null' );
+                            details += data.entity.IsPostalCodeModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Region = ' + ( data.entity.Region !== null ? data.entity.Region : 'null' );
+                            details += data.entity.IsRegionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Employee': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'BirthDate = ' + data.entity.BirthDate + '\r\n';
+                            sig += 'FirstName = ' + data.entity.FirstName + '\r\n';
+                            sig += 'LastName = ' + data.entity.LastName + '\r\n';
+                            if (data.entity.IsAddressModified)
+                                sig += 'Modified: [Address] = ' + data.entity.Address + '\r\n';
+                            if (data.entity.IsCityModified)
+                                sig += 'Modified: [City] = ' + data.entity.City + '\r\n';
+                            if (data.entity.IsCountryModified)
+                                sig += 'Modified: [Country] = ' + data.entity.Country + '\r\n';
+                            if (data.entity.IsExtensionModified)
+                                sig += 'Modified: [Extension] = ' + data.entity.Extension + '\r\n';
+                            if (data.entity.IsHireDateModified)
+                                sig += 'Modified: [HireDate] = ' + data.entity.HireDate + '\r\n';
+                            if (data.entity.IsHomePhoneModified)
+                                sig += 'Modified: [HomePhone] = ' + data.entity.HomePhone + '\r\n';
+                            if (data.entity.IsNotesModified)
+                                sig += 'Modified: [Notes] = ' + data.entity.Notes + '\r\n';
+                            if (data.entity.IsPhotoModified)
+                                sig += 'Modified: [Photo] = ' + data.entity.Photo + '\r\n';
+                            if (data.entity.IsPhotoPathModified)
+                                sig += 'Modified: [PhotoPath] = ' + data.entity.PhotoPath + '\r\n';
+                            if (data.entity.IsPostalCodeModified)
+                                sig += 'Modified: [PostalCode] = ' + data.entity.PostalCode + '\r\n';
+                            if (data.entity.IsRegionModified)
+                                sig += 'Modified: [Region] = ' + data.entity.Region + '\r\n';
+                            if (data.entity.IsReportsToModified)
+                                sig += 'Modified: [ReportsTo] = ' + data.entity.ReportsTo + '\r\n';
+                            if (data.entity.IsTitleModified)
+                                sig += 'Modified: [Title] = ' + data.entity.Title + '\r\n';
+                            if (data.entity.IsTitleOfCourtesyModified)
+                                sig += 'Modified: [TitleOfCourtesy] = ' + data.entity.TitleOfCourtesy + '\r\n';
+                            var details = '';
+                            details += 'EmployeeID = ' + data.entity.EmployeeID;
+                            details += '\r\n';
+                            details += 'ReportsTo = ' + ( data.entity.ReportsTo !== null ? data.entity.ReportsTo : 'null' );
+                            details += data.entity.IsReportsToModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Address = ' + ( data.entity.Address !== null ? data.entity.Address : 'null' );
+                            details += data.entity.IsAddressModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'BirthDate = ' + ( data.entity.BirthDate !== null ? data.entity.BirthDate : 'null' );
+                            details += ' (natural id)\r\n';
+                            details += 'City = ' + ( data.entity.City !== null ? data.entity.City : 'null' );
+                            details += data.entity.IsCityModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Country = ' + ( data.entity.Country !== null ? data.entity.Country : 'null' );
+                            details += data.entity.IsCountryModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Extension = ' + ( data.entity.Extension !== null ? data.entity.Extension : 'null' );
+                            details += data.entity.IsExtensionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'FirstName = ' + data.entity.FirstName;
+                            details += ' (natural id)\r\n';
+                            details += 'HireDate = ' + ( data.entity.HireDate !== null ? data.entity.HireDate : 'null' );
+                            details += data.entity.IsHireDateModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'HomePhone = ' + ( data.entity.HomePhone !== null ? data.entity.HomePhone : 'null' );
+                            details += data.entity.IsHomePhoneModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'LastName = ' + data.entity.LastName;
+                            details += ' (natural id)\r\n';
+                            details += 'Notes = [... load delayed ...]';
+                            details += data.entity.IsNotesModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Photo = [... load delayed ...]';
+                            details += data.entity.IsPhotoModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'PhotoPath = ' + ( data.entity.PhotoPath !== null ? data.entity.PhotoPath : 'null' );
+                            details += data.entity.IsPhotoPathModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'PostalCode = ' + ( data.entity.PostalCode !== null ? data.entity.PostalCode : 'null' );
+                            details += data.entity.IsPostalCodeModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Region = ' + ( data.entity.Region !== null ? data.entity.Region : 'null' );
+                            details += data.entity.IsRegionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Title = ' + ( data.entity.Title !== null ? data.entity.Title : 'null' );
+                            details += data.entity.IsTitleModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'TitleOfCourtesy = ' + ( data.entity.TitleOfCourtesy !== null ? data.entity.TitleOfCourtesy : 'null' );
+                            details += data.entity.IsTitleOfCourtesyModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'EmployeeTerritory': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'EmployeeID = ' + data.entity.EmployeeID + '\r\n';
+                            sig += 'TerritoryID = ' + data.entity.TerritoryID + '\r\n';
+                            var details = '';
+                            details += 'EmployeeID = ' + data.entity.EmployeeID;
+                            details += ' (natural id)\r\n';
+                            details += 'TerritoryID = ' + data.entity.TerritoryID;
+                            details += ' (natural id)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Order_Detail': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'OrderID = ' + data.entity.OrderID + '\r\n';
+                            sig += 'ProductID = ' + data.entity.ProductID + '\r\n';
+                            if (data.entity.IsDiscountModified)
+                                sig += 'Modified: [Discount] = ' + data.entity.Discount + '\r\n';
+                            if (data.entity.IsUnitPriceModified)
+                                sig += 'Modified: [UnitPrice] = ' + data.entity.UnitPrice + '\r\n';
+                            var details = '';
+                            details += 'OrderID = ' + data.entity.OrderID;
+                            details += ' (natural id)\r\n';
+                            details += 'ProductID = ' + data.entity.ProductID;
+                            details += ' (natural id)\r\n';
+                            details += 'Discount = ' + data.entity.Discount;
+                            details += data.entity.IsDiscountModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Quantity = ' + data.entity.Quantity;
+                            details += '\r\n';
+                            details += 'UnitPrice = ' + data.entity.UnitPrice;
+                            details += data.entity.IsUnitPriceModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Order': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CustomerID = ' + data.entity.CustomerID + '\r\n';
+                            sig += 'Freight = ' + data.entity.Freight + '\r\n';
+                            sig += 'OrderDate = ' + data.entity.OrderDate + '\r\n';
+                            sig += 'ShipVia = ' + data.entity.ShipVia + '\r\n';
+                            if (data.entity.IsEmployeeIDModified)
+                                sig += 'Modified: [EmployeeID] = ' + data.entity.EmployeeID + '\r\n';
+                            if (data.entity.IsRequiredDateModified)
+                                sig += 'Modified: [RequiredDate] = ' + data.entity.RequiredDate + '\r\n';
+                            if (data.entity.IsShipAddressModified)
+                                sig += 'Modified: [ShipAddress] = ' + data.entity.ShipAddress + '\r\n';
+                            if (data.entity.IsShipCityModified)
+                                sig += 'Modified: [ShipCity] = ' + data.entity.ShipCity + '\r\n';
+                            if (data.entity.IsShipCountryModified)
+                                sig += 'Modified: [ShipCountry] = ' + data.entity.ShipCountry + '\r\n';
+                            if (data.entity.IsShippedDateModified)
+                                sig += 'Modified: [ShippedDate] = ' + data.entity.ShippedDate + '\r\n';
+                            if (data.entity.IsShipPostalCodeModified)
+                                sig += 'Modified: [ShipPostalCode] = ' + data.entity.ShipPostalCode + '\r\n';
+                            if (data.entity.IsShipRegionModified)
+                                sig += 'Modified: [ShipRegion] = ' + data.entity.ShipRegion + '\r\n';
+                            var details = '';
+                            details += 'OrderID = ' + data.entity.OrderID;
+                            details += '\r\n';
+                            details += 'CustomerID = ' + ( data.entity.CustomerID !== null ? data.entity.CustomerID : 'null' );
+                            details += ' (natural id)\r\n';
+                            details += 'EmployeeID = ' + ( data.entity.EmployeeID !== null ? data.entity.EmployeeID : 'null' );
+                            details += data.entity.IsEmployeeIDModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipVia = ' + ( data.entity.ShipVia !== null ? data.entity.ShipVia : 'null' );
+                            details += ' (natural id)\r\n';
+                            details += 'Freight = ' + ( data.entity.Freight !== null ? data.entity.Freight : 'null' );
+                            details += ' (natural id)\r\n';
+                            details += 'OrderDate = ' + ( data.entity.OrderDate !== null ? data.entity.OrderDate : 'null' );
+                            details += ' (natural id)\r\n';
+                            details += 'RequiredDate = ' + ( data.entity.RequiredDate !== null ? data.entity.RequiredDate : 'null' );
+                            details += data.entity.IsRequiredDateModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipAddress = ' + ( data.entity.ShipAddress !== null ? data.entity.ShipAddress : 'null' );
+                            details += data.entity.IsShipAddressModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipCity = ' + ( data.entity.ShipCity !== null ? data.entity.ShipCity : 'null' );
+                            details += data.entity.IsShipCityModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipCountry = ' + ( data.entity.ShipCountry !== null ? data.entity.ShipCountry : 'null' );
+                            details += data.entity.IsShipCountryModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipName = ' + ( data.entity.ShipName !== null ? data.entity.ShipName : 'null' );
+                            details += '\r\n';
+                            details += 'ShippedDate = ' + ( data.entity.ShippedDate !== null ? data.entity.ShippedDate : 'null' );
+                            details += data.entity.IsShippedDateModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipPostalCode = ' + ( data.entity.ShipPostalCode !== null ? data.entity.ShipPostalCode : 'null' );
+                            details += data.entity.IsShipPostalCodeModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ShipRegion = ' + ( data.entity.ShipRegion !== null ? data.entity.ShipRegion : 'null' );
+                            details += data.entity.IsShipRegionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Product': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'ProductName = ' + data.entity.ProductName + '\r\n';
+                            if (data.entity.IsCategoryIDModified)
+                                sig += 'Modified: [CategoryID] = ' + data.entity.CategoryID + '\r\n';
+                            if (data.entity.IsDiscontinuedModified)
+                                sig += 'Modified: [Discontinued] = ' + data.entity.Discontinued + '\r\n';
+                            if (data.entity.IsQuantityPerUnitModified)
+                                sig += 'Modified: [QuantityPerUnit] = ' + data.entity.QuantityPerUnit + '\r\n';
+                            if (data.entity.IsReorderLevelModified)
+                                sig += 'Modified: [ReorderLevel] = ' + data.entity.ReorderLevel + '\r\n';
+                            if (data.entity.IsSupplierIDModified)
+                                sig += 'Modified: [SupplierID] = ' + data.entity.SupplierID + '\r\n';
+                            if (data.entity.IsUnitPriceModified)
+                                sig += 'Modified: [UnitPrice] = ' + data.entity.UnitPrice + '\r\n';
+                            if (data.entity.IsUnitsInStockModified)
+                                sig += 'Modified: [UnitsInStock] = ' + data.entity.UnitsInStock + '\r\n';
+                            if (data.entity.IsUnitsOnOrderModified)
+                                sig += 'Modified: [UnitsOnOrder] = ' + data.entity.UnitsOnOrder + '\r\n';
+                            var details = '';
+                            details += 'ProductID = ' + data.entity.ProductID;
+                            details += '\r\n';
+                            details += 'CategoryID = ' + ( data.entity.CategoryID !== null ? data.entity.CategoryID : 'null' );
+                            details += data.entity.IsCategoryIDModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'SupplierID = ' + ( data.entity.SupplierID !== null ? data.entity.SupplierID : 'null' );
+                            details += data.entity.IsSupplierIDModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Discontinued = ' + data.entity.Discontinued;
+                            details += data.entity.IsDiscontinuedModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ProductName = ' + data.entity.ProductName;
+                            details += ' (natural id)\r\n';
+                            details += 'QuantityPerUnit = ' + ( data.entity.QuantityPerUnit !== null ? data.entity.QuantityPerUnit : 'null' );
+                            details += data.entity.IsQuantityPerUnitModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ReorderLevel = ' + ( data.entity.ReorderLevel !== null ? data.entity.ReorderLevel : 'null' );
+                            details += data.entity.IsReorderLevelModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'UnitPrice = ' + ( data.entity.UnitPrice !== null ? data.entity.UnitPrice : 'null' );
+                            details += data.entity.IsUnitPriceModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'UnitsInStock = ' + ( data.entity.UnitsInStock !== null ? data.entity.UnitsInStock : 'null' );
+                            details += data.entity.IsUnitsInStockModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'UnitsOnOrder = ' + ( data.entity.UnitsOnOrder !== null ? data.entity.UnitsOnOrder : 'null' );
+                            details += data.entity.IsUnitsOnOrderModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Region': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'RegionID = ' + data.entity.RegionID + '\r\n';
+                            if (data.entity.IsRegionDescriptionModified)
+                                sig += 'Modified: [RegionDescription] = ' + data.entity.RegionDescription + '\r\n';
+                            var details = '';
+                            details += 'RegionID = ' + data.entity.RegionID;
+                            details += ' (natural id)\r\n';
+                            details += 'RegionDescription = ' + data.entity.RegionDescription;
+                            details += data.entity.IsRegionDescriptionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Shipper': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CompanyName = ' + data.entity.CompanyName + '\r\n';
+                            if (data.entity.IsPhoneModified)
+                                sig += 'Modified: [Phone] = ' + data.entity.Phone + '\r\n';
+                            var details = '';
+                            details += 'ShipperID = ' + data.entity.ShipperID;
+                            details += '\r\n';
+                            details += 'CompanyName = ' + data.entity.CompanyName;
+                            details += ' (natural id)\r\n';
+                            details += 'Phone = ' + ( data.entity.Phone !== null ? data.entity.Phone : 'null' );
+                            details += data.entity.IsPhoneModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Supplier': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'CompanyName = ' + data.entity.CompanyName + '\r\n';
+                            if (data.entity.IsAddressModified)
+                                sig += 'Modified: [Address] = ' + data.entity.Address + '\r\n';
+                            if (data.entity.IsCityModified)
+                                sig += 'Modified: [City] = ' + data.entity.City + '\r\n';
+                            if (data.entity.IsContactNameModified)
+                                sig += 'Modified: [ContactName] = ' + data.entity.ContactName + '\r\n';
+                            if (data.entity.IsContactTitleModified)
+                                sig += 'Modified: [ContactTitle] = ' + data.entity.ContactTitle + '\r\n';
+                            if (data.entity.IsCountryModified)
+                                sig += 'Modified: [Country] = ' + data.entity.Country + '\r\n';
+                            if (data.entity.IsFaxModified)
+                                sig += 'Modified: [Fax] = ' + data.entity.Fax + '\r\n';
+                            if (data.entity.IsHomePageModified)
+                                sig += 'Modified: [HomePage] = ' + data.entity.HomePage + '\r\n';
+                            if (data.entity.IsPhoneModified)
+                                sig += 'Modified: [Phone] = ' + data.entity.Phone + '\r\n';
+                            if (data.entity.IsPostalCodeModified)
+                                sig += 'Modified: [PostalCode] = ' + data.entity.PostalCode + '\r\n';
+                            if (data.entity.IsRegionModified)
+                                sig += 'Modified: [Region] = ' + data.entity.Region + '\r\n';
+                            var details = '';
+                            details += 'SupplierID = ' + data.entity.SupplierID;
+                            details += '\r\n';
+                            details += 'Address = ' + ( data.entity.Address !== null ? data.entity.Address : 'null' );
+                            details += data.entity.IsAddressModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'City = ' + ( data.entity.City !== null ? data.entity.City : 'null' );
+                            details += data.entity.IsCityModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'CompanyName = ' + data.entity.CompanyName;
+                            details += ' (natural id)\r\n';
+                            details += 'ContactName = ' + ( data.entity.ContactName !== null ? data.entity.ContactName : 'null' );
+                            details += data.entity.IsContactNameModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'ContactTitle = ' + ( data.entity.ContactTitle !== null ? data.entity.ContactTitle : 'null' );
+                            details += data.entity.IsContactTitleModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Country = ' + ( data.entity.Country !== null ? data.entity.Country : 'null' );
+                            details += data.entity.IsCountryModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Fax = ' + ( data.entity.Fax !== null ? data.entity.Fax : 'null' );
+                            details += data.entity.IsFaxModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'HomePage = [... load delayed ...]';
+                            details += data.entity.IsHomePageModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Phone = ' + ( data.entity.Phone !== null ? data.entity.Phone : 'null' );
+                            details += data.entity.IsPhoneModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'PostalCode = ' + ( data.entity.PostalCode !== null ? data.entity.PostalCode : 'null' );
+                            details += data.entity.IsPostalCodeModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            details += 'Region = ' + ( data.entity.Region !== null ? data.entity.Region : 'null' );
+                            details += data.entity.IsRegionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+                case 'Territory': (function () {
+                        try {
+                            var sig = '';
+                            sig += 'TerritoryID = ' + data.entity.TerritoryID + '\r\n';
+                            if (data.entity.IsTerritoryDescriptionModified)
+                                sig += 'Modified: [TerritoryDescription] = ' + data.entity.TerritoryDescription + '\r\n';
+                            var details = '';
+                            details += 'TerritoryID = ' + data.entity.TerritoryID;
+                            details += ' (natural id)\r\n';
+                            details += 'RegionID = ' + data.entity.RegionID;
+                            details += '\r\n';
+                            details += 'TerritoryDescription = ' + data.entity.TerritoryDescription;
+                            details += data.entity.IsTerritoryDescriptionModified ? ' (modified)\r\n' : ' (unchanged)\r\n';
+                            var msg = { seqNo: seqNo++, type: data.type, status: data.status, title: sig.substr(0, sig.length - 2), details: details };
+                            m.msgs.push(msg);
+                        } catch (e) {
+                            if (console)
+                                console.log(e.message);
+                        }
+                    })();
+                    break;
+            }
+            var size = m.msgs().length;
+            var max = m.maxItems();
+            if (size > max) {
+                m.msgs.splice(0, size - max);
+            }
+        });
+    }
+
+</script>
+<%}%>

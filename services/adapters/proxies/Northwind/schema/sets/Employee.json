@@ -1,0 +1,265 @@
+/// <summary>
+/// A entity in "Employees" data set. The set is a self-referencing hierarchic one.
+/// </summary>
+{
+    "id": "#Schema_Employee",
+    "type": "object",
+    "name": "Employees",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "ReportsTo": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; foreign key."
+        },
+        "IsReportsToModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ReportsTo' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ReportsTo' only if this is set to true no matter what the actual value of 'ReportsTo' is."
+        },
+        "HireDate": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsHireDateModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'HireDate' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'HireDate' only if this is set to true no matter what the actual value of 'HireDate' is."
+        },
+        "Notes": {
+            "type": "object",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; load delayed."
+        },
+        "IsNotesModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Notes' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Notes' only if this is set to true no matter what the actual value of 'Notes' is."
+        },
+        "IsNotesLoaded": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of the delay loaded 'Notes' is Loaded. Clients are responsible for keeping track of loading status of delay loading properties."
+        },
+        "Photo": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            },
+            "default": [ ],
+            "description": "Meta-info: editable; nullable; load delayed."
+        },
+        "IsPhotoModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Photo' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Photo' only if this is set to true no matter what the actual value of 'Photo' is."
+        },
+        "IsPhotoLoaded": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of the delay loaded 'Photo' is Loaded. Clients are responsible for keeping track of loading status of delay loading properties."
+        },
+        "FirstName": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; not null; max-length = 10 characters."
+        },
+        "LastName": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; not null; max-length = 20 characters."
+        },
+        "BirthDate": {
+            "type": "string",
+            "required": false,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; nullable."
+        },
+        "Address": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 60 characters."
+        },
+        "IsAddressModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Address' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Address' only if this is set to true no matter what the actual value of 'Address' is."
+        },
+        "City": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsCityModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'City' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'City' only if this is set to true no matter what the actual value of 'City' is."
+        },
+        "Country": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsCountryModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Country' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Country' only if this is set to true no matter what the actual value of 'Country' is."
+        },
+        "Extension": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 4 characters."
+        },
+        "IsExtensionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Extension' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Extension' only if this is set to true no matter what the actual value of 'Extension' is."
+        },
+        "HomePhone": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 24 characters."
+        },
+        "IsHomePhoneModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'HomePhone' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'HomePhone' only if this is set to true no matter what the actual value of 'HomePhone' is."
+        },
+        "PhotoPath": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 255 characters."
+        },
+        "IsPhotoPathModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'PhotoPath' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'PhotoPath' only if this is set to true no matter what the actual value of 'PhotoPath' is."
+        },
+        "PostalCode": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 10 characters."
+        },
+        "IsPostalCodeModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'PostalCode' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'PostalCode' only if this is set to true no matter what the actual value of 'PostalCode' is."
+        },
+        "Region": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsRegionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Region' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Region' only if this is set to true no matter what the actual value of 'Region' is."
+        },
+        "Title": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 30 characters."
+        },
+        "IsTitleModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Title' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Title' only if this is set to true no matter what the actual value of 'Title' is."
+        },
+        "TitleOfCourtesy": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 25 characters."
+        },
+        "IsTitleOfCourtesyModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'TitleOfCourtesy' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'TitleOfCourtesy' only if this is set to true no matter what the actual value of 'TitleOfCourtesy' is."
+        },
+        "UpperRef": {
+            // Entity in data set 'Employees' for 'Employee' that this entity depend upon through the corresponding foreign key set is { 'Employee.ReportsTo' }.This is the hierarchic parent entity of the current one for this self-referencing data set.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Employee?db=Northwind"
+        },
+        "ChangedEmployees": {
+            "type": "array",
+            "description": "A list of 'Employee' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'EmployeeSet' set is { 'Employee.ReportsTo' }.This is the hierarchic child entity set for this self-referencing data set.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Employee?db=Northwind"
+            },
+            "default": [ ]
+        },
+        "ChangedEmployeeTerritorys": {
+            "type": "array",
+            "description": "A list of 'EmployeeTerritory' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'EmployeeTerritorySet' set is { 'EmployeeTerritory.EmployeeID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+            },
+            "default": [ ]
+        },
+        "ChangedOrders": {
+            "type": "array",
+            "description": "A list of 'Order' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'OrderSet' set is { 'Order.EmployeeID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Order?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

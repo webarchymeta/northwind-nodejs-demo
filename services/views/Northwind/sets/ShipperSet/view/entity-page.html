@@ -1,0 +1,96 @@
+<!-- auto generated, manual changes could be overwritten when regenerated. -->
+<!-- ko with: currentPage().mainDataModel -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('290612199861c31d1036b185b4e69b75'/*Summary*/) %></span>
+        </div>
+        <h4>
+            <p><i class="glyphicon glyphicon-hand-right"></i>&nbsp;&nbsp;<span data-bind="text: DistinctString "></span></p>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+            <span><%= __('fbc97786af4bf30dc5b07809a950792c'/*Relationship*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><%= __('e067de5f0ff56baf80cac91498ac4548'/*Depend Upons*/) %></h4>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><%= __('cbb16ba23fcdfe56938bf90943684aa4'/*Dependents*/) %></h4>
+            </div>
+            <div id="dependents" class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Orders:</strong>
+                        <!-- ko if: IsOrdersMaterialized -->
+                        [<span><%= __('b01d61add7c12b44ce41476325cdb701'/*No. of Entities:*/) %></span>&nbsp;
+                         <span data-bind="text: Orders().TotalEntities "></span>]
+                        <a class="badge" href="#" data-bind="click: function(data, event) { $root.navigateTo({ kind: 'OrderSet', id: 'list-paged-page' + data.LookupQuery, scripts: [ ], unloadHandler: { }, data: data.Orders() }); return false; }" >
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: IsOrdersMaterialized -->
+                        ( <a href="#" data-bind="click: function(data, event) { $root.currentPage().op.MaterializeOrders(data, event); } " title="<%= __('45580c13914fa930b34bed21fcc85f28'/*Not loaded, click to load the object ...*/) %>"><i class="glyphicon glyphicon-download"></i></a> )
+                        <!-- /ko -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="section-header">
+             <span><%= __('e1ffcd8ead3216e85b0560d1d50e59ca'/*Property List*/) %></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered property-list">
+            <tr>
+                <td><span>ShipperID</span></td>
+                <td>
+                    <span data-bind="text: ShipperID" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>CompanyName</span></td>
+                <td>
+                    <span data-bind="text: CompanyName" ></span>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Phone</span></td>
+                <td>
+                    <span data-bind="text: Phone" ></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- /ko -->
+<script type="text/javascript">
+
+     function initEntityView() {
+     }
+
+     function leaveEntityView() {
+     }
+
+</script>

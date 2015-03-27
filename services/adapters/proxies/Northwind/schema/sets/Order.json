@@ -1,0 +1,175 @@
+/// <summary>
+/// A entity in "Orders" data set.
+/// </summary>
+{
+    "id": "#Schema_Order",
+    "type": "object",
+    "name": "Orders",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CustomerID": {
+            "type": "string",
+            "required": false,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; nullable; foreign key; max-length = 5 characters."
+        },
+        "ShipVia": {
+            "type": "integer",
+            "required": false,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; nullable; foreign key."
+        },
+        "EmployeeID": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; foreign key."
+        },
+        "IsEmployeeIDModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'EmployeeID' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'EmployeeID' only if this is set to true no matter what the actual value of 'EmployeeID' is."
+        },
+        "Freight": {
+            "type": "number",
+            "required": false,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; nullable."
+        },
+        "OrderDate": {
+            "type": "string",
+            "required": false,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; nullable."
+        },
+        "ShipName": {
+            "type": "string",
+            "required": false,
+            "readonly": true,
+            "description": "Meta-info: fixed; nullable; max-length = 40 characters."
+        },
+        "RequiredDate": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsRequiredDateModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'RequiredDate' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'RequiredDate' only if this is set to true no matter what the actual value of 'RequiredDate' is."
+        },
+        "ShipAddress": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 60 characters."
+        },
+        "IsShipAddressModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ShipAddress' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ShipAddress' only if this is set to true no matter what the actual value of 'ShipAddress' is."
+        },
+        "ShipCity": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsShipCityModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ShipCity' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ShipCity' only if this is set to true no matter what the actual value of 'ShipCity' is."
+        },
+        "ShipCountry": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsShipCountryModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ShipCountry' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ShipCountry' only if this is set to true no matter what the actual value of 'ShipCountry' is."
+        },
+        "ShippedDate": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsShippedDateModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ShippedDate' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ShippedDate' only if this is set to true no matter what the actual value of 'ShippedDate' is."
+        },
+        "ShipPostalCode": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 10 characters."
+        },
+        "IsShipPostalCodeModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ShipPostalCode' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ShipPostalCode' only if this is set to true no matter what the actual value of 'ShipPostalCode' is."
+        },
+        "ShipRegion": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 15 characters."
+        },
+        "IsShipRegionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ShipRegion' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ShipRegion' only if this is set to true no matter what the actual value of 'ShipRegion' is."
+        },
+        "CustomerRef": {
+            // Entity in data set 'Customers' for 'Customer' that this entity depend upon through the corresponding foreign key set is { 'Order.CustomerID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Customer?db=Northwind"
+        },
+        "EmployeeRef": {
+            // Entity in data set 'Employees' for 'Employee' that this entity depend upon through the corresponding foreign key set is { 'Order.EmployeeID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Employee?db=Northwind"
+        },
+        "ShipperRef": {
+            // Entity in data set 'Shippers' for 'Shipper' that this entity depend upon through the corresponding foreign key set is { 'Order.ShipVia' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Shipper?db=Northwind"
+        },
+        "ChangedOrder_Details": {
+            "type": "array",
+            "description": "A list of 'Order_Detail' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'Order_DetailSet' set is { 'Order_Detail.OrderID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Order_Detail?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

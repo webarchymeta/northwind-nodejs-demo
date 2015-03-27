@@ -1,0 +1,6 @@
+/// <summary>
+/// A class representing a token in a structured query expression.
+/// </summary>
+{
+    "$schema": "http://localhost:11333/common/QToken?db=Northwind"
+}

@@ -1,0 +1,39 @@
+/// <summary>
+/// A entity in "EmployeeTerritories" data set.
+/// </summary>
+{
+    "id": "#Schema_EmployeeTerritory",
+    "type": "object",
+    "name": "EmployeeTerritories",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "EmployeeID": {
+            "type": "integer",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null; foreign key."
+        },
+        "TerritoryID": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null; foreign key; max-length = 20 characters."
+        },
+        "EmployeeRef": {
+            // Entity in data set 'Employees' for 'Employee' that this entity depend upon through the corresponding foreign key set is { 'EmployeeTerritory.EmployeeID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Employee?db=Northwind"
+        },
+        "TerritoryRef": {
+            // Entity in data set 'Territories' for 'Territory' that this entity depend upon through the corresponding foreign key set is { 'EmployeeTerritory.TerritoryID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Territory?db=Northwind"
+        }
+    }
+}

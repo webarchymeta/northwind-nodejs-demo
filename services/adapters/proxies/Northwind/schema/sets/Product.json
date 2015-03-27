@@ -1,0 +1,146 @@
+/// <summary>
+/// A entity in "Products" data set.
+/// </summary>
+{
+    "id": "#Schema_Product",
+    "type": "object",
+    "name": "Products",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CategoryID": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; foreign key."
+        },
+        "IsCategoryIDModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'CategoryID' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'CategoryID' only if this is set to true no matter what the actual value of 'CategoryID' is."
+        },
+        "SupplierID": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; foreign key."
+        },
+        "IsSupplierIDModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'SupplierID' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'SupplierID' only if this is set to true no matter what the actual value of 'SupplierID' is."
+        },
+        "ProductName": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; not null; max-length = 40 characters."
+        },
+        "Discontinued": {
+            "type": "boolean",
+            "required": true,
+            "readonly": false,
+            "description": "Meta-info: editable; not null."
+        },
+        "IsDiscontinuedModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Discontinued' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Discontinued' only if this is set to true no matter what the actual value of 'Discontinued' is."
+        },
+        "QuantityPerUnit": {
+            "type": "string",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; max-length = 20 characters."
+        },
+        "IsQuantityPerUnitModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'QuantityPerUnit' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'QuantityPerUnit' only if this is set to true no matter what the actual value of 'QuantityPerUnit' is."
+        },
+        "ReorderLevel": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsReorderLevelModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'ReorderLevel' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'ReorderLevel' only if this is set to true no matter what the actual value of 'ReorderLevel' is."
+        },
+        "UnitPrice": {
+            "type": "number",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsUnitPriceModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'UnitPrice' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'UnitPrice' only if this is set to true no matter what the actual value of 'UnitPrice' is."
+        },
+        "UnitsInStock": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsUnitsInStockModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'UnitsInStock' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'UnitsInStock' only if this is set to true no matter what the actual value of 'UnitsInStock' is."
+        },
+        "UnitsOnOrder": {
+            "type": "integer",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable."
+        },
+        "IsUnitsOnOrderModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'UnitsOnOrder' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'UnitsOnOrder' only if this is set to true no matter what the actual value of 'UnitsOnOrder' is."
+        },
+        "CategoryRef": {
+            // Entity in data set 'Categories' for 'Category' that this entity depend upon through the corresponding foreign key set is { 'Product.CategoryID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Category?db=Northwind"
+        },
+        "SupplierRef": {
+            // Entity in data set 'Suppliers' for 'Supplier' that this entity depend upon through the corresponding foreign key set is { 'Product.SupplierID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Supplier?db=Northwind"
+        },
+        "ChangedOrder_Details": {
+            "type": "array",
+            "description": "A list of 'Order_Detail' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'Order_DetailSet' set is { 'Order_Detail.ProductID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Order_Detail?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

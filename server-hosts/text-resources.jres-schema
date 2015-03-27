@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<res_schema type="nodejs-i18n" file_base="true">
+   <culture name="en" disply_name="英语" lcid="9" seed="true">
+      <page dir="Z:\Develop\CryptoGateway\Web\Demos\Northwind\WebSite\NodeJS-1" name="locales" dirty="false">
+         <item guid="c4fd9a39b7163667d0aca2a5d20840b3" content-type="text/plain" created="635445369302024660" last-modified="635445378907534214" last-access="635445379068143401" />
+         <item guid="4c4bcc16a7300db40a55781c45ef12d9" content-type="text/plain" created="635445369929980577" last-modified="635445379048512278" last-access="635445379073643715" />
+         <item guid="9bc9d2baa9a21cb5c8336f12260a218f" content-type="text/plain" created="635446898557860151" last-modified="635446898569270803" last-access="635446898586581793" />
+         <item guid="6549f41e489efc896d2ce1e7a3e7df97" content-type="text/plain" created="635446897656728609" last-modified="635446897669699351" last-access="635446898586551792" />
+         <item guid="240ff36218408983d4186e6d74b566e2" content-type="text/plain" created="635447852836713020" last-modified="635447852851453863" last-access="635447852898966581" />
+         <item guid="4eeaea99bac9d050ef5cdd42fe603d7d" content-type="text/plain" created="635448549061859826" last-modified="635448549076950690" last-access="635448549104732279" />
+         <item guid="a1e906e40a6b90e76e960f4d236bbcce" content-type="text/plain" created="635448548300596285" last-modified="635448548314537082" last-access="635448549104712278" />
+         <item guid="9fc2d28c05ed9eb1d75ba4465abf15a9" content-type="text/plain" created="635448954022322240" last-modified="635448954032762837" last-access="635448954801536809" />
+         <item guid="ec24d78ce33048dc73a2b6b1a0690192" content-type="text/plain" created="635448954730482745" last-modified="635448954765674757" last-access="635448954801566810" />
+         <item guid="4970aae1d09fc0456c73f0feb3e2235e" content-type="text/plain" created="635448953467340497" last-modified="635448953477641086" last-access="635448954801536809" />
+         <item guid="1c16e3b78821c95ba7c3caf1d21e7b04" content-type="text/plain" created="635449015217102381" last-modified="635449015227212960" last-access="635449016571649857" />
+         <item guid="2b31634e3cfef1bfdd7d0d2cdfdc3f9d" content-type="text/plain" created="635448987807654651" last-modified="635448987818875292" last-access="635449016571649857" />
+         <item guid="7369e748062c5243db02e3ec41f017ca" content-type="text/plain" created="635449016546448416" last-modified="635449016556068966" last-access="635449016571689859" />
+         <item guid="419c8bc1bf6fee7c8fc9b0765ed9c7e4" content-type="text/plain" created="635449014794318199" last-modified="635449014807228938" last-access="635449016571649857" />
+         <item guid="32954654ac8fe66a1d09be19001de2d4" content-type="text/plain" created="635448988284691936" last-modified="635448988297142648" last-access="635449016571649857" />
+         <item guid="f39fcc0c8d08d8621c7f901cd9145474" content-type="text/plain" created="635449013726017096" last-modified="635449013737527754" last-access="635449016571649857" />
+         <item guid="5c26a6293ab9c31676950be71f991dbf" content-type="text/plain" created="635449631381124931" last-modified="635449631485490901" last-access="635449631529703429" />
+         <item guid="0b4df9ca8dbdc636f0594752017baa42" content-type="text/plain" created="635449500316708475" last-modified="635449500526550478" last-access="635449631529653427" />
+         <item guid="3e6e667609b8c4b67f426b75d93c15d0" content-type="text/plain" created="635449501933920975" last-modified="635449501945581642" last-access="635449631529653427" />
+         <item guid="810b9dab3ebf3492f0909cc5c2c87596" content-type="text/plain" created="635450631657645958" last-modified="635450631695708135" last-access="635450633586736296" />
+         <item guid="cfcc40d53eb0c21967286166edc6826b" content-type="text/plain" created="635450633019873873" last-modified="635450633281398831" last-access="635450633586766297" />
+         <item guid="cd8f32bf8b14bea292bd7af21a080ae3" content-type="text/plain" created="635450690346112746" last-modified="635450690445518432" last-access="635450690670761315" />
+         <item guid="45580c13914fa930b34bed21fcc85f28" content-type="text/plain" created="635452308366471956" last-modified="635452308376762545" last-access="635452308396073649" />
+         <item guid="290612199861c31d1036b185b4e69b75" content-type="text/plain" created="635452258218893679" last-modified="635452258230584348" last-access="635452308396043648" />
+         <item guid="cbb16ba23fcdfe56938bf90943684aa4" content-type="text/plain" created="635452274833673990" last-modified="635452274847384774" last-access="635452308396043648" />
+         <item guid="e067de5f0ff56baf80cac91498ac4548" content-type="text/plain" created="635452274177756474" last-modified="635452274192587322" last-access="635452308396043648" />
+         <item guid="fbc97786af4bf30dc5b07809a950792c" content-type="text/plain" created="635452262819316808" last-modified="635452262829167371" last-access="635452308396043648" />
+         <item guid="d9f0e2e042a99fa5eeab9228841c6cd9" content-type="text/plain" created="635453255319077002" last-modified="635453255331387706" last-access="635453255345378506" />
+         <item guid="f19dbf2edb3a0bd74b0524d960ff21eb" content-type="text/plain" created="635453283131667791" last-modified="635453283149328801" last-access="635453283164269655" />
+         <item guid="df80fe0796922bc4dbee1cbedfe58a1c" content-type="text/plain" created="635454102154494093" last-modified="635454102217307685" last-access="635454102265040415" />
+         <item guid="990b2e22fe8cf095b97351fdee57a810" content-type="text/plain" created="635454139555323298" last-modified="635454139568724064" last-access="635454139582364844" />
+         <item guid="e1ffcd8ead3216e85b0560d1d50e59ca" content-type="text/plain" created="635454156575356788" last-modified="635454156588037513" last-access="635454156601608289" />
+         <item guid="b10a3aa8ca4343ba13568ad8d79e741e" content-type="text/plain" created="635454173768530181" last-modified="635454173783081013" last-access="635454173798561899" />
+         <item guid="7575f971e2cefd4bacb9164560876ad1" content-type="text/plain" created="635454172695218791" last-modified="635454172707909517" last-access="635454173798521897" />
+         <item guid="b01d61add7c12b44ce41476325cdb701" content-type="text/plain" created="635454770547270029" last-modified="635454770559330718" last-access="635454770581391980" />
+      </page>
+   </culture>
+</res_schema>

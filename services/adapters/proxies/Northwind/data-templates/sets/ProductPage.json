@@ -1,0 +1,6 @@
+/// <summary>
+/// A structure representing a page of entity "Products". It is service generated so a user does not has to specify anything.
+/// </summary>
+{
+    "$schema": "http://localhost:11333/sets/ProductPage?db=Northwind"
+}

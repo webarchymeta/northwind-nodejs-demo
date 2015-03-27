@@ -1,0 +1,56 @@
+/// <summary>
+/// A entity in "Territories" data set.
+/// </summary>
+{
+    "id": "#Schema_Territory",
+    "type": "object",
+    "name": "Territories",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "TerritoryID": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null; max-length = 20 characters."
+        },
+        "RegionID": {
+            "type": "integer",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: fixed; not null; foreign key."
+        },
+        "TerritoryDescription": {
+            "type": "string",
+            "required": true,
+            "readonly": false,
+            "description": "Meta-info: editable; not null; max-length = 50 characters."
+        },
+        "IsTerritoryDescriptionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'TerritoryDescription' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'TerritoryDescription' only if this is set to true no matter what the actual value of 'TerritoryDescription' is."
+        },
+        "RegionRef": {
+            // Entity in data set 'Region' for 'Region' that this entity depend upon through the corresponding foreign key set is { 'Territory.RegionID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Region?db=Northwind"
+        },
+        "ChangedEmployeeTerritorys": {
+            "type": "array",
+            "description": "A list of 'EmployeeTerritory' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'EmployeeTerritorySet' set is { 'EmployeeTerritory.TerritoryID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/EmployeeTerritory?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

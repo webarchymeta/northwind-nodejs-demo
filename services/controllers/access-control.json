@@ -1,0 +1,1275 @@
+{
+    "allowed": true,
+    "authenticate": true,
+    "Northwind": {
+        "allowed": true,
+        "authenticate": true,
+        "monitoring": false,
+        "DbContext": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "SignInService": {
+                "allowed": false,
+                "authenticate": true
+            },
+            "SubscribeToUpdates": {
+                "allowed": false,
+                "authenticate": true
+            },
+            "UnsubscribeToUpdates": {
+                "allowed": false,
+                "authenticate": true
+            },
+            "InitializeCallContext": {
+                "allowed": false,
+                "authenticate": true
+            },
+            "GetDatabaseInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "CreateDatabase": {
+                "allowed": false,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "LoadDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "SaveDatabase": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "CategorySet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeProducts": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllProducts": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeSuppliers": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllSuppliers": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityDescription": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "UpdateEntityDescription": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityPicture": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "UpdateEntityPicture": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "CustomerCustomerDemoSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeCustomerDemographicRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeCustomerRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QuerySetConstraints": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "CustomerDemographicSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeCustomerCustomerDemos": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllCustomerCustomerDemos": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityCustomerDesc": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "UpdateEntityCustomerDesc": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "CustomerSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeCustomerCustomerDemos": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllCustomerCustomerDemos": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "EmployeeSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeUpperRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeEmployees": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllEmployees": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeEmployeeTerritorys": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllEmployeeTerritorys": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeTerritories": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllTerritories": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntitySetRoots": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityParent": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityChildren": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityFullHierarchyRecurs": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityHierarchyRecurs": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityNotes": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "UpdateEntityNotes": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityPhoto": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "UpdateEntityPhoto": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "EmployeeTerritorySet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeEmployeeRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeTerritoryRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QuerySetConstraints": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "Order_DetailSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrderRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeProductRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QuerySetConstraints": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "OrderSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeCustomerRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeEmployeeRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeShipperRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QuerySetConstraints": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrder_Details": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllOrder_Details": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeProducts": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllProducts": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "ProductSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeCategoryRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeSupplierRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QuerySetConstraints": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrder_Details": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllOrder_Details": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "RegionSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeTerritorys": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllTerritorys": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "ShipperSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllOrders": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "SupplierSet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeProducts": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllProducts": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityHomePage": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "UpdateEntityHomePage": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        },
+        "TerritorySet": {
+            "allowed": false,
+            "authenticate": true,
+            "readOnly": true,
+            "GetSetInfo": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "AddOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "EnqueueNewOrUpdateEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "DeleteEntities": {
+                "allowed": true,
+                "authenticate": true,
+                "roles": ["administrators"]
+            },
+            "NextPageBlock": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetPageItems": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabase": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "QueryDatabaseLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryEntityCount": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintsFindMatches": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQuery": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "ConstraintQueryLimited": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeRegionRef": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeEmployeeTerritorys": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllEmployeeTerritorys": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeEmployees": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "MaterializeAllEmployees": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByKey": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityGraphRecursJson": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "LoadEntityByNature": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextSorterOps": {
+                "allowed": true,
+                "authenticate": true
+            },
+            "GetNextFilterOps": {
+                "allowed": true,
+                "authenticate": true
+            }
+        }
+    }
+}

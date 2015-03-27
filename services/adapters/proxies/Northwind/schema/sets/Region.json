@@ -1,0 +1,45 @@
+/// <summary>
+/// A entity in "Region" data set.
+/// </summary>
+{
+    "id": "#Schema_Region",
+    "type": "object",
+    "name": "Region",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "RegionID": {
+            "type": "integer",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null."
+        },
+        "RegionDescription": {
+            "type": "string",
+            "required": true,
+            "readonly": false,
+            "description": "Meta-info: editable; not null; max-length = 50 characters."
+        },
+        "IsRegionDescriptionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'RegionDescription' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'RegionDescription' only if this is set to true no matter what the actual value of 'RegionDescription' is."
+        },
+        "ChangedTerritorys": {
+            "type": "array",
+            "description": "A list of 'Territory' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'TerritorySet' set is { 'Territory.RegionID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Territory?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}

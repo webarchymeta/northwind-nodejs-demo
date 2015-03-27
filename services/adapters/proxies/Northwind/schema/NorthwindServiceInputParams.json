@@ -1,0 +1,100 @@
+[
+    {
+        "id": "SignInService",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "credentials": {
+                "$ref": "http://localhost:11333/common/CallerCredentials?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "SubscribeToUpdates",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "ownerID": {
+                "type": "string",
+                "required": true
+            },
+            "subscriberId": {
+                "type": "string",
+                "required": true
+            },
+            "sets": {
+                "type": "array",
+                "items": {
+                    "$ref": "http://localhost:11333/common/SetSubscription?db=Northwind"
+                },
+                "default": [ ]
+            }
+        }
+    },
+    {
+        "id": "UnsubscribeToUpdates",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            },
+            "ownerID": {
+                "type": "string",
+                "required": true
+            },
+            "subscriberId": {
+                "type": "string",
+                "required": true
+            }
+        }
+    },
+    {
+        "id": "InitializeCallContext",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "GetDatabaseInfo",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "CreateDatabase",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "LoadDatabase",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            }
+        }
+    },
+    {
+        "id": "SaveDatabase",
+        "type": "object",
+        "properties": {
+            "cntx": {
+                "$ref": "http://localhost:11333/common/CallContext?db=Northwind"
+            }
+        }
+    }
+]

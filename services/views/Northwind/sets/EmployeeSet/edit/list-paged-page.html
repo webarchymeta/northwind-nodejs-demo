@@ -1,0 +1,13 @@
+<!-- ko with: currentPage -->
+<section class="set-info-area">
+    <div class="row header">
+        <div class="col-xs-6">
+            <%= __('c4fd9a39b7163667d0aca2a5d20840b3'/*Current Set:*/)%>  <span class="set-name">Employees</span>
+        </div>
+        <div class="col-xs-6" style="text-align:right">
+            <%= __("4c4bcc16a7300db40a55781c45ef12d9"/*Total Entities:*/)%> <span data-bind="text: mainDataModel().TotalEntities"></span>
+        </div>
+    </div>
+</section>
+<iquery-widget params="s: mainDataModel"></iquery-widget>
+<!-- /ko -->

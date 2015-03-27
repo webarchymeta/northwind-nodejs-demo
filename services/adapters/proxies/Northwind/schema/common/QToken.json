@@ -1,0 +1,14 @@
+/// <summary>
+/// A class representing a token in a structured query expression.
+/// </summary>
+{
+    "name": "QToken",
+    "type": "object",
+    "properties": {
+        "TkName": {
+            "type": "string",
+            "required": true,
+            "description": "The name of the token in the query expression."
+        }
+    }
+}

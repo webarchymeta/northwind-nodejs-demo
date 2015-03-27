@@ -1,0 +1,39 @@
+/// <summary>
+/// A entity in "CustomerCustomerDemo" data set.
+/// </summary>
+{
+    "id": "#Schema_CustomerCustomerDemo",
+    "type": "object",
+    "name": "CustomerCustomerDemo",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CustomerID": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null; foreign key; max-length = 5 characters."
+        },
+        "CustomerTypeID": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: primary key; intrinsic id; fixed; not null; foreign key; max-length = 10 characters."
+        },
+        "CustomerDemographicRef": {
+            // Entity in data set 'CustomerDemographics' for 'CustomerDemographic' that this entity depend upon through the corresponding foreign key set is { 'CustomerCustomerDemo.CustomerTypeID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/CustomerDemographic?db=Northwind"
+        },
+        "CustomerRef": {
+            // Entity in data set 'Customers' for 'Customer' that this entity depend upon through the corresponding foreign key set is { 'CustomerCustomerDemo.CustomerID' }.
+            // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+            //@@"$ref": "http://localhost:11333/sets/Customer?db=Northwind"
+        }
+    }
+}

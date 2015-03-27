@@ -1,0 +1,84 @@
+<!-- auto generated, manual changes could be overwritten when regenerated. -->
+<div class="partial-view">
+    <ul class="nav nav-pills command">
+        <li>
+            <a href="#" data-bind="click: function() { urlNavigate('relation-page', [ { module: 'vis', handler: 'visLoaded' } ]); }">
+                <%= __('0b4df9ca8dbdc636f0594752017baa42'/*Entity Relations*/) %> 
+            </a>
+        </li>
+        <% if (filter.monitoring) {%>
+        <li>
+            <a href="#" data-bind="click: function() { urlNavigate('monitor-page', [ { module: 'socketio', handler: 'connectToServer' } ], 'unsubscribe_monitoring'); }">
+                <%= __('3e6e667609b8c4b67f426b75d93c15d0'/*Change Monitor*/) %>
+            </a>
+        </li>
+        <%}%>
+    </ul>
+    <div class="content">
+        <% if (filter['CategorySet'].allowed) {%>
+        <a href="CategorySet" >
+          <div class="top-dataset-nodes"> <span>Categories</span></div>
+        </a>
+        <%}%>
+        <% if (filter['CustomerCustomerDemoSet'].allowed) {%>
+        <a href="CustomerCustomerDemoSet" >
+          <div class="top-dataset-nodes"> <span>CustomerCustomerDemo</span></div>
+        </a>
+        <%}%>
+        <% if (filter['CustomerDemographicSet'].allowed) {%>
+        <a href="CustomerDemographicSet" >
+          <div class="top-dataset-nodes"> <span>CustomerDemographics</span></div>
+        </a>
+        <%}%>
+        <% if (filter['CustomerSet'].allowed) {%>
+        <a href="CustomerSet" >
+          <div class="top-dataset-nodes"> <span>Customers</span></div>
+        </a>
+        <%}%>
+        <% if (filter['EmployeeSet'].allowed) {%>
+        <a href="EmployeeSet" >
+          <div class="top-dataset-nodes"> <span>Employees</span></div>
+        </a>
+        <%}%>
+        <% if (filter['EmployeeTerritorySet'].allowed) {%>
+        <a href="EmployeeTerritorySet" >
+          <div class="top-dataset-nodes"> <span>EmployeeTerritories</span></div>
+        </a>
+        <%}%>
+        <% if (filter['Order_DetailSet'].allowed) {%>
+        <a href="Order_DetailSet" >
+          <div class="top-dataset-nodes"> <span>Order Details</span></div>
+        </a>
+        <%}%>
+        <% if (filter['OrderSet'].allowed) {%>
+        <a href="OrderSet" >
+          <div class="top-dataset-nodes"> <span>Orders</span></div>
+        </a>
+        <%}%>
+        <% if (filter['ProductSet'].allowed) {%>
+        <a href="ProductSet" >
+          <div class="top-dataset-nodes"> <span>Products</span></div>
+        </a>
+        <%}%>
+        <% if (filter['RegionSet'].allowed) {%>
+        <a href="RegionSet" >
+          <div class="top-dataset-nodes"> <span>Region</span></div>
+        </a>
+        <%}%>
+        <% if (filter['ShipperSet'].allowed) {%>
+        <a href="ShipperSet" >
+          <div class="top-dataset-nodes"> <span>Shippers</span></div>
+        </a>
+        <%}%>
+        <% if (filter['SupplierSet'].allowed) {%>
+        <a href="SupplierSet" >
+          <div class="top-dataset-nodes"> <span>Suppliers</span></div>
+        </a>
+        <%}%>
+        <% if (filter['TerritorySet'].allowed) {%>
+        <a href="TerritorySet" >
+          <div class="top-dataset-nodes"> <span>Territories</span></div>
+        </a>
+        <%}%>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+/// <summary>
+/// A class representing a client and carrying client specific data.
+/// An instance of this class must be initiated from the service side by clients calling
+/// <see cref="INorthwindService.SignInService" /> or <see cref="INorthwindService2.SignInService" />, 
+/// saved by the clients, and be used on all subsequent calls to the service.
+/// </summary>
+{
+    "name": "CallContext",
+    "type": "object",
+    "properties": {
+        "CallerID": {
+            "type": "string",
+            "required": false,
+            "description": "The identifier of the client (the caller). For authenticated client, it is most-likely the CallerCredentials.UserName_."
+        },
+        "SessionID": {
+            "type": "string",
+            "required": false,
+            "description": "A session id for the client assigned by the service."
+        },
+        "AcceptLanguages": {
+            "type": "string",
+            "required": false,
+            "description": "The service is multi-lingual. A client can specify a preferred set of languages to communicate with the service."
+        },
+        "SecurityTicket": {
+            "type": "string",
+            "required": false,
+            "description": "A serialized and encrypted data containing client specific data for security management of the service. It expires at a certain time after being issued by the service."
+        },
+        "OverrideExisting": {
+            "type": "boolean",
+            "required": false,
+            "description": "To prevent unintensional overwriting of existing data, a client created entity (i.e. it is not \"IsPersisted\") can not be updated to the data source if an existing entity is found to have exactly the same set of \"Intrinsic Identifiers\". A client can override this behavior by seting <c>OverrideExisting</c> to <c>true</c> value."
+        },
+        "DirectDataAccess": {
+            "type": "boolean",
+            "required": false,
+            "description": "When concurrency cache is enabled, setting <c>DirectDataAccess</c> to true will enable the client bypass the cache to have direct access to the backend data. The default value for it is <c>false</c>."
+        },
+        "IgnoreInvalidItems": {
+            "type": "boolean",
+            "required": false,
+            "description": "Whether or not to ignore invalid items in add or update operations. The ignored item will be reported back to client."
+        }, 
+        "UpdateSyncVersion": {
+            "type": "boolean",
+            "required": false,
+            "description": "If the present entity set has a (sync) update version, It indicates whether or not to update the version field."
+        }, 
+        "DisableSyncConflictCheck": {
+            "type": "boolean",
+            "required": false,
+            "description": "When a data set has (sync) update version, it allows forceful update of a local modified entity into the data set even when a concurrent update conflict is detected."
+        }, 
+        "UpdateTransaction": {
+            "type": "boolean",
+            "required": false,
+            "description": "Whether or not to use a transaction in add, update or delete operations. The default is true."
+        } 
+    }
+}

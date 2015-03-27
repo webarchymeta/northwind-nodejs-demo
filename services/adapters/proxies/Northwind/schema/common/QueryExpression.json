@@ -1,0 +1,21 @@
+/// <summary>
+/// A class representing a structured query expression.
+/// </summary>
+{
+    "name": "QueryExpression",
+    "type": "object",
+    "properties": {
+        "OrderTks": {
+            "type": "array",
+            "description": "A list of tokens representing client sorting request.",
+            "items": { "$ref": "http://localhost:11333/common/QToken?db=Northwind" },
+            "default": [ ]
+        },
+        "FilterTks": {
+            "type": "array",
+            "description": "A list of tokens representing client filtering request.",
+            "items": { "$ref": "http://localhost:11333/common/QToken?db=Northwind" },
+            "default": [ ]
+        }
+    }
+}

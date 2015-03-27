@@ -1,0 +1,74 @@
+/// <summary>
+/// A entity in "Categories" data set.
+/// </summary>
+{
+    "id": "#Schema_Category",
+    "type": "object",
+    "name": "Categories",
+    "properties": {
+        "IsEntityChanged": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the entity was edited."
+        },
+        "CategoryName": {
+            "type": "string",
+            "required": true,
+            "readonly": true,
+            "description": "Meta-info: intrinsic id; fixed; not null; max-length = 15 characters."
+        },
+        "Description": {
+            "type": "object",
+            "required": false,
+            "readonly": false,
+            "description": "Meta-info: editable; nullable; load delayed."
+        },
+        "IsDescriptionModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Description' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Description' only if this is set to true no matter what the actual value of 'Description' is."
+        },
+        "IsDescriptionLoaded": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of the delay loaded 'Description' is Loaded. Clients are responsible for keeping track of loading status of delay loading properties."
+        },
+        "Picture": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            },
+            "default": [ ],
+            "description": "Meta-info: editable; nullable; load delayed."
+        },
+        "IsPictureModified": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of 'Picture' was changed compared to what it was loaded last time. Note: the backend data source updates the changed 'Picture' only if this is set to true no matter what the actual value of 'Picture' is."
+        },
+        "IsPictureLoaded": {
+            "type": "boolean",
+            "required": false,
+            "readonly": false,
+            "default": false,
+            "description": "Whether or not the value of the delay loaded 'Picture' is Loaded. Clients are responsible for keeping track of loading status of delay loading properties."
+        },
+        "ChangedProducts": {
+            "type": "array",
+            "description": "A list of 'Product' that is to be added or updated to the data source, together with the current entity. The corresponding foreign key in 'ProductSet' set is { 'Product.CategoryID' }.",
+            "items": {
+                // remove the leading '//@@' if your editor parser or schema validator support circular schema references. It's most likely not supported at present, which means you have to do it separately.
+                //@@"$ref": "http://localhost:11333/sets/Product?db=Northwind"
+            },
+            "default": [ ]
+        }
+    }
+}
