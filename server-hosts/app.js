@@ -8,12 +8,15 @@ var config = require('./config');
 var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
+var http = require('http');
 var express = require('express');
 var path = require('path');
 var ejs = require('ejs');
 var morgan = require('morgan');
 var i18n = require('i18n');
 var app = express();
+
+http.globalAgent.maxSockets = config.maxClientConnections;
 
 var isProxy = typeof config.inProcessDatabase == 'undefined' || config.inProcessDatabase.enable == false;
 if (!isProxy) {

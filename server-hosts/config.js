@@ -8,5 +8,6 @@
     },
     maxEventsReconnectCount: 5,
     supportedLocals: ['en'],
+    maxClientConnections: 100,
     others: ''
 }
