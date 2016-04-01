@@ -14,11 +14,18 @@ var root = process.cwd(), path = require('path'),
     router = require(path.join(root, 'node_modules/express')).Router(),
     _ = require(path.join(root, 'node_modules/underscore')),
     config = require(path.join(root, apppath + 'config')),
-    handler;
+    handler, api;
 try {
     handler = require(path.join(__dirname, '../override/DbContext'));
 } catch (ex) {
     handler = null;
+}
+
+var isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
+if (isProxy) {
+    api = new (require(path.join(root, '../services/adapters/proxies/Northwind/api/NorthwindService')))();
+} else {
+    api = new (require(path.join(root, '../services/adapters/servers/Northwind/api/NorthwindService')))();
 }
 
 function role_match(roles1, roles2) {
@@ -54,13 +61,6 @@ router.post('/:method', function (req, res, next) {
     if (handler !== null && typeof handler[req.params.method] === 'function') {
         handler[req.params.method](req, res, next);
         return;
-    }
-    var isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
-    var api;
-    if (isProxy) {
-        api = new (require(path.join(root, '../services/adapters/proxies/Northwind/api/NorthwindService')))();
-    } else {
-        api = new (require(path.join(root, '../services/adapters/servers/Northwind/api/NorthwindService')))();
     }
     if (typeof api[req.params.method] === 'function') {
         var body = '';

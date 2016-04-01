@@ -10,7 +10,9 @@
  ------------------------------------------------------------------------------ */
 
 var root = process.cwd(), path = require('path'),
-    router = require(path.join(root, 'node_modules/express')).Router();
+    exprs = require(path.join(root, 'node_modules/express')),
+    router = exprs.Router();
+var dbcontext, dbsets = {};
 
 router.use('/__templates', function (req, res, next) {
     if (req.url === '/widgets/QueryComposer.html') {
@@ -35,8 +37,11 @@ router.use('/:type', function (req, res, next) {
         case 'NorthwindDatabase.svc':
         case 'DbContext': {
                 if (typeof router.filter !== 'undefined' && router.filter !== null && typeof router.filter.DbContext !== 'undefined' && router.filter.DbContext !== null && router.filter.DbContext.allowed) {
-                    var r = require(path.join(root, 'node_modules/express')).Router();
-                    var mthdr = require(path.join(__dirname, '../../controllers/Northwind/default/DbContext')).router;
+                    var r = exprs.Router();
+                    if (!dbcontext) {
+                        dbcontext = require(path.join(__dirname, '../../controllers/Northwind/default/DbContext'));
+                    }
+                    var mthdr = dbcontext.router;
                     mthdr.vpath = router.vpath + '/DbContext';
                     r.use('/', mthdr);
                     if (typeof router.filter !== 'undefined' && router.filter !== null && typeof router.filter.DbContext === 'object') {
@@ -59,8 +64,13 @@ router.use('/:type', function (req, res, next) {
                 for (var i = 0; i < types.length; i++) {
                     if (types[i] + 'Set' === req.params.type) {
                         if (typeof router.filter !== 'undefined' && router.filter !== null && typeof router.filter[req.params.type] !== 'undefined' && router.filter[req.params.type] !== null && router.filter[req.params.type].allowed) {
-                            var r = require(path.join(root, 'node_modules/express')).Router();
-                            var mthdr = require(path.join(__dirname, '../../controllers/Northwind/default/sets/' + req.params.type)).router;
+                            var r = exprs.Router();
+                            var dbset = dbsets[req.params.type];
+                            if (!dbset) {
+                                dbset = require(path.join(__dirname, '../../controllers/Northwind/default/sets/' + req.params.type));
+                                dbsets[req.params.type] = dbset;
+                            }
+                            var mthdr = dbset.router;
                             mthdr.vpath = router.vpath + '/sets/' + req.params.type;
                             r.use('/', mthdr);
                             if (typeof router.filter !== 'undefined' && router.filter !== null && typeof router.filter[req.params.type] === 'object') {

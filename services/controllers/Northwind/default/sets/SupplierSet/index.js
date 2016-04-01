@@ -14,11 +14,17 @@ var root = process.cwd(), path = require('path'),
     router = require(path.join(root, 'node_modules/express')).Router(),
     _ = require(path.join(root, 'node_modules/underscore')),
     config = require(path.join(root, apppath + 'config')),
-    handler;
+    handler, api;
 try {
     handler = require(path.join(__dirname, '../override/sets/SupplierSet'));
 } catch (ex) {
     handler = null;
+}
+var isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
+if (isProxy) {
+    api = new (require(path.join(root, '../services/adapters/proxies/Northwind/api/sets/SupplierService')))();
+} else {
+    api = new (require(path.join(root, '../services/adapters/servers/Northwind/api/sets/SupplierService')))();
 }
 
 var is_rawdata_load = function(method) {
@@ -74,13 +80,6 @@ router.post('/:method', function (req, res, next) {
     if (handler !== null && typeof handler[req.params.method] === 'function') {
         handler[req.params.method](req, res, next);
         return;
-    }
-    var isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
-    var api;
-    if (isProxy) {
-        api = new (require(path.join(root, '../services/adapters/proxies/Northwind/api/sets/SupplierService')))();
-    } else {
-        api = new (require(path.join(root, '../services/adapters/servers/Northwind/api/sets/SupplierService')))();
     }
     if (typeof api[req.params.method] === 'function') {
         var body = '';
@@ -180,6 +179,11 @@ router.get('/load-delayed-HomePage', function (req, res, next) {
         if (req.query.modified) {
             var lastModified = new Date(parseInt(req.query.modified)).toUTCFormat('DDD, DD MMM YYYY HH:MI:SS');
             res.setHeader('Last-Modified', lastModified + ' GMT');
+            var hours = 1; // tmp
+            var now = new Date();
+            now.addHours(hours);
+            res.setHeader('Cache-Control', 'private, max-age=' + hours * 3600);
+            res.setHeader('Expires', now.toUTCFormat('DDD, DD MMM YYYY HH:MI:SS') + ' GMT');
             if (req.headers['if-modified-since']) {
                 var d2 = Date.parse(req.headers['if-modified-since']);
                 var cachetime = new Date(d2).toUTCFormat('DDD, DD MMM YYYY HH:MI:SS');
@@ -188,13 +192,6 @@ router.get('/load-delayed-HomePage', function (req, res, next) {
                     return;
                 }
             }
-        }
-        var isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
-        var api;
-        if (isProxy) {
-            api = new (require(path.join(root, '../services/adapters/proxies/Northwind/api/sets/SupplierService')))();
-        } else {
-            api = new (require(path.join(root, '../services/adapters/servers/Northwind/api/sets/SupplierService')))();
         }
         var opts = { SupplierID: parseInt(req.query.SupplierID, 10) };
         api.LoadEntityHomePage(opts).then(function (data) {

@@ -39,6 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app-context.js" />
     <Compile Include="app.js" />
     <Content Include="locales\en.json" />
     <Content Include="package.json" />

@@ -15,7 +15,8 @@ var root = process.cwd(),
     edge = require(path.join(root, 'node_modules/edge')),
     Q = require(path.join(root, 'node_modules/q')),
     propFilters = require(path.join(root, '../services/adapters/proxies/Northwind/api/property-filters')),
-    config = require(path.join(root, apppath + 'config'));
+    config = require(path.join(root, apppath + 'config')),
+    appcontext = require(path.join(root, apppath + 'app-context'));
 
 var api = function () {
     var self = this;
@@ -40,14 +41,28 @@ var api = function () {
     self.GetSetInfo = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 filter: input.filter
             };
             self._GetSetInfo(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -101,15 +116,29 @@ var api = function () {
     self.AddOrUpdateEntities = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 entities: JSON.stringify(input.entities)
             };
             self._AddOrUpdateEntities(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -169,15 +198,29 @@ var api = function () {
     self.EnqueueNewOrUpdateEntities = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 entities: JSON.stringify(input.entities)
             };
             self._EnqueueNewOrUpdateEntities(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -208,15 +251,29 @@ var api = function () {
     self.DeleteEntities = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 entities: JSON.stringify(input.entities)
             };
             self._DeleteEntities(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -247,16 +304,30 @@ var api = function () {
     self.NextPageBlock = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 qexpr: JSON.stringify(input.qexpr),
                 prevlast: JSON.stringify(input.prevlast)
             };
             self._NextPageBlock(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -286,22 +357,34 @@ var api = function () {
     self.GetPageItems = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 qexpr: JSON.stringify(input.qexpr),
                 prevlast: JSON.stringify(input.prevlast)
             };
             self._GetPageItems(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -328,15 +411,29 @@ var api = function () {
     self.QueryEntityCount = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 qexpr: JSON.stringify(input.qexpr)
             };
             self._QueryEntityCount(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -362,21 +459,33 @@ var api = function () {
     self.QueryDatabase = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 qexpr: JSON.stringify(input.qexpr)
             };
             self._QueryDatabase(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -403,22 +512,34 @@ var api = function () {
     self.QueryDatabaseLimited = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 qexpr: JSON.stringify(input.qexpr),
                 maxRecords: input.maxRecords
             };
             self._QueryDatabaseLimited(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -445,16 +566,30 @@ var api = function () {
     self.ConstraintQueryEntityCount = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 constraints: JSON.stringify(input.constraints),
                 qexpr: JSON.stringify(input.qexpr)
             };
             self._ConstraintQueryEntityCount(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -481,16 +616,30 @@ var api = function () {
     self.ConstraintsFindMatches = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 cnstSets: JSON.stringify(input.cnstSets),
                 qexpr: JSON.stringify(input.qexpr)
             };
             self._ConstraintsFindMatches(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -517,22 +666,34 @@ var api = function () {
     self.ConstraintQuery = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 constraints: JSON.stringify(input.constraints),
                 qexpr: JSON.stringify(input.qexpr)
             };
             self._ConstraintQuery(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -560,23 +721,35 @@ var api = function () {
     self.ConstraintQueryLimited = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
                 constraints: JSON.stringify(input.constraints),
                 qexpr: JSON.stringify(input.qexpr),
                 maxRecords: input.maxRecords
             };
             self._ConstraintQueryLimited(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -604,20 +777,32 @@ var api = function () {
     self.MaterializeUpperRef = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeUpperRef(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].one(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].one(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -645,14 +830,28 @@ var api = function () {
     self.MaterializeEmployees = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeEmployees(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -677,20 +876,32 @@ var api = function () {
     self.MaterializeAllEmployees = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeAllEmployees(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -718,14 +929,28 @@ var api = function () {
     self.MaterializeEmployeeTerritorys = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeEmployeeTerritorys(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -750,20 +975,32 @@ var api = function () {
     self.MaterializeAllEmployeeTerritorys = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeAllEmployeeTerritorys(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['EmployeeTerritory'] !== 'undefined')
-                        resolve(propFilters['EmployeeTerritory'].many(JSON.parse(result), false));
+                        resolve(propFilters['EmployeeTerritory'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -792,14 +1029,28 @@ var api = function () {
     self.MaterializeTerritories = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeTerritories(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -828,20 +1079,32 @@ var api = function () {
     self.MaterializeAllTerritories = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeAllTerritories(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Territory'] !== 'undefined')
-                        resolve(propFilters['Territory'].many(JSON.parse(result), false));
+                        resolve(propFilters['Territory'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -869,14 +1132,28 @@ var api = function () {
     self.MaterializeOrders = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeOrders(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -901,20 +1178,32 @@ var api = function () {
     self.MaterializeAllOrders = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._MaterializeAllOrders(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Order'] !== 'undefined')
-                        resolve(propFilters['Order'].many(JSON.parse(result), false));
+                        resolve(propFilters['Order'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -939,20 +1228,32 @@ var api = function () {
     self.LoadEntityByKey = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID
             };
             self._LoadEntityByKey(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].one(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].one(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1003,16 +1304,30 @@ var api = function () {
     self.LoadEntityGraphRecursJson = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID,
                 excludedSets: JSON.stringify(input.excludedSets),
                 futherDrillSets: JSON.stringify(input.futherDrillSets)
             };
             self._LoadEntityGraphRecursJson(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1047,22 +1362,34 @@ var api = function () {
     self.LoadEntityByNature = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                     _FirstName: input._FirstName || input.FirstName, 
                     _LastName: input._LastName || input.LastName, 
                     _BirthDate: input._BirthDate || input.BirthDate
             };
             self._LoadEntityByNature(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), false));
+                        resolve(propFilters['Employee'].many(returnObj, false));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1089,19 +1416,31 @@ var api = function () {
     self.LoadEntitySetRoots = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx)
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx))
             };
             self._LoadEntitySetRoots(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), true));
+                        resolve(propFilters['Employee'].many(returnObj, true));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1128,20 +1467,32 @@ var api = function () {
     self.LoadEntityParent = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 node: JSON.stringify(input.node)
             };
             self._LoadEntityParent(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].one(JSON.parse(result), true));
+                        resolve(propFilters['Employee'].one(returnObj, true));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1168,20 +1519,32 @@ var api = function () {
     self.LoadEntityChildren = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 node: JSON.stringify(input.node)
             };
             self._LoadEntityChildren(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].many(JSON.parse(result), true));
+                        resolve(propFilters['Employee'].many(returnObj, true));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1209,20 +1572,32 @@ var api = function () {
     self.LoadEntityFullHierarchyRecurs = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
             };
             self._LoadEntityFullHierarchyRecurs(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].recurs(JSON.parse(result), true));
+                        resolve(propFilters['Employee'].recurs(returnObj, true));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1254,22 +1629,34 @@ var api = function () {
     self.LoadEntityHierarchyRecurs = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity),
                 uplev: input.uplev,
                 lowlev: input.lowlev
             };
             self._LoadEntityHierarchyRecurs(opts, function (error, result) {
-                if (!error)
-                {
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
                     var cntx = JSON.parse(opts.cntx);
                     if ((typeof cntx.allProperties === 'undefined' || !cntx.allProperties) && (config.disablePropertyFiltering === 'undefined' || !config.disablePropertyFiltering) && typeof propFilters['Employee'] !== 'undefined')
-                        resolve(propFilters['Employee'].recurs(JSON.parse(result), true));
+                        resolve(propFilters['Employee'].recurs(returnObj, true));
                     else
-                        resolve(JSON.parse(result));
-                }
-                else
+                        resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1296,7 +1683,7 @@ var api = function () {
     self.LoadEntityNotes = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID
             };
             self._LoadEntityNotes(opts, function (error, result) {
@@ -1331,15 +1718,29 @@ var api = function () {
     self.UpdateEntityNotes = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID,
                 data: input.data
             };
             self._UpdateEntityNotes(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1366,7 +1767,7 @@ var api = function () {
     self.LoadEntityPhoto = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID
             };
             self._LoadEntityPhoto(opts, function (error, result) {
@@ -1401,15 +1802,29 @@ var api = function () {
     self.UpdateEntityPhoto = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID,
                 data: input.data
             };
             self._UpdateEntityPhoto(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1434,14 +1849,28 @@ var api = function () {
     self.GetNextSorterOps = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 sorters: JSON.stringify(input.sorters)
             };
             self._GetNextSorterOps(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -1467,15 +1896,29 @@ var api = function () {
     self.GetNextFilterOps = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 qexpr: JSON.stringify(input.qexpr),
                 tkstr: input.tkstr
             };
             self._GetNextFilterOps(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;

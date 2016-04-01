@@ -16,9 +16,11 @@ define(['knockout', 'config'], function (ko, config) {
         //self.baseUrl = config.baseUrl + '/services/' + config.databaseName + '/';
         self.id = url;
         self.lastActive = false;
+        self.scrollTop = 0;
         self.content = content;
         self.mainDataModel = ko.observable(data);
         self.op = op;
+        self.isEntryPage = false;
         self.prevPage = null;
         self.nextPages = ko.observableArray([]);
     };
@@ -33,11 +35,12 @@ define(['knockout', 'config'], function (ko, config) {
         self.opContext = null;
         self.currentPage = ko.observable();
         self.pageChanged = ko.observable();
+        self.globalAlertMsg = ko.observable();
 
         self.prevPageExists = function () {
             var v = self.pageChanged();
             var p = self.currentPage();
-            if (p == null)
+            if (!p)
                 return false;
             var yes = self.entryPage !== null && self.entryPage.id !== p.id;
             if (yes) {
@@ -52,8 +55,11 @@ define(['knockout', 'config'], function (ko, config) {
 
         self.homePageShortcut = function () {
             var v = self.pageChanged();
-            var p = self.currentPage().prevPage;
-            if (p == null)
+            var _p = self.currentPage();
+            if (!_p)
+                return false;
+            var p = _p.prevPage;
+            if (!p)
                 return false;
             var yes = self.entryPage !== null && self.entryPage.id !== p.id;
             if (yes) {
@@ -69,7 +75,7 @@ define(['knockout', 'config'], function (ko, config) {
         self.nextPageExists = function () {
             var v = self.pageChanged();
             var p = self.currentPage();
-            if (p == null)
+            if (!p)
                 return false;
             var yes = self.entryPage !== null && p.nextPages().length > 0;
             if (yes) {
@@ -124,8 +130,11 @@ define(['knockout', 'config'], function (ko, config) {
 
         self.urlNavigateAsync = function (uri, scripts, unloadHandler, data, op) {
             var prevPage = self.currentPage();
-            if (prevPage && 'function' == typeof prevPage.unloaded) {
-                prevPage.unloaded();
+            if (prevPage) {
+                prevPage.scrollTop = $(document).scrollTop();
+                if ('function' == typeof prevPage.unloaded) {
+                    prevPage.unloaded();
+                }
             }
             var elm = $(self.contentContainer)[0];
             ko.cleanNode(elm);
@@ -168,8 +177,9 @@ define(['knockout', 'config'], function (ko, config) {
 
         self.goFirstPage = function (then) {
             var loader = function () {
-                if (self.currentPage().prevPage == null)
+                if (self.currentPage().prevPage === null)
                     return;
+                self.currentPage().scrollTop = $(document).scrollTop();
                 var elm = $(self.contentContainer);
                 ko.cleanNode(elm[0]);
                 while (self.currentPage().prevPage !== null) {
@@ -206,6 +216,9 @@ define(['knockout', 'config'], function (ko, config) {
                     }
                 }
                 ko.applyBindings(self, elm[0]);
+                if (page.scrollTop > 0) {
+                    $(document).scrollTop(page.scrollTop);
+                }
                 if (typeof then === 'function') {
                     then();
                 }
@@ -223,6 +236,7 @@ define(['knockout', 'config'], function (ko, config) {
                 if ('function' == typeof prevPage.unloaded) {
                     prevPage.unloaded();
                 }
+                self.currentPage().scrollTop = $(document).scrollTop();
                 var elm = $(self.contentContainer);
                 ko.cleanNode(elm[0]);
                 elm.html('');
@@ -252,6 +266,9 @@ define(['knockout', 'config'], function (ko, config) {
                         }
                     }
                     ko.applyBindings(self, elm[0]);
+                    if (page.scrollTop > 0) {
+                        $(document).scrollTop(page.scrollTop);
+                    }
                     if (typeof then === 'function') {
                         then();
                     }
@@ -270,6 +287,7 @@ define(['knockout', 'config'], function (ko, config) {
                 if ('function' == typeof prevPage.unloaded) {
                     prevPage.unloaded();
                 }
+                self.currentPage().scrollTop = $(document).scrollTop();
                 var elm = $(self.contentContainer);
                 ko.cleanNode(elm[0]);
                 elm.html('');
@@ -299,6 +317,9 @@ define(['knockout', 'config'], function (ko, config) {
                         }
                     }
                     ko.applyBindings(self, elm[0]);
+                    if (page.scrollTop > 0) {
+                        $(document).scrollTop(page.scrollTop);
+                    }
                     if (typeof then === 'function') {
                         then();
                     }
@@ -311,7 +332,7 @@ define(['knockout', 'config'], function (ko, config) {
             }
         };
 
-        self.navigateTo = function(opts) {
+        self.navigateTo = function(opts, success, fail) {
             if (typeof self.ResolveRoute !== 'function') {
                 if (typeof config.alert === 'function') {
                     config.alert('Routing information is not available to the current context.');
@@ -321,15 +342,31 @@ define(['knockout', 'config'], function (ko, config) {
                 return;
             }
             var route = self.ResolveRoute(opts);
-            if (!route || route == null)
+            if (!route || route === null)
                 return;
             if (typeof route.controllerId !== 'undefined') {
                 self.loadControllerModule(route.controllerId, function (opType) {
                     var op = new opType(opts.data);
-                    self.urlNavigate(route.url, opts.scripts, opts.unloadHandler, opts.data, op);
+                    if (!success) {
+                        self.urlNavigate(route.url, opts.scripts, opts.unloadHandler, opts.data, op);
+                    } else {
+                        if (!fail) {
+                            self.urlNavigateAsync(route.url, opts.scripts, opts.unloadHandler, opts.data, op).then(success).done();
+                        } else {
+                            self.urlNavigateAsync(route.url, opts.scripts, opts.unloadHandler, opts.data, op).then(success).fail(fail).done();
+                        }
+                    }
                 });
             } else if (typeof route.op !== 'undefined' || typeof route.data !== 'undefined') {
-                self.urlNavigate(route.url, opts.scripts, opts.unloadHandler, route.data, route.op);
+                if (!success) {
+                    self.urlNavigate(route.url, opts.scripts, opts.unloadHandler, route.data, route.op);
+                } else {
+                    if (!fail) {
+                        self.urlNavigateAsync(route.url, opts.scripts, opts.unloadHandler, route.data, route.op).then(success).done();
+                    } else {
+                        self.urlNavigateAsync(route.url, opts.scripts, opts.unloadHandler, route.data, route.op).then(success).fail(fail).done();
+                    }
+                }
             }
         };
 
@@ -352,7 +389,7 @@ define(['knockout', 'config'], function (ko, config) {
                 type: 'GET'
             }).pipe(function (content) {
                 var page = null;
-                if (self.entryPage == null) {
+                if (self.entryPage === null) {
                     page = new __page(url, content, data, op);
                     self.entryPage = page;
                     self.currentPage(self.entryPage);
@@ -361,8 +398,14 @@ define(['knockout', 'config'], function (ko, config) {
                     var inNext = false;
                     for (var i = 0; i < self.currentPage().nextPages().length; i++) {
                         self.currentPage().nextPages()[i].lastActive = false;
-                        if (self.currentPage().nextPages()[i].id == url) {
+                        if (self.currentPage().nextPages()[i].id === url) {
                             page = self.currentPage().nextPages()[i];
+                            if (page.mainDataModel() != data) {
+                                page.mainDataModel(data);
+                            }
+                            if (page.op != op) {
+                                page.op = op;
+                            }
                         } else {
                             self.currentPage().nextPages()[i].lastActive = false;
                         }
@@ -372,7 +415,7 @@ define(['knockout', 'config'], function (ko, config) {
                             return p.id !== url;
                         });
                     }
-                    if (page == null) {
+                    if (page === null) {
                         page = new __page(url, content, data, op);
                         page.prevPage = self.currentPage();
                         self.currentPage().nextPages().push(page);
@@ -422,6 +465,10 @@ define(['knockout', 'config'], function (ko, config) {
             self.currentPage(self.entryPage);
         };
 
+        self.resetAll = function () {
+            self.entryPage = null;
+            self.currentPage({ });
+        };
     };
 
     return new model();

@@ -57,7 +57,7 @@ var api = function (serviceBaseUrl) {
             var opts = {
                 url: self.baseUrl + '/SignInService',
                 method: 'POST',
-                json: { cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, credentials: input.credentials }
+                json: { cntx: config.mapCntx(input.cntx || cntx), credentials: input.credentials }
             };
             req(opts, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
@@ -97,9 +97,10 @@ var api = function (serviceBaseUrl) {
 */
     self.SubscribeToUpdates = function (input) {
         var opts = {
-            cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, 
-            ownerID: input.ownerId, 
-            subscriberID: input.subscriberId, 
+            cntx: config.mapCntx(input.cntx || cntx),
+            ownerID: input.ownerId,
+            subscriberID: input.subscriberId,
+            preserve: input.preserve,
             sets: input.sets
         };
         return updateEvents.subscribe(opts);
@@ -122,9 +123,10 @@ var api = function (serviceBaseUrl) {
 */
     self.UnsubscribeToUpdates = function (input) {
         var opts = {
-            cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, 
-            ownerID: input.ownerId, 
-            subscriberID: input.subscriberId
+            cntx: config.mapCntx(input.cntx || cntx),
+            ownerID: input.ownerId,
+            subscriberID: input.subscriberId,
+            preserve: input.preserve
         };
         return updateEvents.unsubscribe(opts);
     };
@@ -155,7 +157,7 @@ var api = function (serviceBaseUrl) {
             var opts = {
                 url: self.baseUrl + '/InitializeCallContext',
                 method: 'POST',
-                json: { cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx }
+                json: { cntx: config.mapCntx(input.cntx || cntx) }
             };
             req(opts, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
@@ -198,7 +200,7 @@ var api = function (serviceBaseUrl) {
             var opts = {
                 url: self.baseUrl + '/GetDatabaseInfo',
                 method: 'POST',
-                json: { cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx }
+                json: { cntx: config.mapCntx(input.cntx || cntx) }
             };
             req(opts, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
@@ -246,7 +248,7 @@ var api = function (serviceBaseUrl) {
             var opts = {
                 url: self.baseUrl + '/CreateDatabase',
                 method: 'POST',
-                json: { cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx }
+                json: { cntx: config.mapCntx(input.cntx || cntx) }
             };
             req(opts, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
@@ -295,7 +297,7 @@ var api = function (serviceBaseUrl) {
             var opts = {
                 url: self.baseUrl + '/LoadDatabase',
                 method: 'POST',
-                json: { cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx }
+                json: { cntx: config.mapCntx(input.cntx || cntx) }
             };
             req(opts, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
@@ -344,7 +346,7 @@ var api = function (serviceBaseUrl) {
             var opts = {
                 url: self.baseUrl + '/SaveDatabase',
                 method: 'POST',
-                json: { cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx }
+                json: { cntx: config.mapCntx(input.cntx || cntx) }
             };
             req(opts, function (error, response, body) {
                 if (!error && response.statusCode === 200) {

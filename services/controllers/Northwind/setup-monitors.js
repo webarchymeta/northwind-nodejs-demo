@@ -12,15 +12,19 @@
 var root = process.cwd(), path = require('path'),
     apppath = typeof global.appPath === 'undefined' || global.appPath === '' ? '' : 'config/' + global.appPath + '/',
     winston = require(root + '/node_modules/winston'),
-    config = require(path.join(root, apppath + 'config'));
+    config = require(path.join(root, apppath + 'config')),
+    dbs = {}, isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
 
 var subscribe = function (svc) {
-    var isProxy = typeof config.inProcessDatabase === 'undefined' || config.inProcessDatabase.enable === false;
     try {
-        if (isProxy) {
-            var db = new (require('../../adapters/proxies/' + svc + '/api/' + svc + 'Service'))();
-        } else {
-            var db = new (require('../../adapters/servers/' + svc + '/api/' + svc + 'Service'))();
+        var db = dbs[svc];
+        if (!db) {
+            if (isProxy) {
+                db = new (require('../../adapters/proxies/' + svc + '/api/' + svc + 'Service'))();
+            } else {
+                db = new (require('../../adapters/servers/' + svc + '/api/' + svc + 'Service'))();
+            }
+            dbs[svc] = db;
         }
         db.SubscribeToUpdates({
             cntx: global[svc + 'ClientContext'],

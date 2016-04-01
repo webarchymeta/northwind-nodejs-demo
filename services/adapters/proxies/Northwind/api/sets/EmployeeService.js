@@ -15,7 +15,8 @@ var root = process.cwd(),
     req = require(path.join(root, 'node_modules/request')),
     Q = require(path.join(root, 'node_modules/q')),
     propFilters = require('../property-filters'),
-    config = require(path.join(root, apppath + 'config'));
+    config = require(path.join(root, apppath + 'config')),
+    appcontext = require(path.join(root, apppath + 'app-context'));
 
 var api = function () {
     var self = this;
@@ -44,7 +45,7 @@ var api = function () {
                 url: self.baseUrl + '/GetSetInfo',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, 
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     filter: input.filter
                 }
             };
@@ -119,7 +120,7 @@ var api = function () {
                 url: self.baseUrl + '/AddOrUpdateEntities',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, 
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set, 
                     entities: input.entities
                 }
@@ -201,7 +202,7 @@ var api = function () {
                 url: self.baseUrl + '/EnqueueNewOrUpdateEntities',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, 
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set, 
                     entities: input.entities
                 }
@@ -254,7 +255,7 @@ var api = function () {
                 url: self.baseUrl + '/DeleteEntities',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx, 
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set, 
                     entities: input.entities
                 }
@@ -306,7 +307,7 @@ var api = function () {
                 url: self.baseUrl + '/NextPageBlock',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     qexpr: input.qexpr,
                     prevlast: input.prevlast
@@ -359,7 +360,7 @@ var api = function () {
                 url: self.baseUrl + '/GetPageItems',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     qexpr: input.qexpr,
                     prevlast: input.prevlast
@@ -412,7 +413,7 @@ var api = function () {
                 url: self.baseUrl + '/QueryEntityCount',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     qexpr: input.qexpr
                 }
@@ -461,7 +462,7 @@ var api = function () {
                 url: self.baseUrl + '/QueryDatabase',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     qexpr: input.qexpr
                 }
@@ -514,7 +515,7 @@ var api = function () {
                 url: self.baseUrl + '/QueryDatabaseLimited',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     qexpr: input.qexpr,
                     maxRecords: input.maxRecords
@@ -568,7 +569,7 @@ var api = function () {
                 url: self.baseUrl + '/ConstraintQueryEntityCount',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     constraints: input.constraints,
                     qexpr: input.qexpr
@@ -619,7 +620,7 @@ var api = function () {
                 url: self.baseUrl + '/ConstraintsFindMatches',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     cnstSets: input.cnstSets,
                     qexpr: input.qexpr
@@ -669,7 +670,7 @@ var api = function () {
                 url: self.baseUrl + '/ConstraintQuery',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     constraints: input.constraints,
                     qexpr: input.qexpr
@@ -724,7 +725,7 @@ var api = function () {
                 url: self.baseUrl + '/ConstraintQueryLimited',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     set: input.set,
                     constraints: input.constraints,
                     qexpr: input.qexpr,
@@ -780,7 +781,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeUpperRef',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -833,7 +834,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeEmployees',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -879,7 +880,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeAllEmployees',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -932,7 +933,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeEmployeeTerritorys',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -978,7 +979,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeAllEmployeeTerritorys',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -1032,7 +1033,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeTerritories',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -1082,7 +1083,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeAllTerritories',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -1135,7 +1136,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeOrders',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -1181,7 +1182,7 @@ var api = function () {
                 url: self.baseUrl + '/MaterializeAllOrders',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -1231,7 +1232,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityByKey',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     _EmployeeID: input._EmployeeID || input.EmployeeID
                 }
             };
@@ -1307,7 +1308,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityGraphRecursJson',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     _EmployeeID: input._EmployeeID || input.EmployeeID,
                     excludedSets: input.excludedSets,
                     futherDrillSets: input.futherDrillSets
@@ -1365,7 +1366,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityByNature',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     _FirstName: input._FirstName || input.FirstName, 
                     _LastName: input._LastName || input.LastName, 
                     _BirthDate: input._BirthDate || input.BirthDate
@@ -1419,7 +1420,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntitySetRoots',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx
+                    cntx: config.mapCntx(input.cntx || cntx)
                 }
             };
             req(opts, function (error, response, body) {
@@ -1470,7 +1471,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityParent',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     node: input.node
                 }
             };
@@ -1522,7 +1523,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityChildren',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     node: input.node
                 }
             };
@@ -1575,7 +1576,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityFullHierarchyRecurs',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity
                 }
             };
@@ -1632,7 +1633,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityHierarchyRecurs',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     entity: input.entity,
                     uplev: input.uplev,
                     lowlev: input.lowlev
@@ -1686,7 +1687,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityNotes',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     _EmployeeID: input._EmployeeID || input.EmployeeID
                 }
             };
@@ -1735,7 +1736,7 @@ var api = function () {
                 url: self.baseUrl + '/UpdateEntityNotes',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     _EmployeeID: input._EmployeeID || input.EmployeeID,
                     data: input.data
                 }
@@ -1784,7 +1785,7 @@ var api = function () {
                 url: self.baseUrl + '/LoadEntityPhoto',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     _EmployeeID: input._EmployeeID || input.EmployeeID
                 }
             };
@@ -1833,7 +1834,7 @@ var api = function () {
                 url: self.baseUrl + '/UpdateEntityPhoto',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     _EmployeeID: input._EmployeeID || input.EmployeeID,
                     data: input.data
                 }
@@ -1880,7 +1881,7 @@ var api = function () {
                 url: self.baseUrl + '/GetNextSorterOps',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx), 
                     sorters: input.sorters
                 }
             };
@@ -1927,7 +1928,7 @@ var api = function () {
                 url: self.baseUrl + '/GetNextFilterOps',
                 method: 'POST',
                 json: {
-                    cntx: typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx,
+                    cntx: config.mapCntx(input.cntx || cntx),
                     qexpr: input.qexpr,
                     tkstr: input.tkstr
                 }

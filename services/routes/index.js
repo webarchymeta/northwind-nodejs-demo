@@ -11,7 +11,9 @@
 
 var root = process.cwd(),
     path = require('path'),
-    router = require(path.join(root, 'node_modules/express')).Router();
+    exprs = require(path.join(root, 'node_modules/express')),
+    router = exprs.Router();
+var dbsvcs = {};
 
 router.use('/:dbsvc', function (req, res, next) {
     if (typeof router.filter !== 'undefined' && router.filter !== null && typeof router.filter[req.params.dbsvc] !== 'undefined' && router.filter[req.params.dbsvc] !== null && router.filter[req.params.dbsvc].allowed) {
@@ -20,8 +22,13 @@ router.use('/:dbsvc', function (req, res, next) {
             res.end();
             return;
         }
-        var r = require(path.join(root, 'node_modules/express')).Router();
-        var dbrouter = require(path.join(__dirname, '/' + req.params.dbsvc)).router;
+        var r = exprs.Router();
+        var dbsvc = dbsvcs[req.params.dbsvc];
+        if (!dbsvc) {
+            dbsvc = require(path.join(__dirname, '/' + req.params.dbsvc));
+            dbsvcs[req.params.dbsvc] = dbsvc;
+        }
+        var dbrouter = dbsvc.router;
         dbrouter.vpath = router.vpath + '/' + req.params.dbsvc;
         dbrouter.filter = router.filter[req.params.dbsvc];
         r.use('/', dbrouter);

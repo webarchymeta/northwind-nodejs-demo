@@ -16,7 +16,8 @@ var root = process.cwd(),
     events = require(path.join(root, 'node_modules/events')),
     Q = require(path.join(root, 'node_modules/q')),
     _ = require(path.join(root,'node_modules/underscore')),
-    config = require(path.join(root, apppath + 'config'));
+    config = require(path.join(root, apppath + 'config')),
+    appcontext = require(path.join(root, apppath + 'app-context'));
 
 var api = function () {
     var self = this;
@@ -32,10 +33,24 @@ var api = function () {
                 textResourceDir: input.textResourceDir
             };
             self._AttachDataEngine(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -69,14 +84,28 @@ var api = function () {
     self.SignInService = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 credentials: typeof input.credentials === 'undefined' ? null : JSON.stringify(input.credentials)
             };
             self._SignInService(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -102,9 +131,10 @@ var api = function () {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var evt = new events.EventEmitter();
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
-                ownerID: input.ownerId, 
-                subscriberID: input.subscriberId, 
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
+                ownerID: input.ownerId,
+                subscriberID: input.subscriberId,
+                preserve: input.preserve, 
                 sets: typeof input.sets === 'undefined' ? undefined : JSON.stringify(input.sets),
                 changed: function(e) {
                     evt.emit('dataChange', JSON.parse(e));
@@ -150,9 +180,10 @@ var api = function () {
     self.UnsubscribeToUpdates = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
-                ownerID: input.ownerId, 
-                subscriberID: input.subscriberId
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
+                ownerID: input.ownerId,
+                subscriberID: input.subscriberId,
+                preserve: input.preserve
             };
             self._UnsubscribeToUpdates(opts, function (error, result) {
                 if (!error) {
@@ -180,6 +211,23 @@ var api = function () {
         return __promise;
     };
 
+    self.ClearCaches = function (input) {
+        var __promise = new Q.Promise(function (resolve, reject, notify) {
+            var opts = {
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
+                dumpAll: input.dumpAll || false 
+            };
+            self._ClearCaches(opts, function (error, result) {
+                if (!error) {
+                    resolve();
+                } else {
+                    reject(error);
+                }
+            });
+        });
+        return __promise;
+    };
+
     /**
      * <summary>
      *   Retrieve information about the database. 
@@ -198,13 +246,27 @@ var api = function () {
     self.GetDatabaseInfo = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx)
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx))
             };
             self._GetDatabaseInfo(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -234,13 +296,27 @@ var api = function () {
     self.CreateDatabase = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx)
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx))
             };
             self._CreateDatabase(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -271,14 +347,28 @@ var api = function () {
     self.LoadDatabase = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 basePath: typeof input.basePath === 'undefined' ? null : input.basePath
             };
             self._LoadDatabase(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -309,14 +399,28 @@ var api = function () {
     self.SaveDatabase = function (input) {
         var __promise = new Q.Promise(function (resolve, reject, notify) {
             var opts = {
-                cntx: JSON.stringify(typeof input.cntx === 'undefined' || !input.cntx ? cntx : input.cntx),
+                cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 basePath: typeof input.basePath === 'undefined' ? null : input.basePath
             };
             self._SaveDatabase(opts, function (error, result) {
-                if (!error)
-                    resolve(JSON.parse(result));
-                else
+                if (!error) {
+                    var returnObj;
+                    try {
+                        returnObj = JSON.parse(result);
+                    } catch (ex) {
+                        var c = result.charCodeAt(result.length - 1);
+                        if (c === 1) { // in the rare case that the SOH character is not stripped.
+                            result = result.substr(0, result.length - 1);
+                            returnObj = JSON.parse(result);
+                        } else {
+                            reject('failed!!!');
+                            return;
+                        }
+                    }
+                    resolve(returnObj);
+                } else {
                     reject(error);
+                }
             });
         });
         return __promise;
@@ -347,6 +451,12 @@ api.prototype._UnsubscribeToUpdates = edge.func({
     assemblyFile: assemblyPath,
     typeName: 'CryptoGateway.RDB.Data.Northwind.NorthwindNodeJsApi',
     methodName: 'UnsubscribeToUpdates'
+});
+
+api.prototype._ClearCaches = edge.func({
+    assemblyFile: assemblyPath,
+    typeName: 'CryptoGateway.RDB.Data.Northwind.NorthwindNodeJsApi',
+    methodName: 'ClearCaches'
 });
 
 api.prototype._GetDatabaseInfo = edge.func({

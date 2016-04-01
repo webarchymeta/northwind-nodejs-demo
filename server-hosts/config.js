@@ -9,5 +9,9 @@
     maxEventsReconnectCount: 5,
     supportedLocals: ['en'],
     maxClientConnections: 100,
-    others: ''
+    others: '',
+    mapCntx: function (cntx) {
+        //cntx.DirectDataAccess = true;
+        return cntx;
+    }
 }
