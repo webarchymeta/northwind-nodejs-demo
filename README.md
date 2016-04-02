@@ -2,7 +2,7 @@
 A demo data service for our representation of the Northwind relational database in memory (.NET based) hosted by nodejs via edgejs. Node 5.x is required to run the demo.
 
 ## Entry point:
-The entry file of the data service is under the "server-hosts" directory and is named __app.js__. The npm libraries are not included in the repo so they should be downloaded by runing __npm update__ under the entry directory.
+The entry file of the data service is under the "server-hosts" directory and is named __app.js__. The npm libraries are not included in the repo so they should be downloaded by runing __npm update --save__ under the entry directory.
 
 ## User interface:
 The data service has a user interface (read only at present) for a user to query the relational data sets. Go to  _http://localhost:10961_ using a browser after starting up the service and follow the initial link to explore the database.
