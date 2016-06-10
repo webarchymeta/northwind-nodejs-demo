@@ -13,7 +13,7 @@ var root = process.cwd(),
     apppath = typeof global.appPath === 'undefined' || global.appPath === '' ? '' : 'config/' + global.appPath + '/',
     path = require('path'),
     edge = require(path.join(root, 'node_modules/edge')),
-    Q = require(path.join(root, 'node_modules/q')),
+    B = require(path.join(root, 'node_modules/bluebird')),
     propFilters = require(path.join(root, '../services/adapters/proxies/Northwind/api/property-filters')),
     config = require(path.join(root, apppath + 'config')),
     appcontext = require(path.join(root, apppath + 'app-context'));
@@ -39,7 +39,7 @@ var api = function () {
 }
 */
     self.GetSetInfo = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 filter: input.filter
@@ -114,7 +114,7 @@ var api = function () {
 }
 */
     self.AddOrUpdateEntities = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -196,7 +196,7 @@ var api = function () {
 }
 */
     self.EnqueueNewOrUpdateEntities = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -249,7 +249,7 @@ var api = function () {
 }
 */
     self.DeleteEntities = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -302,7 +302,7 @@ var api = function () {
 */
 
     self.NextPageBlock = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -355,7 +355,7 @@ var api = function () {
 }
 */
     self.GetPageItems = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -409,7 +409,7 @@ var api = function () {
 */
 
     self.QueryEntityCount = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -457,7 +457,7 @@ var api = function () {
 }
 */
     self.QueryDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -510,7 +510,7 @@ var api = function () {
 }
 */
     self.QueryDatabaseLimited = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -564,7 +564,7 @@ var api = function () {
 }
 */
     self.ConstraintQueryEntityCount = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -614,7 +614,7 @@ var api = function () {
 }
 */
     self.ConstraintsFindMatches = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -664,7 +664,7 @@ var api = function () {
 }
 */
     self.ConstraintQuery = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -719,7 +719,7 @@ var api = function () {
 }
 */
     self.ConstraintQueryLimited = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 set: JSON.stringify(input.set),
@@ -775,7 +775,7 @@ var api = function () {
 }
 */
     self.MaterializeUpperRef = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -828,7 +828,7 @@ var api = function () {
 }
 */
     self.MaterializeEmployees = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -874,7 +874,7 @@ var api = function () {
 }
 */
     self.MaterializeAllEmployees = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -927,7 +927,7 @@ var api = function () {
 }
 */
     self.MaterializeEmployeeTerritorys = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -973,7 +973,7 @@ var api = function () {
 }
 */
     self.MaterializeAllEmployeeTerritorys = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -1027,7 +1027,7 @@ var api = function () {
 }
 */
     self.MaterializeTerritories = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -1077,7 +1077,7 @@ var api = function () {
 }
 */
     self.MaterializeAllTerritories = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -1130,7 +1130,7 @@ var api = function () {
 }
 */
     self.MaterializeOrders = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -1176,7 +1176,7 @@ var api = function () {
 }
 */
     self.MaterializeAllOrders = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -1226,7 +1226,7 @@ var api = function () {
 }
 */
     self.LoadEntityByKey = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID
@@ -1302,7 +1302,7 @@ var api = function () {
 }
 */
     self.LoadEntityGraphRecursJson = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID,
@@ -1360,7 +1360,7 @@ var api = function () {
 }
 */
     self.LoadEntityByNature = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                     _FirstName: input._FirstName || input.FirstName, 
@@ -1414,7 +1414,7 @@ var api = function () {
 }
 */
     self.LoadEntitySetRoots = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx))
             };
@@ -1465,7 +1465,7 @@ var api = function () {
 }
 */
     self.LoadEntityParent = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 node: JSON.stringify(input.node)
@@ -1517,7 +1517,7 @@ var api = function () {
 }
 */
     self.LoadEntityChildren = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 node: JSON.stringify(input.node)
@@ -1570,7 +1570,7 @@ var api = function () {
 }
 */
     self.LoadEntityFullHierarchyRecurs = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity)
@@ -1627,7 +1627,7 @@ var api = function () {
 }
 */
     self.LoadEntityHierarchyRecurs = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 entity: JSON.stringify(input.entity),
@@ -1681,7 +1681,7 @@ var api = function () {
 }
 */
     self.LoadEntityNotes = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID
@@ -1716,7 +1716,7 @@ var api = function () {
 }
 */
     self.UpdateEntityNotes = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID,
@@ -1765,7 +1765,7 @@ var api = function () {
 }
 */
     self.LoadEntityPhoto = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID
@@ -1800,7 +1800,7 @@ var api = function () {
 }
 */
     self.UpdateEntityPhoto = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 _EmployeeID: input._EmployeeID || input.EmployeeID,
@@ -1847,7 +1847,7 @@ var api = function () {
 }
 */
     self.GetNextSorterOps = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 sorters: JSON.stringify(input.sorters)
@@ -1894,7 +1894,7 @@ var api = function () {
 }
 */
     self.GetNextFilterOps = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 qexpr: JSON.stringify(input.qexpr),

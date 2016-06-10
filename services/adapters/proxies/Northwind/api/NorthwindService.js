@@ -12,7 +12,7 @@
 var root = process.cwd(), path = require('path'),
     apppath = typeof global.appPath === 'undefined' || global.appPath === '' ? '' : 'config/' + global.appPath + '/',
     req = require(path.join(root, 'node_modules/request')),
-    Q = require(path.join(root, 'node_modules/q')),
+    B = require(path.join(root, 'node_modules/bluebird')),
     config = require(path.join(root, apppath + 'config')),
     appcontext = require(path.join(root, apppath + 'app-context')),
     updateEvents = appcontext.updateEventSource || new (require('../event-stream'))(config.NorthwindServiceBaseUrl + config.updateEventsEndpointUrl);
@@ -53,7 +53,7 @@ var api = function (serviceBaseUrl) {
 }
 */
     self.SignInService = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/SignInService',
                 method: 'POST',
@@ -153,7 +153,7 @@ var api = function (serviceBaseUrl) {
 }
 */
     self.InitializeCallContext = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/InitializeCallContext',
                 method: 'POST',
@@ -196,7 +196,7 @@ var api = function (serviceBaseUrl) {
 }
 */
     self.GetDatabaseInfo = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/GetDatabaseInfo',
                 method: 'POST',
@@ -244,7 +244,7 @@ var api = function (serviceBaseUrl) {
 }
 */
     self.CreateDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/CreateDatabase',
                 method: 'POST',
@@ -293,7 +293,7 @@ var api = function (serviceBaseUrl) {
 }
 */
     self.LoadDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/LoadDatabase',
                 method: 'POST',
@@ -342,7 +342,7 @@ var api = function (serviceBaseUrl) {
 }
 */
     self.SaveDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/SaveDatabase',
                 method: 'POST',

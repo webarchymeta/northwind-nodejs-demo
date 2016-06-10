@@ -13,8 +13,8 @@ var root = process.cwd(),
     apppath = typeof global.appPath === 'undefined' || global.appPath === '' ? '' : 'config/' + global.appPath + '/',
     path = require('path'), http = require('http'), url = require('url'),
     events = require(path.join(root, 'node_modules/events')),
-    Q = require(path.join(root, 'node_modules/q')),
-    _ = require(path.join(root,'node_modules/underscore')),
+    B = require(path.join(root, 'node_modules/bluebird')),
+    _ = require(path.join(root,'node_modules/lodash')),
     winston = require(path.join(root, 'node_modules/winston')),
     config = require(path.join(root, apppath + 'config'));
 
@@ -26,7 +26,7 @@ var eventStream = function (sourceUrl) {
     var fail_count = 0;
 
     self.subscribe = function (input) {
-        var _promise = new Q.Promise(function (resolve, reject, notify) {
+        var _promise = new B(function (resolve, reject) {
             if (subscribe_params === null)
                 subscribe_params = input;
             var opts = {
@@ -147,7 +147,7 @@ var eventStream = function (sourceUrl) {
     }
 
     self.unsubscribe = function (input) {
-        var _promise = new Q.Promise(function (resolve, reject, notify) {
+        var _promise = new B(function (resolve, reject) {
             var opts = {
                 hostname: streamBaseUrl.hostname,
                 host: streamBaseUrl.host,

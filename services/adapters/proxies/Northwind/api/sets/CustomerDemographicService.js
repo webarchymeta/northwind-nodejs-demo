@@ -13,7 +13,7 @@ var root = process.cwd(),
     apppath = typeof global.appPath === 'undefined' || global.appPath === '' ? '' : 'config/' + global.appPath + '/',
     path = require('path'),
     req = require(path.join(root, 'node_modules/request')),
-    Q = require(path.join(root, 'node_modules/q')),
+    B = require(path.join(root, 'node_modules/bluebird')),
     propFilters = require('../property-filters'),
     config = require(path.join(root, apppath + 'config')),
     appcontext = require(path.join(root, apppath + 'app-context'));
@@ -40,7 +40,7 @@ var api = function () {
 }
 */
     self.GetSetInfo = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/GetSetInfo',
                 method: 'POST',
@@ -111,7 +111,7 @@ var api = function () {
 }
 */
     self.AddOrUpdateEntities = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/AddOrUpdateEntities',
                 method: 'POST',
@@ -193,7 +193,7 @@ var api = function () {
 }
 */
     self.EnqueueNewOrUpdateEntities = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/EnqueueNewOrUpdateEntities',
                 method: 'POST',
@@ -246,7 +246,7 @@ var api = function () {
 }
 */
     self.DeleteEntities = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/DeleteEntities',
                 method: 'POST',
@@ -298,7 +298,7 @@ var api = function () {
 }
 */
     self.NextPageBlock = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/NextPageBlock',
                 method: 'POST',
@@ -351,7 +351,7 @@ var api = function () {
 }
 */
     self.GetPageItems = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/GetPageItems',
                 method: 'POST',
@@ -404,7 +404,7 @@ var api = function () {
 }
 */
     self.QueryEntityCount = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/QueryEntityCount',
                 method: 'POST',
@@ -453,7 +453,7 @@ var api = function () {
 }
 */
     self.QueryDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/QueryDatabase',
                 method: 'POST',
@@ -506,7 +506,7 @@ var api = function () {
 }
 */
     self.QueryDatabaseLimited = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/QueryDatabaseLimited',
                 method: 'POST',
@@ -561,7 +561,7 @@ var api = function () {
 }
 */
     self.MaterializeCustomerCustomerDemos = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/MaterializeCustomerCustomerDemos',
                 method: 'POST',
@@ -607,7 +607,7 @@ var api = function () {
 }
 */
     self.MaterializeAllCustomerCustomerDemos = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/MaterializeAllCustomerCustomerDemos',
                 method: 'POST',
@@ -657,7 +657,7 @@ var api = function () {
 }
 */
     self.LoadEntityByKey = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/LoadEntityByKey',
                 method: 'POST',
@@ -733,7 +733,7 @@ var api = function () {
 }
 */
     self.LoadEntityGraphRecursJson = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/LoadEntityGraphRecursJson',
                 method: 'POST',
@@ -786,7 +786,7 @@ var api = function () {
 }
 */
     self.LoadEntityByNature = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/LoadEntityByNature',
                 method: 'POST',
@@ -838,7 +838,7 @@ var api = function () {
 }
 */
     self.LoadEntityCustomerDesc = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/LoadEntityCustomerDesc',
                 method: 'POST',
@@ -887,7 +887,7 @@ var api = function () {
 }
 */
     self.UpdateEntityCustomerDesc = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/UpdateEntityCustomerDesc',
                 method: 'POST',
@@ -934,7 +934,7 @@ var api = function () {
 }
 */
     self.GetNextSorterOps = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/GetNextSorterOps',
                 method: 'POST',
@@ -981,7 +981,7 @@ var api = function () {
 }
 */
     self.GetNextFilterOps = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 url: self.baseUrl + '/GetNextFilterOps',
                 method: 'POST',

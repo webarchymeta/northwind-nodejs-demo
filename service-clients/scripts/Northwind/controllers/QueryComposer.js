@@ -92,6 +92,12 @@ define(['knockout', 'queryModels', 'queryTerms'], function (ko, q, tkfilter) {
                             self.options.push(new _option({ label: arr[i].DisplayAs, value: arr[i].DisplayAs }, self));
                         }
                         self.showOpts(arr.length > 0);
+                    } else if (arr.length === 1) {
+                        self.showOpts(false);
+                        var tk = arr[0];
+                        event.target.value = '';
+                        prev_term = '';
+                        nextToken(tk);
                     }
                     return false;
                 } else if (event.which == 40) {
@@ -260,6 +266,12 @@ define(['knockout', 'queryModels', 'queryTerms'], function (ko, q, tkfilter) {
                             self.options.push(new _option({ label: arr[i].DisplayAs, value: arr[i].DisplayAs }, self));
                         }
                         self.showOpts(arr.length > 0);
+                    } else if (arr.length === 1) {
+                        self.showOpts(false);
+                        var tk = arr[0];
+                        event.target.value = '';
+                        prev_term = '';
+                        nextToken(tk);
                     }
                     return arr.length == 0;
                 } else if (event.which == 40) {

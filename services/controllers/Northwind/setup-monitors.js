@@ -29,9 +29,10 @@ var subscribe = function (svc) {
         db.SubscribeToUpdates({
             cntx: global[svc + 'ClientContext'],
             ownerId: 'system-admin',
-            subscriberId: 'system-admin',
+            subscriberId: 'system-admin-db-scope-monitoring',
             sets: null
-        }).then(function () {
+        }).then(function (evt) {
+            evt.removeAllListeners('dataChange');
             winston.log('info', 'subscribed to %s data change event ...', svc);
             var io = global.io.of('/' + svc + '-change-monitor');
             io.on('connection', function (s) {
@@ -43,13 +44,12 @@ var subscribe = function (svc) {
                     winston.log('info', 'socket.io client [' + svc + '-change-monitor] %s disconnected ...', s.id);
                 });
             });
-            db.removeAllListeners('dataChange');
-            db.on('dataChange', function (entity) {
+            evt.on('dataChange', function (entity) {
                 io.emit('entity-changed', entity);
             });
-        }, function (err) {
+        }).catch(function (err) {
             winston.log('error', 'subscription to %s data change failed ...', svc, err);
-        });
+        }).done();
     } catch (ex) {
         winston.log('error', '%s change subscription failed.', svc, ex);
     }

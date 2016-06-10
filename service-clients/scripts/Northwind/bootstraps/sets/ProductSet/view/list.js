@@ -2,7 +2,7 @@ requirejs.config({
     baseUrl: '/',
     paths: {
         requirejs: 'extern-lib/requirejs/require',
-        knockoutjs: 'extern-lib/knockoutjs/dist/knockout',
+        knockoutjs: 'extern-lib/knockout/dist/knockout',
         knockout: 'extern/scripts/bundles/knockout-ext',
         socketio: 'extern-lib/socket.io-client/socket.io',
         vis: 'extern-lib/vis/dist/vis.min',

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "0": "0.0.0",
+    "bluebird": "^3.4.0",
     "cookie-parser": "^1.4.1",
     "date-utils": "^1.2.19",
     "edge": "^5.0.0",
@@ -19,13 +20,12 @@
     "http": "latest",
     "i18n": "^0.8.1",
     "less": "^2.6.1",
+    "lodash": "^4.13.1",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",
     "promise": "^6.1.0",
-    "q": "^1.4.1",
     "request": "^2.69.0",
     "socket.io": "^1.4.5",
-    "underscore": "^1.8.3",
     "urlrouter": "latest",
     "winston": "^2.2.0"
   },

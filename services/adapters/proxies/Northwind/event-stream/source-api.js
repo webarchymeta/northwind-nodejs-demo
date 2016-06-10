@@ -13,8 +13,8 @@ var root = process.cwd(),
     path = require('path'),
     httpreq = require(path.join(root, 'node_modules/request')),
     events = require(path.join(root, 'node_modules/events')),
-    _ = require(path.join(root, 'node_modules/underscore')),
-    Q = require(path.join(root, 'node_modules/q')),
+    _ = require(path.join(root, 'node_modules/lodash')),
+    B = require(path.join(root, 'node_modules/bluebird')),
     config = require(path.join(root, 'config/' + global.appPath + '/config'));
 
 var evt_src = function (_cntx) {
@@ -29,7 +29,7 @@ var evt_src = function (_cntx) {
     };
 
     self.subscribe = function (arg) {
-        return new Q.Promise(function (resolve, reject, notify) {
+        return new B(function (resolve, reject) {
             var backendUrl = config[global.database + 'ServiceBaseUrl'];
             var opts = {
                 url: backendUrl + '/data-change-subscription/add',
@@ -83,7 +83,7 @@ var evt_src = function (_cntx) {
     };
 
     self.unsubscribe = function (arg) {
-        return new Q.Promise(function (resolve, reject, notify) {
+        return new B(function (resolve, reject) {
             var backendUrl = config[global.database + 'ServiceBaseUrl'];
             var opts = {
                 url: backendUrl + '/data-change-subscription/remove',
@@ -132,7 +132,7 @@ var evt_src = function (_cntx) {
     };
 
     self.emitDataChange = function (e) {
-        return new Q.Promise(function (resolve, reject, notify) {
+        return new B(function (resolve, reject) {
             var etable = global['backend-data-event-table'];
             if (etable) {
                 var sub = _.find(etable, function (sub) { return sub.id === e.subscriberId && sub.oid === e.ownerId; });

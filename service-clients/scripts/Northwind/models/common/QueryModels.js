@@ -18,6 +18,7 @@ define(['knockout'], function (ko) {
             self.DisplayAs = val;
             self.IsExternal = false;
             self.IsEntityAccess = false;
+            self.LeftSkip = true;
             self.TkClass = "filternode";
             self.CopyToken = function (token) {
                 self.TkType = token.TkType;
@@ -25,7 +26,8 @@ define(['knockout'], function (ko) {
                 self.DisplayAs = token.DisplayAs;
                 self.IsExternal = token.IsExternal;
                 self.IsEntityAccess = token.IsEntityAccess;
-                self.TkClass = "filternode " + token.TkType;
+                self.LeftSkip = token.LeftSkip;
+                self.TkClass = "filternode " + token.TkType + (token.LeftSkip ? '' : ' no-skip');
             }
         },
         TokenOptions: function () {

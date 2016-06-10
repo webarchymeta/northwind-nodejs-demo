@@ -14,8 +14,8 @@ var root = process.cwd(),
     path = require('path'),
     edge = require(path.join(root, 'node_modules/edge')),
     events = require(path.join(root, 'node_modules/events')),
-    Q = require(path.join(root, 'node_modules/q')),
-    _ = require(path.join(root,'node_modules/underscore')),
+    B = require(path.join(root, 'node_modules/bluebird')),
+    _ = require(path.join(root,'node_modules/lodash')),
     config = require(path.join(root, apppath + 'config')),
     appcontext = require(path.join(root, apppath + 'app-context'));
 
@@ -27,7 +27,7 @@ var api = function () {
       * Attach to the underlying relational database engine.
       */
     self.AttachDataEngine = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 connectString: typeof input === 'undefined' || typeof input.connectString === 'undefined' ? null : input.connectString,
                 textResourceDir: input.textResourceDir
@@ -82,7 +82,7 @@ var api = function () {
 }
 */
     self.SignInService = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 credentials: typeof input.credentials === 'undefined' ? null : JSON.stringify(input.credentials)
@@ -128,7 +128,7 @@ var api = function () {
 }
 */
     self.SubscribeToUpdates = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var evt = new events.EventEmitter();
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
@@ -178,7 +178,7 @@ var api = function () {
 }
 */
     self.UnsubscribeToUpdates = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 ownerID: input.ownerId,
@@ -212,7 +212,7 @@ var api = function () {
     };
 
     self.ClearCaches = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 dumpAll: input.dumpAll || false 
@@ -244,7 +244,7 @@ var api = function () {
 }
 */
     self.GetDatabaseInfo = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx))
             };
@@ -294,7 +294,7 @@ var api = function () {
 }
 */
     self.CreateDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx))
             };
@@ -345,7 +345,7 @@ var api = function () {
 }
 */
     self.LoadDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 basePath: typeof input.basePath === 'undefined' ? null : input.basePath
@@ -397,7 +397,7 @@ var api = function () {
 }
 */
     self.SaveDatabase = function (input) {
-        var __promise = new Q.Promise(function (resolve, reject, notify) {
+        var __promise = new B(function (resolve, reject) {
             var opts = {
                 cntx: JSON.stringify(config.mapCntx(input.cntx || cntx)),
                 basePath: typeof input.basePath === 'undefined' ? null : input.basePath

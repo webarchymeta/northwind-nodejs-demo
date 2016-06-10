@@ -12,7 +12,7 @@
 var root = process.cwd(), path = require('path'),
     apppath = typeof global.appPath === 'undefined' || global.appPath === '' ? '' : 'config/' + global.appPath + '/',
     router = require(path.join(root, 'node_modules/express')).Router(),
-    _ = require(path.join(root, 'node_modules/underscore')),
+    _ = require(path.join(root, 'node_modules/lodash')),
     config = require(path.join(root, apppath + 'config')),
     handler, api;
 try {
