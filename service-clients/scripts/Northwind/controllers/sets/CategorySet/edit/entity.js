@@ -47,13 +47,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.LoadDescription = function (data, event) {
             data.LoadEntityDescription().done(function () {
                 $(event.target).siblings().button();
             });
-        }
+        };
 
         self.fileUploadDescription = function (data, event) {
             if (data.data !== null) {
@@ -66,13 +66,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
 
             }
-        }
+        };
 
         self.LoadPicture = function (data, event) {
             data.LoadEntityPicture().done(function () {
                 $(event.target).siblings().button();
             });
-        }
+        };
 
         self.fileUploadPicture = function (data, event) {
             if (data.data !== null) {
@@ -85,7 +85,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
 
             }
-        }
+        };
 
         self.display_Products = function (data, event) {
             if (!data.IsProductsMaterialized()) {
@@ -95,14 +95,14 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('Product', data.Products());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
     }
     return c;

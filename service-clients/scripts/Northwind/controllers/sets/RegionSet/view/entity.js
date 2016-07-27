@@ -29,8 +29,9 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
 
         self.initialize = function (RegionID) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/Region'] = model;
-            if (self.set == null)
+            if (!self.set) {
                 self.set = new model.entitySet();
+            }
             return self.set.LoadEntityByKey(RegionID, true);
         };
     }

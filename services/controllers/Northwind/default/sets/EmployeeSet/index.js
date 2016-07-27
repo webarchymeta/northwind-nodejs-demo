@@ -99,7 +99,13 @@ router.post('/:method', function (req, res, next) {
                     if (isProxy) {
                         res.statusCode = err.httpCode === -1 ? 500 : err.httpCode;
                         res.set('Content-Type', 'text/plain');
-                        res.send(err.err);
+                        if (err.err && err.msg) {
+                            res.send(err.err + "\r\n" + err.msg);
+                        } else if (err.err) {
+                            res.send(err.err);
+                        } else {
+                            res.send(err.msg);
+                        }
                         res.end();
                     } else {
                         res.statusCode = 500; 
@@ -119,7 +125,13 @@ router.post('/:method', function (req, res, next) {
                     if (isProxy) {
                         res.statusCode = err.httpCode === -1 ? 500 : err.httpCode;
                         res.set('Content-Type', 'text/plain');
-                        res.send(err.err);
+                        if (err.err && err.msg) {
+                            res.send(err.err + "\r\n" + err.msg);
+                        } else if (err.err) {
+                            res.send(err.err);
+                        } else {
+                            res.send(err.msg);
+                        }
                         res.end();
                     } else {
                         res.statusCode = 500; 

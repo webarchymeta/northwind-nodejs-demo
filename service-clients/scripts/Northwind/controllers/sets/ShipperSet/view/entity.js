@@ -29,8 +29,9 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
 
         self.initialize = function (ShipperID) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/Shipper'] = model;
-            if (self.set == null)
+            if (!self.set) {
                 self.set = new model.entitySet();
+            }
             return self.set.LoadEntityByKey(ShipperID, true);
         };
     }

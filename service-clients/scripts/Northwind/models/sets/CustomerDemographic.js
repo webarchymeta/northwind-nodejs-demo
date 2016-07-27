@@ -55,7 +55,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 return false;
             }
             return self.CustomerTypeID == data.CustomerTypeID;
-        }
+        };
 
         self.CustomerDescQuery = 'load-delayed-CustomerDesc?CustomerTypeID=' + self.data.CustomerTypeID + '&contentType=text/plain';
 
@@ -150,10 +150,10 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 CustomerTypeID: self.data.CustomerTypeID,
                 CustomerDesc: self.data.CustomerDesc
             };
-        }
+        };
 
         self.IsEntitySelected = ko.observable(false);
-    }
+    };
 
     var CustomerDemographic = function (data) {
         var self = this;
@@ -257,7 +257,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 return false;
             }
             return self.CustomerTypeID() == data.CustomerTypeID();
-        }
+        };
 
         self.GetUpdatedData = function () {
             if (self.data == null) {
@@ -365,7 +365,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
 
         self.IsEntitySelected = ko.observable(false);
         self.Initializing = false;
-    }
+    };
 
     var CustomerDemographicPage = function (s, edit) {
         var self = this;
@@ -382,7 +382,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
         self.IsDataLoaded = ko.observable(false);
         self.IsPageSelected = ko.observable(false);
         self.Items =  ko.observableArray([]);
-        self.GetPageItems = function (s) {
+        self.GetPageItems = function (s, pageLoader) {
             if (self.IsDataLoaded()) 
                 return $.Deferred().resolve();
             var qexpr = s.getQueryExpr();
@@ -403,29 +403,33 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 }
             }
             self.Items.removeAll();
-            return $.ajax({
-                url: config.baseUrl + "/services/Northwind/CustomerDemographicSet/GetPageItems",
-                type: "POST",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ set: s.set, qexpr: qexpr, prevlast: lastItem })
-            }).pipe(
-                function (items) {
-                    for (var i = 0; i < items.length; i++) {
-                        if (editPage)
-                            self.Items.push(new CustomerDemographic(items[i]));
-                        else
-                            self.Items.push(new CustomerDemographicView(items[i]));
+            if (typeof pageLoader !== 'function') {
+                return $.ajax({
+                    url: config.baseUrl + "/services/Northwind/CustomerDemographicSet/GetPageItems",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ set: s.set, qexpr: qexpr, prevlast: lastItem })
+                }).pipe(
+                    function (items) {
+                        for (var i = 0; i < items.length; i++) {
+                            if (editPage)
+                                self.Items.push(new CustomerDemographic(items[i]));
+                            else
+                                self.Items.push(new CustomerDemographicView(items[i]));
+                        }
+                        self.IsDataLoaded(true);
+                        return $.Deferred().resolve();
+                    },
+                    function (jqxhr, textStatus, error) {
+                        return $.Deferred().reject(jqxhr, textStatus, error);
                     }
-                    self.IsDataLoaded(true);
-                    return $.Deferred().resolve();
-                },
-                function (jqxhr, textStatus, error) {
-                    return $.Deferred().reject(jqxhr, textStatus, error);
-                }
-            );
-        }
-    }
+                );
+            } else {
+                return pageLoader(self, { set: s.set, qexpr: qexpr, prevlast: lastItem });
+            }
+        };
+    };
 
     var CustomerDemographicPageBlock = function (s, idx0, data, edit) {
         var self = this;
@@ -619,13 +623,15 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
 
         self.FilterClosed = ko.observable(false);
 
+        self.preSetQExpr = undefined;
+
         self.RefreshSetState = function(qc) {
             self.IsQueryStateChanged(true);
             self.ResetPageState();
             self.PagesWindow.removeAll();
             if (typeof self.CurrentPage().Items !== 'undefined')
                 self.CurrentPage().Items.removeAll();
-        }
+        };
 
         self.GetSetInfo = function (tkfilter, _filter) {
             self.BaseUrl = config.baseUrl;
@@ -659,6 +665,8 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
         };
 
         self.getQueryExpr = function () {
+            if (self.preSetQExpr)
+                return self.preSetQExpr;
             var sorters = [];
             var filters = [];
             for (var i = 0; i < self.SorterPath().length; i++)
@@ -666,7 +674,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
             for (var i = 0; i < self.FilterPath().length; i++)
                 filters.push(self.FilterPath()[i]);
             return new q.QueryExpression(sorters, filters);
-        }
+        };
 
         self.GetNextSorterOps = function (tkfilter) {
             var qtokens = [];
@@ -703,7 +711,13 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
         };
 
         self.GetNextFilterOps = function (tkfilter) {
-            var qexpr = self.getQueryExpr();
+            var sorters = [];
+            var filters = [];
+            for (var i = 0; i < self.SorterPath().length; i++)
+                sorters.push(self.SorterPath()[i]);
+            for (var i = 0; i < self.FilterPath().length; i++)
+                filters.push(self.FilterPath()[i]);
+            var qexpr = new q.QueryExpression(sorters, filters);
             return $.ajax({
                 url: config.baseUrl + "/services/Northwind/CustomerDemographicSet/GetNextFilterOps",
                 type: "POST",
@@ -850,7 +864,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                     return $.Deferred().reject(jqxhr, textStatus, error);
                 }
             );
-        }
+        };
 
     }
 

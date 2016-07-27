@@ -11,24 +11,26 @@
 
 define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfilter, model) {
 
-    var c = function (dt) {
+    var c = function (set, pageLoader) {
 
         var self = this;
-        self.set = dt;
         var loadingPage = false;
+        var pageItemsLoader = pageLoader;
 
+        self.set = set;
         self.isProcessing = ko.observable(false);
 
         var setWait = function (wait) {
             self.isProcessing(wait);
-        }
+        };
 
-        self.showlist = function () {
-            var qexpr = self.set.getQueryExpr();
+        self.showlist = function (_qexpr) {
+            set.preSetQExpr = _qexpr;
+            var qexpr = set.getQueryExpr();
             if (self.set.IsQueryStateChanged()) {
                 self.set.ResetPageState();
             }
-            self.set.NextPageBlock(qexpr, null, false).done(function () {
+            return self.set.NextPageBlock(qexpr, null, false).done(function () {
                 if (self.set.CurrentPage() !== null && !(typeof self.set.CurrentPage().Items === 'undefined')) {
                     self.set.CurrentPage().Items.removeAll();
                 }
@@ -36,7 +38,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     loadpage(0);
                 }
             });
-        }
+        };
 
         self.prevPageBlock = function () {
             if (loadingPage) {
@@ -84,7 +86,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     if (p == null) {
                         return;
                     }
-                    var qexpr = self.set.getQueryExpr();
+                    var qexpr = set.getQueryExpr();
                     var matched = self.set.EntityCount();
                     self.set.NextPageBlock(qexpr, p.LastItem(), false).done(function () {
                         self.set.EntityCount(matched);
@@ -128,7 +130,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     isMergingPage = false; 
                 }
             }
-        }
+        };
 
         var _doMerge = function(blk, p0, p1) {
             for (var i = 0; i < p1.Items().length; i++) {
@@ -142,12 +144,12 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             for (var i = 0; i < blk.Pages().length; i++) {
                 blk.Pages()[i].Index_(i);
             }
-        }
+        };
 
         self.setCurrentPageBlock = function (blk) {
             self.set.CurrBlockIndex(blk.BlockIndex());
             self.set.CurrentPage(blk.Pages()[0]);
-        }
+        };
 
         var loadpage = function (index) {
             if (loadingPage) {
@@ -168,7 +170,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             setWait(true)
             if (p !== null) {
                 if (!p.IsDataLoaded()) {
-                    p.GetPageItems(self.set).done(function () {
+                    p.GetPageItems(self.set, pageItemsLoader).done(function () {
                         updateCurrPage(p, p0);
                         /*
                         for (var i = 0; i < p.Items().length; i++ ) {
@@ -227,7 +229,10 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
 
         self.initialize = function (filter) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/Supplier'] = model;
-            self.set = new model.entitySet();
+            if (!self.set) {
+                self.set = new model.entitySet();
+                set = self.set;
+            }
             return self.set.GetSetInfo(tkfilter, filter);
         };
     }

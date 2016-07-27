@@ -47,8 +47,8 @@ requirejs(['knockout', 'pageManager', 'listactions', 'config', 'model'], functio
         var filter = typeof subsetfilter === 'undefined' ? null : subsetfilter;
         pMgr.opContextType = opType;
         pMgr.categPath = 'TerritorySet';
-        var op = new opType();
         currentClientConfig = config;
+        var op = new opType();
         op.initialize(filter).done(function (m) {
             pMgr.loadPage('TerritorySet/' + config.listViewEntryPart, m, op).done(function (page) {
                 pMgr.opContext = 'service-clients/scripts/Northwind/controllers/sets/TerritorySet/view/list';

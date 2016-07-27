@@ -455,7 +455,8 @@ define(['knockout', 'queryModels', 'queryTerms'], function (ko, q, tkfilter) {
         };
     }
 
-    var _query = function (params) {
+    var _query = function (params, tkCustomizer) {
+        tkfilter = tkCustomizer || tkfilter;
         this.set = params.s();
         this.set.QueryComposer = this;
         this.enableQuery = ko.observable(false);

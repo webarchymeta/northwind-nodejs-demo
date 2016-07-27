@@ -47,7 +47,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeCategoryRef = function (data, event) {
             data.MaterializeCategoryRef().done(function () {
@@ -80,7 +80,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_CategoryRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Product View');
@@ -94,7 +94,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $("#displayFrame")[0].src = '../Category/LoadEntityView?CategoryID=' + data.CategoryID();
                 }
             }
-        }
+        };
 
         self.select_CategoryID = function (data, event) {
             var selBtns = {};
@@ -121,13 +121,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var CategoryID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.CategoryID(childSelectedEntity.CategoryID());
             }
-        }
+        };
 
         self.MaterializeSupplierRef = function (data, event) {
             data.MaterializeSupplierRef().done(function () {
@@ -160,7 +160,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_SupplierRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Product View');
@@ -174,7 +174,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $("#displayFrame")[0].src = '../Supplier/LoadEntityView?SupplierID=' + data.SupplierID();
                 }
             }
-        }
+        };
 
         self.select_SupplierID = function (data, event) {
             var selBtns = {};
@@ -201,13 +201,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var SupplierID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.SupplierID(childSelectedEntity.SupplierID());
             }
-        }
+        };
 
         self.display_Order_Details = function (data, event) {
             if (!data.IsOrder_DetailsMaterialized()) {
@@ -217,14 +217,14 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('Order_Detail', data.Order_Details());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
     }
     return c;

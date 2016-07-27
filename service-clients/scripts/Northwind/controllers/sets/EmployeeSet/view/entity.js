@@ -126,8 +126,9 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
 
         self.initialize = function (EmployeeID) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/Employee'] = model;
-            if (self.set == null)
+            if (!self.set) {
                 self.set = new model.entitySet();
+            }
             return self.set.LoadEntityByKey(EmployeeID, true);
         };
     }

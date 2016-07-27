@@ -47,7 +47,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeOrderRef = function (data, event) {
             data.MaterializeOrderRef().done(function () {
@@ -80,7 +80,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_OrderRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Order_Detail View');
@@ -92,7 +92,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../Order/LoadEntityView?OrderID=' + data.OrderID();
             }
-        }
+        };
 
         self.select_OrderID = function (data, event) {
             var selBtns = {};
@@ -115,13 +115,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var OrderID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.OrderID(childSelectedEntity.OrderID());
             }
-        }
+        };
 
         self.MaterializeProductRef = function (data, event) {
             data.MaterializeProductRef().done(function () {
@@ -154,7 +154,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_ProductRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Order_Detail View');
@@ -166,7 +166,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../Product/LoadEntityView?ProductID=' + data.ProductID();
             }
-        }
+        };
 
         self.select_ProductID = function (data, event) {
             var selBtns = {};
@@ -189,13 +189,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var ProductID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.ProductID(childSelectedEntity.ProductID());
             }
-        }
+        };
 
     }
     return c;

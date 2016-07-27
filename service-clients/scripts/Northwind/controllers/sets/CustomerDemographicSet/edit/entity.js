@@ -47,13 +47,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.LoadCustomerDesc = function (data, event) {
             data.LoadEntityCustomerDesc().done(function () {
                 $(event.target).siblings().button();
             });
-        }
+        };
 
         self.fileUploadCustomerDesc = function (data, event) {
             if (data.data !== null) {
@@ -66,7 +66,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
 
             }
-        }
+        };
 
         self.display_CustomerCustomerDemos = function (data, event) {
             if (!data.IsCustomerCustomerDemosMaterialized()) {
@@ -76,14 +76,14 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('CustomerCustomerDemo', data.CustomerCustomerDemos());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
     }
     return c;

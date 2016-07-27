@@ -11,24 +11,27 @@
 
 define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfilter, model) {
 
-    var c = function () {
+    var c = function (set, pageLoader) {
 
         var self = this;
-        var set;
         var loadingPage = false;
+        var pageItemsLoader = pageLoader;
 
+        self.set = set;
         self.isProcessing = ko.observable(false);
+        
 
         var setWait = function (wait) {
             self.isProcessing(wait);
-        }
+        };
 
-        self.showlist = function () {
+        self.showlist = function (_qexpr) {
+            set.preSetQExpr = _qexpr;
             var qexpr = set.getQueryExpr();
             if (set.IsQueryStateChanged()) {
                 set.ResetPageState();
             }
-            set.NextPageBlock(qexpr, null, true).done(function () {
+            return set.NextPageBlock(qexpr, null, true).done(function () {
                 if (set.CurrentPage() !== null && !(typeof set.CurrentPage().Items === 'undefined')) {
                     set.CurrentPage().Items.removeAll();
                 }
@@ -36,7 +39,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     loadpage(0);
                 }
             });
-        }
+        };
 
         self.prevPageBlock = function () {
             if (loadingPage) {
@@ -56,7 +59,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                 }
                 loadpage(ipage == -1 ? 0 : ipage);
             }
-        }
+        };
 
         self.nextPageBlock = function () {
             if (loadingPage) {
@@ -136,7 +139,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                 loadingPage = false;
                 setWait(false)
             }
-        }
+        };
 
         var updateCurrPage = function (p, p0) {
             set.CurrentPage(p);
@@ -147,7 +150,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             if (set.CurrentPage().CurrentItem() !== null) {
                 updateEntityDetails();
             }
-        }
+        };
 
         self.showEntity = function (data, event) {
             currentDisplayEntity = data.data;
@@ -157,7 +160,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             $("#displayFrame")[0].src = "EntityView";
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.selectEntity = function (data, event) {
             for (var i = 0; i < set.CurrentPage().Items().length; i++) {
@@ -174,7 +177,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
 
         childSelectedEntity = null;
@@ -209,7 +212,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeCategoryRef = function (data, event) {
             data.MaterializeCategoryRef().done(function () {
@@ -242,7 +245,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_CategoryRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Product View');
@@ -256,7 +259,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     $("#displayFrame")[0].src = '../Category/LoadEntityView?CategoryID=' + data.CategoryID();
                 }
             }
-        }
+        };
 
         self.select_CategoryID = function (data, event) {
             var selBtns = {};
@@ -283,13 +286,13 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var CategoryID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.CategoryID(childSelectedEntity.CategoryID());
             }
-        }
+        };
 
         self.MaterializeSupplierRef = function (data, event) {
             data.MaterializeSupplierRef().done(function () {
@@ -322,7 +325,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_SupplierRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Product View');
@@ -336,7 +339,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     $("#displayFrame")[0].src = '../Supplier/LoadEntityView?SupplierID=' + data.SupplierID();
                 }
             }
-        }
+        };
 
         self.select_SupplierID = function (data, event) {
             var selBtns = {};
@@ -363,13 +366,13 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var SupplierID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.SupplierID(childSelectedEntity.SupplierID());
             }
-        }
+        };
 
         self.display_Order_Details = function (data, event) {
             if (!data.IsOrder_DetailsMaterialized()) {
@@ -379,14 +382,14 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             } else {
                 display_subset('Order_Detail', data.Order_Details());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
         currentNewEntity = null;
 
@@ -460,7 +463,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }).fail(function (jqxhr, textStatus, error) {
                 _setWait(false);
             });
-        }
+        };
 
         self.deleteEntity = function (data, event) {
             var deleted = [];
@@ -480,7 +483,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.submitChanges = function () {
             var changed = [];
@@ -532,7 +535,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }).fail(function (jqxhr, textStatus, error) {
                 _setWait(false);
             });
-        }
+        };
 
         self.resetChanges = function () {
             for (var i = 0; i < set.PageBlocks().length; i++) {
@@ -550,11 +553,14 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     }
                 }
             }
-        }
+        };
 
         self.initialize = function (filter) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/Product'] = model;
-            set = new model.entitySet();
+            if (!self.set) {
+                self.set = new model.entitySet();
+                set = self.set;
+            }
             return set.GetSetInfo(tkfilter, filter);
         };
     }

@@ -47,7 +47,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeEmployeeRef = function (data, event) {
             data.MaterializeEmployeeRef().done(function () {
@@ -80,7 +80,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_EmployeeRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'EmployeeTerritory View');
@@ -92,7 +92,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../Employee/LoadEntityView?EmployeeID=' + data.EmployeeID();
             }
-        }
+        };
 
         self.select_EmployeeID = function (data, event) {
             var selBtns = {};
@@ -115,13 +115,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var EmployeeID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.EmployeeID(childSelectedEntity.EmployeeID());
             }
-        }
+        };
 
         self.MaterializeTerritoryRef = function (data, event) {
             data.MaterializeTerritoryRef().done(function () {
@@ -154,7 +154,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_TerritoryRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'EmployeeTerritory View');
@@ -166,7 +166,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../Territory/LoadEntityView?TerritoryID=' + data.TerritoryID();
             }
-        }
+        };
 
         self.select_TerritoryID = function (data, event) {
             var selBtns = {};
@@ -189,13 +189,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var TerritoryID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.TerritoryID(childSelectedEntity.TerritoryID());
             }
-        }
+        };
 
     }
     return c;

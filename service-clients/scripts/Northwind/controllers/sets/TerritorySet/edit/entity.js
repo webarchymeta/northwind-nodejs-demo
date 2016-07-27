@@ -47,7 +47,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeRegionRef = function (data, event) {
             data.MaterializeRegionRef().done(function () {
@@ -80,7 +80,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_RegionRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Territory View');
@@ -92,7 +92,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../Region/LoadEntityView?RegionID=' + data.RegionID();
             }
-        }
+        };
 
         self.select_RegionID = function (data, event) {
             var selBtns = {};
@@ -115,13 +115,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var RegionID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.RegionID(childSelectedEntity.RegionID());
             }
-        }
+        };
 
         self.display_EmployeeTerritorys = function (data, event) {
             if (!data.IsEmployeeTerritorysMaterialized()) {
@@ -131,14 +131,14 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('EmployeeTerritory', data.EmployeeTerritorys());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
     }
     return c;

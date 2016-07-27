@@ -47,13 +47,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.LoadNotes = function (data, event) {
             data.LoadEntityNotes().done(function () {
                 $(event.target).siblings().button();
             });
-        }
+        };
 
         self.fileUploadNotes = function (data, event) {
             if (data.data !== null) {
@@ -66,13 +66,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
 
             }
-        }
+        };
 
         self.LoadPhoto = function (data, event) {
             data.LoadEntityPhoto().done(function () {
                 $(event.target).siblings().button();
             });
-        }
+        };
 
         self.fileUploadPhoto = function (data, event) {
             if (data.data !== null) {
@@ -85,7 +85,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
 
             }
-        }
+        };
 
         self.MaterializeUpperRef = function (data, event) {
             data.MaterializeUpperRef().done(function () {
@@ -118,7 +118,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_UpperRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Employee View');
@@ -132,7 +132,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $("#displayFrame")[0].src = '../Employee/LoadEntityView?EmployeeID=' + data.ReportsTo();
                 }
             }
-        }
+        };
 
         self.select_ReportsTo = function (data, event) {
             var selBtns = {};
@@ -159,13 +159,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var ReportsTo_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.ReportsTo(childSelectedEntity.EmployeeID());
             }
-        }
+        };
 
         self.display_Employees = function (data, event) {
             if (!data.IsEmployeesMaterialized()) {
@@ -175,7 +175,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('Employee', data.Employees());
             }
-        }
+        };
 
         self.display_EmployeeTerritorys = function (data, event) {
             if (!data.IsEmployeeTerritorysMaterialized()) {
@@ -185,7 +185,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('EmployeeTerritory', data.EmployeeTerritorys());
             }
-        }
+        };
 
         self.display_Orders = function (data, event) {
             if (!data.IsOrdersMaterialized()) {
@@ -195,24 +195,24 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('Order', data.Orders());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
         self._loadEntityRoots = function (data, event) {
             set.LoadEntitySetRoots(data).done(function () {
             });
-        }
+        };
 
         self._loadEntityHierarchy = function (data, event) {
             set.LoadEntityFullHierarchyRecurs(data).done(function () {
             });
-        }
+        };
 
         self._loadChildNodes = function (data, event) {
             if (data.IsChildsLoaded()) {
@@ -226,7 +226,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $(event.target).removeClass("waiting");
                 });
             }
-        }
+        };
 
     }
     return c;

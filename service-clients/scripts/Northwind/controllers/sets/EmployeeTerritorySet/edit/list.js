@@ -11,24 +11,27 @@
 
 define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfilter, model) {
 
-    var c = function () {
+    var c = function (set, pageLoader) {
 
         var self = this;
-        var set;
         var loadingPage = false;
+        var pageItemsLoader = pageLoader;
 
+        self.set = set;
         self.isProcessing = ko.observable(false);
+        
 
         var setWait = function (wait) {
             self.isProcessing(wait);
-        }
+        };
 
-        self.showlist = function () {
+        self.showlist = function (_qexpr) {
+            set.preSetQExpr = _qexpr;
             var qexpr = set.getQueryExpr();
             if (set.IsQueryStateChanged()) {
                 set.ResetPageState();
             }
-            set.NextPageBlock(qexpr, null, true).done(function () {
+            return set.NextPageBlock(qexpr, null, true).done(function () {
                 if (set.CurrentPage() !== null && !(typeof set.CurrentPage().Items === 'undefined')) {
                     set.CurrentPage().Items.removeAll();
                 }
@@ -36,7 +39,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     loadpage(0);
                 }
             });
-        }
+        };
 
         self.prevPageBlock = function () {
             if (loadingPage) {
@@ -56,7 +59,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                 }
                 loadpage(ipage == -1 ? 0 : ipage);
             }
-        }
+        };
 
         self.nextPageBlock = function () {
             if (loadingPage) {
@@ -136,7 +139,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                 loadingPage = false;
                 setWait(false)
             }
-        }
+        };
 
         var updateCurrPage = function (p, p0) {
             set.CurrentPage(p);
@@ -147,7 +150,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             if (set.CurrentPage().CurrentItem() !== null) {
                 updateEntityDetails();
             }
-        }
+        };
 
         self.showEntity = function (data, event) {
             currentDisplayEntity = data.data;
@@ -157,7 +160,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             $("#displayFrame")[0].src = "EntityView";
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.selectEntity = function (data, event) {
             for (var i = 0; i < set.CurrentPage().Items().length; i++) {
@@ -174,7 +177,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
 
         childSelectedEntity = null;
@@ -209,7 +212,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeEmployeeRef = function (data, event) {
             data.MaterializeEmployeeRef().done(function () {
@@ -242,7 +245,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_EmployeeRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'EmployeeTerritory View');
@@ -254,7 +257,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             } else {
                 $("#displayFrame")[0].src = '../Employee/LoadEntityView?EmployeeID=' + data.EmployeeID();
             }
-        }
+        };
 
         self.select_EmployeeID = function (data, event) {
             var selBtns = {};
@@ -277,13 +280,13 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var EmployeeID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.EmployeeID(childSelectedEntity.EmployeeID());
             }
-        }
+        };
 
         self.MaterializeTerritoryRef = function (data, event) {
             data.MaterializeTerritoryRef().done(function () {
@@ -316,7 +319,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_TerritoryRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'EmployeeTerritory View');
@@ -328,7 +331,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             } else {
                 $("#displayFrame")[0].src = '../Territory/LoadEntityView?TerritoryID=' + data.TerritoryID();
             }
-        }
+        };
 
         self.select_TerritoryID = function (data, event) {
             var selBtns = {};
@@ -351,13 +354,13 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var TerritoryID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.TerritoryID(childSelectedEntity.TerritoryID());
             }
-        }
+        };
 
         currentNewEntity = null;
 
@@ -431,7 +434,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }).fail(function (jqxhr, textStatus, error) {
                 _setWait(false);
             });
-        }
+        };
 
         self.deleteEntity = function (data, event) {
             var deleted = [];
@@ -451,7 +454,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.submitChanges = function () {
             var changed = [];
@@ -503,7 +506,7 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
             }).fail(function (jqxhr, textStatus, error) {
                 _setWait(false);
             });
-        }
+        };
 
         self.resetChanges = function () {
             for (var i = 0; i < set.PageBlocks().length; i++) {
@@ -521,11 +524,14 @@ define(['knockout', 'config', 'queryTerms', 'model'], function (ko, config, tkfi
                     }
                 }
             }
-        }
+        };
 
         self.initialize = function (filter) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/EmployeeTerritory'] = model;
-            set = new model.entitySet();
+            if (!self.set) {
+                self.set = new model.entitySet();
+                set = self.set;
+            }
             return set.GetSetInfo(tkfilter, filter);
         };
     }

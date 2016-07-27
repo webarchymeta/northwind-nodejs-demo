@@ -36,9 +36,9 @@ define([ 'knockout' ], function (ko) {
                 },
                 error: function(jqxhr, textStatus) {
                     if (typeof alert === 'function') {
-                        alert(jqxhr.responseText);
+                        alert(jqxhr.statusText + '\r\n\r\n' + jqxhr.responseText);
                     } else if (typeof navigator !== 'undefined' && typeof navigator.notification !== 'undefined') {
-                        navigator.notification.alert(jqxhr.responseText);
+                        navigator.notification.alert(jqxhr.statusText + '\r\n\r\n' + jqxhr.responseText);
                     }
                 }
             });
@@ -59,9 +59,9 @@ define([ 'knockout' ], function (ko) {
                 },
                 error: function(jqxhr, textStatus) {
                     if (typeof alert === 'function') {
-                        alert(jqxhr.responseText);
+                        alert(jqxhr.statusText + '\r\n\r\n' + jqxhr.responseText);
                     } else if (typeof navigator !== 'undefined' && typeof navigator.notification !== 'undefined') {
-                        navigator.notification.alert(jqxhr.responseText);
+                        navigator.notification.alert(jqxhr.statusText + '\r\n\r\n' + jqxhr.responseText);
                     }
                 }
             });

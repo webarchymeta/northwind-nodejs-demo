@@ -47,7 +47,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeCustomerRef = function (data, event) {
             data.MaterializeCustomerRef().done(function () {
@@ -80,7 +80,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_CustomerRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'CustomerCustomerDemo View');
@@ -92,7 +92,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../Customer/LoadEntityView?CustomerID=' + data.CustomerID();
             }
-        }
+        };
 
         self.select_CustomerID = function (data, event) {
             var selBtns = {};
@@ -115,13 +115,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var CustomerID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.CustomerID(childSelectedEntity.CustomerID());
             }
-        }
+        };
 
         self.MaterializeCustomerDemographicRef = function (data, event) {
             data.MaterializeCustomerDemographicRef().done(function () {
@@ -154,7 +154,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_CustomerDemographicRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'CustomerCustomerDemo View');
@@ -166,7 +166,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 $("#displayFrame")[0].src = '../CustomerDemographic/LoadEntityView?CustomerTypeID=' + data.CustomerTypeID();
             }
-        }
+        };
 
         self.select_CustomerTypeID = function (data, event) {
             var selBtns = {};
@@ -189,13 +189,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var CustomerTypeID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.CustomerTypeID(childSelectedEntity.CustomerTypeID());
             }
-        }
+        };
 
     }
     return c;

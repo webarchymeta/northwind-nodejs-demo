@@ -46,6 +46,7 @@
     <Compile Include="config.js" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="routes\default.js" />
+    <Content Include="public\images\DBSchema.png" />
     <Content Include="public\styles\css\common.less" />
     <Content Include="public\styles\css\tmp\common.css" />
     <Content Include="public\styles\css\variables.less" />

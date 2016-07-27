@@ -30,7 +30,8 @@ var api = function () {
         var __promise = new B(function (resolve, reject) {
             var opts = {
                 connectString: typeof input === 'undefined' || typeof input.connectString === 'undefined' ? null : input.connectString,
-                textResourceDir: input.textResourceDir
+                textResourceDir: input.textResourceDir,
+                luceneIndicesBasePath: input.luceneIndicesBasePath
             };
             self._AttachDataEngine(opts, function (error, result) {
                 if (!error) {

@@ -47,7 +47,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             $(".resizeblock").on("click", function () {
                 $(this).resizable({ aspectRatio: true });
             });
-        }
+        };
 
         self.MaterializeCustomerRef = function (data, event) {
             data.MaterializeCustomerRef().done(function () {
@@ -80,7 +80,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_CustomerRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Order View');
@@ -94,7 +94,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $("#displayFrame")[0].src = '../Customer/LoadEntityView?CustomerID=' + data.CustomerID();
                 }
             }
-        }
+        };
 
         self.select_CustomerID = function (data, event) {
             var selBtns = {};
@@ -121,13 +121,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var CustomerID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.CustomerID(childSelectedEntity.CustomerID());
             }
-        }
+        };
 
         self.MaterializeShipperRef = function (data, event) {
             data.MaterializeShipperRef().done(function () {
@@ -160,7 +160,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_ShipperRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Order View');
@@ -174,7 +174,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $("#displayFrame")[0].src = '../Shipper/LoadEntityView?ShipperID=' + data.ShipVia();
                 }
             }
-        }
+        };
 
         self.select_ShipVia = function (data, event) {
             var selBtns = {};
@@ -201,13 +201,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var ShipVia_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.ShipVia(childSelectedEntity.ShipperID());
             }
-        }
+        };
 
         self.MaterializeEmployeeRef = function (data, event) {
             data.MaterializeEmployeeRef().done(function () {
@@ -240,7 +240,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             });
             event.stopPropagation();
             return false;
-        }
+        };
 
         self.display_EmployeeRef = function (data, event) {
             $("#displayWindow").dialog('option', 'title', 'Order View');
@@ -254,7 +254,7 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
                     $("#displayFrame")[0].src = '../Employee/LoadEntityView?EmployeeID=' + data.EmployeeID();
                 }
             }
-        }
+        };
 
         self.select_EmployeeID = function (data, event) {
             var selBtns = {};
@@ -281,13 +281,13 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             }
             event.stopPropagation();
             return false;
-        }
+        };
 
         var EmployeeID_selected = function () {
             if (currentUpdatingEntity !== null && childSelectedEntity !== null) {
                 currentUpdatingEntity.EmployeeID(childSelectedEntity.EmployeeID());
             }
-        }
+        };
 
         self.display_Order_Details = function (data, event) {
             if (!data.IsOrder_DetailsMaterialized()) {
@@ -297,14 +297,14 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
             } else {
                 display_subset('Order_Detail', data.Order_Details());
             }
-        }
+        };
 
         self.display_subset = function (setname, subset) {
             var url = dbBaseUrl + setname + '/MainFilteredView?filter=' + encodeURIComponent(subset.SetFilter);
             $("#displayWindow").dialog('option', 'title', setname + ' (' + subset.SetFilter + ')');
             $("#displayWindow").dialog("open");
             $("#displayFrame")[0].src = url;
-        }
+        };
 
     }
     return c;

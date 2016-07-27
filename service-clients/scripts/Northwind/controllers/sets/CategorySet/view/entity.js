@@ -53,8 +53,9 @@ define(['knockout', 'config', 'model'], function (ko, config, model) {
 
         self.initialize = function (CategoryID) {
             pageMgr.loadedModelTable['service-clients/scripts/Northwind/models/sets/Category'] = model;
-            if (self.set == null)
+            if (!self.set) {
                 self.set = new model.entitySet();
+            }
             return self.set.LoadEntityByKey(CategoryID, true);
         };
     }

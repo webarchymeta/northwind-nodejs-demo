@@ -37,7 +37,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 return false;
             }
             return self.ProductID == data.ProductID;
-        }
+        };
 
         if (data.CategoryRef == null) {
             self.CategoryRef = ko.observable(null);
@@ -228,10 +228,10 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 UnitsInStock: self.data.UnitsInStock,
                 UnitsOnOrder: self.data.UnitsOnOrder
             };
-        }
+        };
 
         self.IsEntitySelected = ko.observable(false);
-    }
+    };
 
     var Product = function (data) {
         var self = this;
@@ -382,7 +382,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 return false;
             }
             return self.ProductID() == data.ProductID();
-        }
+        };
 
         self.GetUpdatedData = function () {
             if (self.data == null) {
@@ -700,7 +700,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
 
         self.IsEntitySelected = ko.observable(false);
         self.Initializing = false;
-    }
+    };
 
     var ProductPage = function (s, edit) {
         var self = this;
@@ -717,7 +717,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
         self.IsDataLoaded = ko.observable(false);
         self.IsPageSelected = ko.observable(false);
         self.Items =  ko.observableArray([]);
-        self.GetPageItems = function (s) {
+        self.GetPageItems = function (s, pageLoader) {
             if (self.IsDataLoaded()) 
                 return $.Deferred().resolve();
             var qexpr = s.getQueryExpr();
@@ -738,29 +738,33 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                 }
             }
             self.Items.removeAll();
-            return $.ajax({
-                url: config.baseUrl + "/services/Northwind/ProductSet/GetPageItems",
-                type: "POST",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ set: s.set, qexpr: qexpr, prevlast: lastItem })
-            }).pipe(
-                function (items) {
-                    for (var i = 0; i < items.length; i++) {
-                        if (editPage)
-                            self.Items.push(new Product(items[i]));
-                        else
-                            self.Items.push(new ProductView(items[i]));
+            if (typeof pageLoader !== 'function') {
+                return $.ajax({
+                    url: config.baseUrl + "/services/Northwind/ProductSet/GetPageItems",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ set: s.set, qexpr: qexpr, prevlast: lastItem })
+                }).pipe(
+                    function (items) {
+                        for (var i = 0; i < items.length; i++) {
+                            if (editPage)
+                                self.Items.push(new Product(items[i]));
+                            else
+                                self.Items.push(new ProductView(items[i]));
+                        }
+                        self.IsDataLoaded(true);
+                        return $.Deferred().resolve();
+                    },
+                    function (jqxhr, textStatus, error) {
+                        return $.Deferred().reject(jqxhr, textStatus, error);
                     }
-                    self.IsDataLoaded(true);
-                    return $.Deferred().resolve();
-                },
-                function (jqxhr, textStatus, error) {
-                    return $.Deferred().reject(jqxhr, textStatus, error);
-                }
-            );
-        }
-    }
+                );
+            } else {
+                return pageLoader(self, { set: s.set, qexpr: qexpr, prevlast: lastItem });
+            }
+        };
+    };
 
     var ProductPageBlock = function (s, idx0, data, edit) {
         var self = this;
@@ -1074,13 +1078,15 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
 
         self.FilterClosed = ko.observable(false);
 
+        self.preSetQExpr = undefined;
+
         self.RefreshSetState = function(qc) {
             self.IsQueryStateChanged(true);
             self.ResetPageState();
             self.PagesWindow.removeAll();
             if (typeof self.CurrentPage().Items !== 'undefined')
                 self.CurrentPage().Items.removeAll();
-        }
+        };
 
         self.GetSetInfo = function (tkfilter, _filter) {
             self.BaseUrl = config.baseUrl;
@@ -1114,6 +1120,8 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
         };
 
         self.getQueryExpr = function () {
+            if (self.preSetQExpr)
+                return self.preSetQExpr;
             var sorters = [];
             var filters = [];
             for (var i = 0; i < self.SorterPath().length; i++)
@@ -1121,7 +1129,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
             for (var i = 0; i < self.FilterPath().length; i++)
                 filters.push(self.FilterPath()[i]);
             return new q.QueryExpression(sorters, filters);
-        }
+        };
 
         self.GetNextSorterOps = function (tkfilter) {
             var qtokens = [];
@@ -1158,7 +1166,13 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
         };
 
         self.GetNextFilterOps = function (tkfilter) {
-            var qexpr = self.getQueryExpr();
+            var sorters = [];
+            var filters = [];
+            for (var i = 0; i < self.SorterPath().length; i++)
+                sorters.push(self.SorterPath()[i]);
+            for (var i = 0; i < self.FilterPath().length; i++)
+                filters.push(self.FilterPath()[i]);
+            var qexpr = new q.QueryExpression(sorters, filters);
             return $.ajax({
                 url: config.baseUrl + "/services/Northwind/ProductSet/GetNextFilterOps",
                 type: "POST",
@@ -1305,7 +1319,7 @@ define(['knockout', 'config', 'queryModels' ], function (ko, config, q) {
                     return $.Deferred().reject(jqxhr, textStatus, error);
                 }
             );
-        }
+        };
 
     }
 
