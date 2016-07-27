@@ -1,0 +1,454 @@
+﻿@import "../../../../external/bower_components/bootstrap/less/variables.less";
+@import "variables.less";
+@import "../../../../external/bower_components/bootstrap/less/bootstrap.less";
+
+html {
+    height: calc(~"100% - 30px");
+}
+
+body {
+    padding: 0;
+    //background: linear-gradient(lighten(@gray, 10%), white) no-repeat white;
+    height: calc(~"100% - 30px");
+}
+
+@-moz-document url-prefix() {
+    fieldset {
+        display: table-cell;
+    }
+}
+ 
+@footer-height: 0px;
+@navigate-area-height: 35px;
+
+.page-navigator {
+
+    span {
+        color: @gray-lighter;
+        font-size: @font-size-h3;
+    }
+
+    a.next {
+        position: absolute;
+        right: 10px;
+        top: 14px;
+        visibility: hidden;
+    }
+
+    a.home {
+        span {
+            margin-top: 5px;
+        }
+
+        display: inherit;
+        margin-left: 50%;
+        margin-right: 50%;
+        margin-top: 10px;
+        visibility: hidden;
+    }
+
+    a.prev {
+        float: left;
+        margin: 15px -5px;
+        visibility: hidden;
+    }
+
+    background: @gray-dark;
+    height: @navigate-area-height;
+}
+
+.server-error {
+    font-size: @font-size-h4;
+    color: red;
+}
+
+.content-container {
+    .container();
+    padding: 0 5px;
+    margin-top: 60px;
+    background-color: white;
+    min-height: calc(~"100% - "@footer-height);
+    //box-shadow: 0 3px 3px 0 @gray;
+}
+
+.top-dataset-nodes {
+    float:left;
+    border: 1px solid @gray;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.auto-complete-menu {
+    .dropdown-menu();
+    /*font-size: @font-size-small;*/
+}
+
+.content-container {
+    .form-row {
+        margin-bottom: 20px;
+    }
+
+    .logcontainer {
+        .logparams {
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid @gray-light;
+        }
+
+        > table {
+            td {
+                &:last-of-type {
+                    pre {
+                        overflow: hidden;
+                    }
+
+                    padding: 3px 10px;
+                    white-space: normal;
+                    width: 100%;
+                }
+
+                padding: 3px 10px;
+                white-space: nowrap;
+                width: 1px;
+                border: 1px solid #DFEFFC;
+            }
+
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        margin: 10px;
+    }
+
+    .set-info-area, .entity-info-area {
+        .header {
+            span.set-name {
+                font-weight: bold;
+            }
+
+            background-color: @gray-lighter;
+            font-size: @font-size-h4;
+            padding: 5px;
+        }
+    }
+
+    .entity-info-area {
+        margin-bottom: 5px;
+    }
+
+    .section-header {
+        span {
+            font-size: @font-size-h4;
+            font-weight: @headings-font-weight;
+        }
+
+        background-color: darken(@gray-lighter, 10%);
+        text-align: center;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+
+    .query-composer {
+
+        col {
+            &.header {
+                background-color: @gray-lighter;
+            }
+        }
+
+        td {
+            &:first-of-type {
+                text-align: right;
+                width: 1px;
+                white-space: nowrap;
+                padding: 5px 10px;
+            }
+
+            .current {
+                border-bottom: 1px solid @gray-lighter;
+                display: inline-block;
+            }
+
+            padding: 5px;
+        }
+
+        .sorterexpr, .filterexpr {
+            .sortnode, .dirnode, .dotnode, .thisnode, .input, .input-non-popup, .filternode {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .dirnode, .dotnode {
+                font-size: @font-size-small;
+            }
+
+            .thisnode {
+                color: Blue;
+            }
+
+            .input {
+                .keyword {
+                    height: auto;
+                    padding: 3px 5px;
+                    width: 100px;
+                }
+
+                .options {
+                    .selecting {
+                        color: @dropdown-link-hover-color;
+                        background-color: @dropdown-link-hover-bg;
+                    }
+
+                    display: block;
+                    background: @gray-lighter;
+                    position: absolute;
+                    top: @font-size-base + 12px;
+                    max-height: 400px;
+                    overflow-y: auto;
+                }
+
+                display: inline-block;
+                position: relative;
+            }
+
+            .query-exec {
+                padding: 3px 5px;
+                vertical-align: top;
+            }
+
+            .input-non-popup {
+                .keyword {
+                    position: relative;
+                    display: block;
+                }
+
+                .options {
+                    .selecting {
+                        color: @dropdown-link-hover-color;
+                        background-color: @dropdown-link-hover-bg;
+                    }
+
+                    display: block;
+                    background: @gray-lighter;
+                    position: relative;
+                }
+            }
+
+            min-height: 25px;
+        }
+
+        .Param {
+            color: Blue;
+        }
+
+        .Op {
+            color: Green;
+        }
+
+        .LogicOp {
+            color: firebrick;
+            font-weight: bold;
+        }
+
+        .StringValue {
+            color: #FF4F0B;
+            font-style: oblique;
+            font-size: 12px;
+            white-space: pre;
+        }
+
+        .BeginGroup, .EndGroup {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        width: 100%;
+        margin-top: 5px;
+        border: 1px solid @gray-lighter;
+    }
+
+    table.gridview {
+        margin-top: 5px;
+        margin-bottom: 0;
+        table-layout: fixed;
+
+        > colgroup {
+            > col.collapsecol {
+                width: 15px;
+                overflow-x: hidden;
+            }
+        }
+
+        > thead {
+            background-color: @gray-lighter;
+
+            th {
+                &.item-navigator {
+                    width: 30px;
+                }
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        > tbody {
+            & > tr.selected > td {
+                > a {
+                    background-color: lighten(@gray, 5%);
+                    color: white;
+                }
+
+                &.item-navigator {
+                    > div {
+                        > a {
+                            color: white;
+                        }
+                    }
+                    width: 30px;
+                }
+
+                background-color: lighten(@gray, 5%);
+                color: white;
+            }
+
+            td {
+                &.item-navigator {
+                    > div {
+                        > a {
+                            /*position: absolute;*/
+                            display: inline-block;
+                            font-size: 17px;
+                        }
+                        /*width: 0;
+                        position: relative;*/
+                    }
+
+                    width: 30px;
+                    /*overflow: visible;
+                    padding: 0;*/
+                }
+                font-size: @font-size-small;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        td, th {
+            span {
+                overflow: hidden;
+            }
+        }
+    }
+
+    .page-list {
+        .status {
+            padding: 8px 10px;
+            display: inline-block;
+        }
+
+        .list {
+            > ul {
+                .pagination();
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            display: inline-block;
+            margin: 0;
+            float: right;
+        }
+
+        margin: 0;
+    }
+
+    .entity-details-container {
+        margin-top: 5px;
+    }
+
+    .tab-content {
+        .content {
+            .textblock, .resizeblock {
+                padding: 10px 15px;
+            }
+
+            .resizeblock {
+                img{
+                    width: 100%;
+                }
+                text-align: center;
+            }
+        }
+    }
+
+    table.property-list {
+        td:first-of-type {
+            text-align: right;
+            padding: 5px;
+            font-weight: bold;
+            width: 20%;
+        }
+
+        td:last-of-type {
+            padding: 5px;
+        }
+    }
+
+    .treeview {
+        ul {
+            li {
+                margin-left: 10px;
+                margin-right: 0;
+                padding-right: 0;
+                border-collapse: collapse;
+            }
+
+            margin: 10px 0 10px 0;
+            border-collapse: collapse;
+        }
+
+        .treenode {
+            .clearfix();
+
+            .closed {
+                display: inline-block;
+            }
+
+            .opened {
+                display: inline-block;
+            }
+
+            .empty {
+                display: inline-block;
+                color: @gray-lighter;
+            }
+
+            span {
+                &.seednode {
+                    font-weight: bold;
+                }
+
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            input {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            > .badge {
+                float: right;
+                margin-right: 10px;
+            }
+        }
+
+        margin-top: 1px;
+        margin-left: -9px;
+    }
+}
+
+.invalid_value {
+    color: red;
+}

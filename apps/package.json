@@ -1,0 +1,43 @@
+{
+  "name": "ExpressApp1",
+  "version": "0.0.0",
+  "description": "ExpressApp1",
+  "main": "app.js",
+  "author": {
+    "name": "Ying",
+    "email": ""
+  },
+  "dependencies": {
+    "0": "0.0.0",
+    "bluebird": "^3.4.0",
+    "body-parser": "lastest",
+    "cookie-parser": "lastest",
+    "edge": "lastest",
+    "ejs": "lastest",
+    "errorhandler": "lastest",
+    "events": "lastest",
+    "express": "lastest",
+    "express-logger": "lastest",
+    "favicon": "lastest",
+    "http": "lastest",
+    "i18n": "lastest",
+    "less": "lastest",
+    "lodash": "^4.13.1",
+    "method-override": "lastest",
+    "passport": "lastest",
+    "passport-local": "lastest",
+    "promise": "lastest",
+    "request": "lastest",
+    "socket.io": "lastest",
+    "urlrouter": "lastest",
+    "winston": "lastest"
+  },
+  "devDependencies": {
+    "grunt": "lastest",
+    "grunt-contrib-concat": "lastest",
+    "grunt-contrib-less": "lastest",
+    "grunt-contrib-uglify": "lastest",
+    "grunt-contrib-watch": "lastest",
+    "grunt-sync": "lastest"
+  }
+}
